@@ -1,4 +1,6 @@
 FROM node:lts-alpine
+# update npm
+RUN npm install npm@latest -g
 # install simple http server for serving static content
 RUN npm install -g http-server
 # make the 'app' folder the current working directory
