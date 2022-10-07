@@ -1,24 +1,15 @@
-# iti0302-robotiklubi-frontend
+# ITI0302 - Robotiklubi Homepage
 
-## Project setup
-```
-npm install
-```
+***
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Description
+This project is the frontend of the Robotiklubi homepage.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Information
+Information about the project can be found on the backend project's wiki: https://gitlab.cs.ttu.ee/alvaht/iti0302-robotiklubi/-/wikis/Home.
 
-### Lints and fixes files
-```
-npm run lint
-```
+## Authors
+Mikk Loomets, Sander Pleesi, Alex Vahter, Rainer Viirlaid
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Project status
+The project is currently under development.
