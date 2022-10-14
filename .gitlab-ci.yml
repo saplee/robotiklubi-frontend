@@ -20,7 +20,7 @@ deploy robotiklubi-frontend:
   tags:
     - main
   script:
-    - cd /opt/frontend
+    - cd /opt/robotiklubi/frontend
     - docker-compose down --remove-orphans -v
     - docker-compose up -d --force-recreate
 
