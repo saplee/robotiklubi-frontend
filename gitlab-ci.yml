@@ -1,0 +1,26 @@
+stages:
+  - build
+  - deploy
+
+build robotiklubi-frontend:
+  stage: build
+  only:
+    refs:
+      - main
+  tags:
+    - main
+  script:
+    - docker build -t robotiklubi-frontend .
+
+deploy robotiklubi-frontend:
+  stage: deploy
+  only:
+    refs:
+      - main
+  tags:
+    - main
+  script:
+    - cd /opt/robotiklubi/frontend
+    - docker-compose down --remove-orphans -v
+    - docker-compose up -d --force-recreate
+
