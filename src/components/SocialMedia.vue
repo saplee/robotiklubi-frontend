@@ -24,12 +24,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
-}
+
 h4{
   bottom:0;
-  position: absolute;
+  position: fixed;
 }
 ul {
   list-style-type: none;
