@@ -9,9 +9,11 @@
     </div>
   </div>
 </template>
-<script>
+
+<script lang="ts">
 import {marked} from 'marked';
-export default {
+import {defineComponent} from "vue";
+export default defineComponent({
   name: "Markdown",
   data() {
     return {
@@ -70,13 +72,13 @@ export default {
     };
   },
   computed: {
-    markdownToHtml() {
-      // console.log(marked.parse(this.markdown))
+    markdownToHtml(): String {
       return marked.parse(this.markdown);
     },
   }
-};
+})
 </script>
+
 <style scoped>
 .formatted_section :deep(img) {
   max-width: 100%;

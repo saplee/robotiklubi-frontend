@@ -20,10 +20,12 @@ const router = createRouter({
     {
       path: '/markdown',
       name: 'markdown',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
       component: () => import('../views/MarkView.vue')
+    },
+    {
+      path: '/wiki',
+      name: 'wiki',
+      component: () => import('../views/WikiView.vue')
     }
   ]
 })
