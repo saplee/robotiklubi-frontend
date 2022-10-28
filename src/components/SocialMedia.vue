@@ -1,8 +1,8 @@
 <template>
   <div class="social">
 
-      <a href="https://et-ee.facebook.com/Robotiklubi/" target="_blank" ><img src="../assets/facebook_logo.png" style="width:50px;height:50px;"></a>
-      <a href="https://www.instagram.com/robotiklubi/" target="_blank" ><img src="../assets/instagram_logo.png" style="width:50px;height:50px; position: absolute; left: 40px"></a>
+      <a href="https://et-ee.facebook.com/Robotiklubi/" target="_blank" ><img src="../assets/facebook_logo.png" alt="facebook" style="width:50px;height:50px;"></a>
+      <a href="https://www.instagram.com/robotiklubi/" target="_blank" ><img src="../assets/instagram_logo.png" alt="instagram" style="width:50px;height:50px; position: absolute; left: 40px"></a>
 
     <h4>MTÜ TTÜ Robotiklubi
       Tallinna Tehnikaülikool
