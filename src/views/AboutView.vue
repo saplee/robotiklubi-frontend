@@ -5,7 +5,7 @@
                                                                            style="width:50px;height:50px;"></a>
     <a href="https://www.instagram.com/robotiklubi/" target="_blank"><img src="../assets/instagram_logo.png"
                                                                           alt="instagram"
-                                                                          style="width:50px;height:50px; position: absolute; left: 40px"></a>
+                                                                          style="width:50px;height:50px; left: 40px"></a>
     <h4>MTÜ TTÜ Robotiklubi
       Tallinna Tehnikaülikool
       Ehitajate tee 5
