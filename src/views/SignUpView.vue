@@ -1,19 +1,19 @@
 <template>
   <div className="signup">
     <h1>SIGN UP</h1>
-    <label for="firstN"><b>First Name</b></label>
-    <input type="text" placeholder="Enter your first name" id="firstN" name="firstName" v-model="firstName" required>
-    <label for="lastN"><b>Last Name</b></label>
-    <input type="text" placeholder="Enter your last name" id="lastN" name="lastName" v-model="lastName" required>
-    <label for="user"><b>Username</b></label>
-    <input type="text" placeholder="Username" id="user" name="userName" v-model="userName" required>
-    <label for="email">Email address</label>
-    <input type="email" placeholder="Enter your email" id="email" v-model="email" required>
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" id="psw" name="password" v-model="password" required>
-    <label for="phone"><b>Phone number</b></label>
-    <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone" required>
-    <button @click="post">Sign Up</button>
+    <form onsubmit="return false">
+      <label for="firstN"><b>First Name</b></label>
+      <input type="text" placeholder="Enter your first name" id="firstN" name="firstName" v-model="firstName" required>
+      <label for="lastN"><b>Last Name</b></label>
+      <input type="text" placeholder="Enter your last name" id="lastN" name="lastName" v-model="lastName" required>
+      <label for="email">Email address</label>
+      <input type="email" placeholder="Enter your email" id="email" v-model="email" required>
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" id="psw" name="password" v-model="password" required>
+      <label for="phone"><b>Phone number</b></label>
+      <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone" required>
+      <button @click="post">Sign Up</button>
+    </form>
   </div>
 </template>
 
@@ -21,12 +21,11 @@
 import {ref} from "vue";
 import axios from "axios";
 
-let firstName = ref('');
-let lastName = ref('');
-let userName = ref('');
-let password = ref('');
-let email = ref('');
-let phone = ref('');
+let firstName = ref();
+let lastName = ref();
+let password = ref();
+let email = ref();
+let phone = ref();
 
 
 const instance = axios.create({
@@ -38,17 +37,20 @@ async function post() {
   let data = {
     firstName: firstName.value,
     lastName: lastName.value,
-    userName: userName.value,
     password: password.value,
     email: email.value,
-    phone: phone.value,
-    isAdmin: false
-
+    phone: phone.value
   }
   console.log("sending post request!");
-  const response = await instance.post('/signup', data);
-  console.log("response:", response);
-
+  const response = await instance.post('/signup', data)
+  if (!response.data.succeeded) {
+    document.getElementById("email").style.outline = "2px solid red"
+    console.log("Asi on puhta perses!")
+  }
+  else {
+    console.log("response:", response.data)
+    document.getElementById("email").style.outline = ""
+  }
 }
 </script>
 
@@ -85,10 +87,10 @@ button {
   font-size: 1em;
 }
 
+
 button:hover {
   opacity: 0.8;
 }
-
 
 span.psw {
   float: right;
