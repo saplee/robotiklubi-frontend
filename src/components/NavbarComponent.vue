@@ -35,8 +35,8 @@
         <ul class="dropdown">
           <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
           <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
-          <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
           <li><RouterLink class="nav-link" to="/signup">Sign Up</RouterLink></li>
+          <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
         </ul>
       </div>
 

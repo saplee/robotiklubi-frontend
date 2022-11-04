@@ -13,55 +13,63 @@
         <input type="password" placeholder="Enter password" id="psw" name="password" v-model="password" required>
         <label for="phone"><strong>Phone number</strong></label>
         <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone" required>
-        <button @click="post">Create Account</button>
+        <button v-on:click="post()">Create Account</button>
       </form>
     </div>
   </main>
 </template>
 
-<script setup>
-import {ref} from "vue";
+<script>
 import axios from "axios";
-
-let firstName = ref("");
-let lastName = ref("");
-let password = ref("");
-let email = ref("");
-let phone = ref("");
-
-
-const instance = axios.create({
-  baseURL: "http://localhost:8080/",
-  timeout: 1000,
-});
-
-async function post() {
-  const emailElement = document.getElementById("email");
-  let data = {
-    firstName: firstName.value,
-    lastName: lastName.value,
-    password: password.value,
-    email: email.value,
-    phone: phone.value
-  }
-  console.log(data)
-  if (firstName.value !== "" && lastName.value !== "" && password.value !== "" && email.value !== "" && !emailElement.validity.typeMismatch && phone.value !== "") {
-    console.log("Sending post request.");
-    try {
-      const response = await instance.post('/signup', data)
-      if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
-      else document.getElementById("email").style.outline = ""
-    } catch (Exception) {
-      console.log("Could not send data.")
+import {defineComponent} from "vue";
+export default defineComponent({
+  data: function () {
+    return {
+      firstName: "",
+      lastName: "",
+      password: "",
+      email: "",
+      phone: ""
     }
-  }
-}
+  },
+  instance: axios.create({
+    baseURL: "http://localhost:8080/",
+    timeout: 1000,
+  }),
+  methods: {
+    async post() {
+      const emailElement = document.getElementById("email");
+      let info = {
+        firstName: this.firstName,
+        lastName: this.lastName,
+        password: this.password,
+        email: this.email,
+        phone: this.phone
+      }
+      if (info.firstName !== "" &&
+          info.lastName !== "" &&
+          info.password !== "" &&
+          info.email !== "" &&
+          info.phone !== "" &&
+          !emailElement.validity.typeMismatch) {
+        console.log("Sending post request.");
+        try {
+          const response = await info.instance.post('/signup', info)
+          if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
+          else document.getElementById("email").style.outline = ""
+        } catch (Exception) {
+          console.log("Could not send data.")
+        }
+      }
+    }
+  },
+})
 </script>
 
-
 <style scoped>
+
 #signup_container {
-  max-width: 40em;
+  max-width: 20em;
   width: 80%;
   margin: 2rem auto;
 }

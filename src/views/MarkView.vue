@@ -3,7 +3,7 @@
     <div id="markdown_container">
       <div>
         <h2>Write some <span class="highlight">Markdown</span> and see it <span class="highlight">Formatted</span>:</h2>
-        <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
+        <textarea v-model="markdown" rows="30" cols="80" class="text_box"></textarea>
       </div>
       <div class="markdown_formatted_section">
         <div v-html="markdownToHtml"></div>
