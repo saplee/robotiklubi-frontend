@@ -6,21 +6,21 @@ import HelloWorld from './components/HelloWorld.vue'
 
 
 <template>
-<!--  <div class="menu">
-    <div class="menu-container">
-      <div class="logo">
-        <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">
-          <img src="../assets/robotiklubi_logo.png" alt="Robotiklubi logo" />
-        </a>
+  <!--  <div class="menu">
+      <div class="menu-container">
+        <div class="logo">
+          <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">
+            <img src="../assets/robotiklubi_logo.png" alt="Robotiklubi logo" />
+          </a>
+        </div>
+        <div class="menu-items">
+          <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">Koduleht</a>
+          <a href="https://wiki.robotiklubi.ee" target="_blank" rel="noopener">Wiki</a>
+          <a href="https://www.facebook.com/Robotiklubi" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://www.instagram.com/robotiklubi/" target="_blank" rel="noopener">Instagram</a>
+        </div>
       </div>
-      <div class="menu-items">
-        <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">Koduleht</a>
-        <a href="https://wiki.robotiklubi.ee" target="_blank" rel="noopener">Wiki</a>
-        <a href="https://www.facebook.com/Robotiklubi" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/robotiklubi/" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-  </div>-->
+    </div>-->
 
 
 
@@ -34,8 +34,6 @@ import HelloWorld from './components/HelloWorld.vue'
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/markdown">Markdown</RouterLink>
-        <RouterLink to="/wiki">Wiki</RouterLink>
-        <RouterLink to="/signup">Sign Up</RouterLink>
       </nav>
     </div>
   </header>

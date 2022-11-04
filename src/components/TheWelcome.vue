@@ -12,34 +12,26 @@ import SupportIcon from './icons/IconSupport.vue'
     <template #icon>
       <DocumentationIcon />
     </template>
-    <template #heading>Documentation</template>
+    <template #heading>Wiki</template>
 
-    Vue’s
-    <a href="https://vuejs.org/" target="_blank" rel="noopener">official documentation</a>
-    provides you with all information you need to get started.
+    Robotiklubi
+    <a href="https://wiki.robotiklubi.ee/" target="_blank" rel="noopener">ametlikust wikist</a>
+    leiad kõik vajaliku klubist.
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <ToolingIcon />
     </template>
-    <template #heading>Tooling</template>
+    <template #heading>Inseneriteenused</template>
 
-    This project is served and bundled with
-    <a href="https://vitejs.dev/guide/features.html" target="_blank" rel="noopener">Vite</a>. The
-    recommended IDE setup is
-    <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">VSCode</a> +
-    <a href="https://github.com/johnsoncodehk/volar" target="_blank" rel="noopener">Volar</a>. If
-    you need to test your components and web pages, check out
-    <a href="https://www.cypress.io/" target="_blank" rel="noopener">Cypress</a> and
-    <a href="https://on.cypress.io/component" target="_blank">Cypress Component Testing</a>.
+    Robotiklubi pakub inseneriteenuseid, mis on suunatud robotitele, arvutitele ja muudele elektroonilistele seadmetele.
+    Teenused on saadaval nii TTÜ tudengitele kui ka kõigile teistele. Huvi korral
+    <a href="mailto:leo.muiste@robotiklubi.ee">kirjuta meile!</a>.
 
-    <br />
-
-    More instructions are available in <code>README.md</code>.
   </WelcomeItem>
 
-  <WelcomeItem>
+<!--  <WelcomeItem>
     <template #icon>
       <EcosystemIcon />
     </template>
@@ -53,34 +45,27 @@ import SupportIcon from './icons/IconSupport.vue'
     you need more resources, we suggest paying
     <a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">Awesome Vue</a>
     a visit.
-  </WelcomeItem>
+  </WelcomeItem>-->
 
   <WelcomeItem>
     <template #icon>
       <CommunityIcon />
     </template>
-    <template #heading>Community</template>
+    <template #heading>Suhtlus</template>
 
-    Got stuck? Ask your question on
-    <a href="https://chat.vuejs.org" target="_blank" rel="noopener">Vue Land</a>, our official
-    Discord server, or
-    <a href="https://stackoverflow.com/questions/tagged/vue.js" target="_blank" rel="noopener"
-      >StackOverflow</a
-    >. You should also subscribe to
-    <a href="https://news.vuejs.org" target="_blank" rel="noopener">our mailing list</a> and follow
-    the official
-    <a href="https://twitter.com/vuejs" target="_blank" rel="noopener">@vuejs</a>
-    twitter account for latest news in the Vue world.
+    Vajad abi? Kirjuta meile
+    <a href="https://facebook.com/robotiklubi" target="_blank" rel="noopener">Facebookis</a>, meie ametilikul lehel
+    või jälgi meid <a href="https://instagram.com/robotiklubi" target="_blank" rel="noopener">Instagrammis</a>.
+
   </WelcomeItem>
 
   <WelcomeItem>
     <template #icon>
       <SupportIcon />
     </template>
-    <template #heading>Support Vue</template>
+    <template #heading>Toeta meid</template>
 
-    As an independent project, Vue relies on community backing for its sustainability. You can help
-    us by
-    <a href="https://vuejs.org/sponsor/" target="_blank" rel="noopener">becoming a sponsor</a>.
+    Robotiklubi on MTÜ ning meie tegevus sõltub suurel määral teie toetusest. Kui soovid meid toetada, siis
+    <a href="mailto:robotiklubi@robotiklubi.ee">kirjuta meile!</a>
   </WelcomeItem>
 </template>

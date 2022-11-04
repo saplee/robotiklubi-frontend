@@ -72,3 +72,31 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* create a top menu bar with rounded corners and white background*/
+#app {
+  max-width: 50%;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 50px 50px 50px 50px;
+  -webkit-backdrop-filter: blur(50px);  /* Safari 9+ */
+  backdrop-filter: blur(50px); /* Chrome and Opera */
+  background-color: var(--color-background-soft) ;
+  opacity: 0.75;
+  /* set the shadow of the menu bar */
+    box-shadow: 0 0 10px 0 var(--color-background-soft) ;
+
+
+
+}
+
+body {
+  background: url(https://cam.robotiklubi.ee/mjpg/video.mjpg) no-repeat;
+  background-size: cover;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  -webkit-backdrop-filter: blur(20px);  /* Safari 9+ */
+  backdrop-filter: blur(20px); /* Chrome and Opera */
+}
+
