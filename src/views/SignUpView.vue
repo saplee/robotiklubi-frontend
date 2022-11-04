@@ -21,11 +21,11 @@
 import {ref} from "vue";
 import axios from "axios";
 
-let firstName = ref();
-let lastName = ref();
-let password = ref();
-let email = ref();
-let phone = ref();
+let firstName = ref("");
+let lastName = ref("");
+let password = ref("");
+let email = ref("");
+let phone = ref("");
 
 
 const instance = axios.create({
@@ -42,14 +42,15 @@ async function post() {
     phone: phone.value
   }
   console.log("sending post request!");
-  const response = await instance.post('/signup', data)
-  if (!response.data.succeeded) {
-    document.getElementById("email").style.outline = "2px solid red"
-    console.log("Asi on puhta perses!")
-  }
-  else {
-    console.log("response:", response.data)
-    document.getElementById("email").style.outline = ""
+  if (firstName.value !== "" && lastName.value !== "" && password.value !== "" && email.value !== "" && phone.value !== "") {
+    const response = await instance.post('/signup', data)
+    if (!response.data.succeeded) {
+      document.getElementById("email").style.outline = "2px solid red"
+      console.log("Asi on puhta perses!")
+    } else {
+      console.log("response:", response.data)
+      document.getElementById("email").style.outline = ""
+    }
   }
 }
 </script>
