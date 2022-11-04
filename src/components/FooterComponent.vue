@@ -14,14 +14,8 @@ export default {
 
 footer {
   background-color: var(--color-navbar);
-  position: absolute;
-  /*flex-shrink: 0;*/
-  /*height: 4rem;*/
-  /*padding-top: 4rem;*/
+  margin-top: auto;
   width: 100%;
-  bottom: 0;
-  display: flex;
-  align-items: center;
 }
 
 </style>

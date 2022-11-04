@@ -1,11 +1,13 @@
 <template>
-  <main class="markdown_example">
-    <div class="markdown_input">
-      <h2>Write some <span style="color: #00bd7e">Markdown</span> and see it <span style="color: #00bd7e">Formatted</span>:</h2>
-      <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
-    </div>
-    <div class="formatted_section">
-      <div v-html="markdownToHtml"></div>
+  <main>
+    <div class="markdown_example">
+      <div class="markdown_input">
+        <h2>Write some <span style="color: #00bd7e">Markdown</span> and see it <span style="color: #00bd7e">Formatted</span>:</h2>
+        <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
+      </div>
+      <div class="formatted_section">
+        <div v-html="markdownToHtml"></div>
+      </div>
     </div>
   </main>
 </template>
@@ -106,6 +108,8 @@ export default defineComponent({
 }
 .markdown_example {
   min-width: 500px;
+  width: 80%;
+  margin: 2rem auto;
   display: grid;
   grid-template-rows: 50% 50%;
 }

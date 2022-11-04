@@ -11,6 +11,7 @@ body {
     color: var(--color-text);
     position: relative;
     min-height: 100vh;
+    min-width: 100vw;
     background: var(--color-background);
     transition: color var(--transition-duration), background-color var(--transition-duration);
     line-height: 1.6;
@@ -22,9 +23,17 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+#app {
+    min-height: 100vh;
+    min-width: 100vw;
+    display: flex;
+    flex-direction: column;
+}
+
 main {
-    padding-bottom: 4rem;
-    margin: 0 auto;
+    /*margin: 0 auto;*/
+    min-width: 100%;
+    max-width: 100%;
 }
 
 a {

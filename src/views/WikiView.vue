@@ -1,12 +1,14 @@
 <template>
-  <main class="wiki_page">
-    <div class="page_selector">
-      <input type="number" v-model="wikiPageId">
-      <button v-on:click="getPageData()">Get Page</button>
-    </div>
-    <div class="formatted_content_section">
-      <h1 v-html="wikiPageTitle"></h1>
-      <div v-html="markdownToHtml"></div>
+  <main>
+    <div class="wiki_page">
+      <div class="page_selector">
+        <input type="number" v-model="wikiPageId">
+        <button v-on:click="getPageData()">Get Page</button>
+      </div>
+      <div class="formatted_content_section">
+        <h1 v-html="wikiPageTitle"></h1>
+        <div v-html="markdownToHtml"></div>
+      </div>
     </div>
   </main>
 </template>
@@ -46,6 +48,8 @@ export default defineComponent({
 
 .wiki_page {
   min-width: 500px;
+  width: 80%;
+  margin: 0 auto;
   display: grid;
   grid-template-rows: 10% 90%;
 }
