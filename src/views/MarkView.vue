@@ -1,5 +1,5 @@
 <template>
-  <div class="markdown_example">
+  <main class="markdown_example">
     <div class="markdown_input">
       <h2>Write some <span style="color: #00bd7e">Markdown</span> and see it <span style="color: #00bd7e">Formatted</span>:</h2>
       <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
@@ -7,7 +7,7 @@
     <div class="formatted_section">
       <div v-html="markdownToHtml"></div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -104,33 +104,31 @@ export default defineComponent({
   border: 1px solid #1f946e;
   margin: 10px 0;
 }
-@media {
-  .markdown_example {
-    max-height: 80vh;
-    min-width: 500px;
-    display: grid;
-    grid-template-rows: 50% 50%;
-  }
-  .markdown_input {
-    align-self: end;
-    padding-bottom: 10px;
-  }
-  .text_box {
-    resize: none;
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 2px solid rgb(84, 112, 102);
-    background: rgb(84, 112, 102);
-    color: #e0e0e0;
-  }
-  .formatted_section {
-    width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    background: rgb(84, 98, 93);
-    overflow: auto;
-  }
+.markdown_example {
+  min-width: 500px;
+  display: grid;
+  grid-template-rows: 50% 50%;
 }
+.markdown_input {
+  align-self: end;
+  padding-bottom: 10px;
+}
+.text_box {
+  resize: none;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 10px;
+  border: 2px solid rgb(84, 112, 102);
+  background: rgb(84, 112, 102);
+  color: #e0e0e0;
+}
+.formatted_section {
+  width: 100%;
+  max-height: 100%;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgb(84, 98, 93);
+  overflow: auto;
+}
+
 </style>

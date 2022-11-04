@@ -1,5 +1,5 @@
 <template>
-  <div class="about">
+  <main class="about">
     <a href="https://et-ee.facebook.com/Robotiklubi/" target="_blank"><img src="../assets/facebook_logo.png"
                                                                            alt="facebook"
                                                                            style="width:50px;height:50px;"></a>
@@ -15,7 +15,7 @@
       Füüsiliselt paikneme TTÜ kuuenda korpuse keldris, ruumis number U06-019
       robotiklubi@robotiklubi.ee
     </h4>
-  </div>
+  </main>
 </template>
 
 

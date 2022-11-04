@@ -157,6 +157,7 @@ import { RouterLink, RouterView } from 'vue-router'
 
 main {
   padding-bottom: 4rem;
+  margin: 0 auto;
 }
 
 footer {

@@ -1,5 +1,5 @@
 <template>
-  <div class="wiki_page">
+  <main class="wiki_page">
     <div class="page_selector">
       <input type="number" v-model="wikiPageId">
       <button v-on:click="getPageData()">Get Page</button>
@@ -8,7 +8,7 @@
       <h1 v-html="wikiPageTitle"></h1>
       <div v-html="markdownToHtml"></div>
     </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
@@ -45,7 +45,6 @@ export default defineComponent({
 <style scoped>
 
 .wiki_page {
-  max-height: 80vh;
   min-width: 500px;
   display: grid;
   grid-template-rows: 10% 90%;

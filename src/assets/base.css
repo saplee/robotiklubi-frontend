@@ -129,6 +129,8 @@
 
 body {
   color: var(--color-text);
+  position: relative;
+  min-height: 100vh;
   background: var(--color-background);
   transition: color var(--transition-duration), background-color var(--transition-duration);
   line-height: 1.6;
