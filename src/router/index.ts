@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/wiki',
       name: 'wiki',
       component: () => import('../views/WikiView.vue')
+    },
+    {
+      path: '/signup',
+      name: 'signup',
+      component: () => import('../views/SignUpView.vue')
     }
   ]
 })

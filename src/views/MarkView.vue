@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="markdown_example">
+    <div id="markdown_container">
       <div>
         <h2>Write some <span class="highlight">Markdown</span> and see it <span class="highlight">Formatted</span>:</h2>
         <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
@@ -83,7 +83,7 @@ export default defineComponent({
 
 <style scoped>
 
-.markdown_example {
+#markdown_container {
   width: 80%;
   margin: 2rem auto;
   display: grid;
@@ -105,7 +105,7 @@ export default defineComponent({
   width: 100%;
   max-height: 100%;
   border-radius: 1em;
-  padding: 10px;
+  padding: 1em;
   background: var(--color-background-alternate);
   overflow: auto;
 }

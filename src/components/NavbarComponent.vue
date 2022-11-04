@@ -12,7 +12,7 @@
       </div>
 
       <div class="nav-item">
-        <p class="nav-item-title" >Listie</p>
+        <p class="nav-item-title" >L</p>
         <ul class="dropdown">
           <li><a href="">Stuff</a></li>
           <li><a href="">More Stuff</a></li>
@@ -36,6 +36,7 @@
           <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
           <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
           <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
+          <li><RouterLink class="nav-link" to="/signup">Sign Up</RouterLink></li>
         </ul>
       </div>
 
@@ -108,7 +109,7 @@ export default {
 .dropdown {
   visibility: hidden;
   opacity: 0;
-  transition: visibility var(--transition-duration), opacity var(--transition-duration);
+  transition: opacity var(--transition-duration);
   background: var(--color-background-alternate);
   max-width: 100%;
   list-style-type: none;
@@ -116,6 +117,7 @@ export default {
   padding: 0;
   text-align: center;
   cursor: auto;
+  border: 0.15rem solid var(--color-accent);
 }
 
 .nav-item:hover .dropdown {
