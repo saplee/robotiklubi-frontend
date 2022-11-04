@@ -21,19 +21,6 @@ a,
   }
 }
 
-a,
-.blue {
-  text-decoration: none;
-  color: rgb(0, 174, 239);
-  transition: 0.4s;
-}
-
-@media (hover: hover) {
-  a:hover {
-    background-color: rgb(0, 174, 239, 0.1);
-  }
-}
-
 @media (min-width: 1024px) {
   body {
     display: flex;
