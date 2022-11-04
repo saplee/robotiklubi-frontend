@@ -13,12 +13,12 @@
 <style>
 
 .home_container {
-  min-width: 30rem;
   width: 80%;
   background: var(--color-background-alternate);
   margin: 2rem auto;
   padding: 1em 2em;
   border-radius: 1em;
+  overflow: auto;
 }
 
 </style>

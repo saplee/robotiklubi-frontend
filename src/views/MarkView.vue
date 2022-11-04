@@ -84,7 +84,6 @@ export default defineComponent({
 <style scoped>
 
 .markdown_example {
-  min-width: 30rem;
   width: 80%;
   margin: 2rem auto;
   display: grid;

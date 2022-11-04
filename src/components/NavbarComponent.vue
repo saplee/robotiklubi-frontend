@@ -65,9 +65,12 @@ export default {
 <style scoped>
 #nav-bar {
   display: flex;
+  flex-wrap: nowrap;
   height: 4rem;
   width: 100%;
   background: var(--color-background-alternate);
+  overflow-x: clip;
+  overflow-y: visible;
 }
 
 .nav-logo-container {
@@ -85,6 +88,7 @@ export default {
   padding: 1rem 2rem;
   height: 100%;
   font-weight: 600;
+  inline-size: max-content;
 }
 
 #nav-bar .nav-item:hover {

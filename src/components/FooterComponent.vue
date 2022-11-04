@@ -16,15 +16,17 @@
           </p>
         </div>
         <p>
-          Füüsiliselt paikneme TTÜ kuuenda korpuse keldris, ruumis number U06-019
+          Füüsiliselt paikneme TTÜ kuuenda korpuse keldris, ruumis number U06-019.
         </p>
       </div>
-      <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
-        <img src="../assets/facebook_logo.png" alt="facebook" style="width:50px;height:50px;">
-      </a>
-      <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
-        <img src="../assets/instagram_logo.png" alt="instagram" style="width:50px;height:50px; left: 40px">
-      </a>
+      <div class="social_link_container">
+        <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
+          <img src="../assets/facebook_logo.png" alt="facebook" style="width:50px;height:50px;">
+        </a>
+        <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
+          <img src="../assets/instagram_logo.png" alt="instagram" style="width:50px;height:50px; left: 40px">
+        </a>
+      </div>
     </div>
   </footer>
 </template>
@@ -41,11 +43,13 @@ footer {
   background-color: var(--color-background-alternate);
   margin-top: auto;
   width: 100%;
+  overflow: auto;
 }
 
 .footer_container {
-  display: grid;
-  grid-template-columns: 8fr 1fr 1fr;
+  display: flex;
+  flex-wrap: wrap-reverse;
+  justify-content: space-between;
   font-size: 0.8rem;
 }
 
@@ -54,17 +58,23 @@ footer {
 }
 
 .footer_info_vertical {
-  display: grid;
-  grid-template-rows: auto auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .footer_info_horizontal {
-  display: grid;
-  grid-template-columns: max-content max-content;
+  display: flex;
+  /*grid-template-columns: max-content max-content;*/
+}
+
+.social_link_container {
+  margin: auto 0;
+  padding: 1rem;
 }
 
 .social_link {
   margin: auto auto;
+  padding: 1rem;
 }
 
 </style>
