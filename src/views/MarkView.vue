@@ -72,7 +72,7 @@ export default defineComponent({
     };
   },
   computed: {
-    markdownToHtml(): String {
+    markdownToHtml(): string {
       return marked.parse(this.markdown);
     },
   }
