@@ -1,6 +1,31 @@
 <template>
   <footer>
-    <h1>Footer</h1>
+    <div class="footer_container">
+      <div class="footer_info_vertical">
+        <div class="footer_info_horizontal">
+          <p>
+            MTÜ TTÜ Robotiklubi<br>
+            Tallinna Tehnikaülikool<br>
+            Ehitajate tee 5<br>
+            19086 Tallinn
+          </p>
+          <p>
+            Reg. kood: 80234864<br>
+            SEB Pank EE841010220057542019<br>
+            robotiklubi@robotiklubi.ee
+          </p>
+        </div>
+        <p>
+          Füüsiliselt paikneme TTÜ kuuenda korpuse keldris, ruumis number U06-019
+        </p>
+      </div>
+      <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
+        <img src="../assets/facebook_logo.png" alt="facebook" style="width:50px;height:50px;">
+      </a>
+      <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
+        <img src="../assets/instagram_logo.png" alt="instagram" style="width:50px;height:50px; left: 40px">
+      </a>
+    </div>
   </footer>
 </template>
 
@@ -13,9 +38,33 @@ export default {
 <style scoped>
 
 footer {
-  background-color: var(--color-navbar);
+  background-color: var(--color-background-alternate);
   margin-top: auto;
   width: 100%;
+}
+
+.footer_container {
+  display: grid;
+  grid-template-columns: 8fr 1fr 1fr;
+  font-size: 0.8rem;
+}
+
+.footer_container p {
+  margin: 0.5rem 2rem;
+}
+
+.footer_info_vertical {
+  display: grid;
+  grid-template-rows: auto auto;
+}
+
+.footer_info_horizontal {
+  display: grid;
+  grid-template-columns: max-content max-content;
+}
+
+.social_link {
+  margin: auto auto;
 }
 
 </style>

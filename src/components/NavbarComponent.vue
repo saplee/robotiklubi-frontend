@@ -25,7 +25,6 @@
         <p class="nav-item-title" >Listie_2</p>
         <ul class="dropdown">
           <li><a href="">2019</a></li>
-          <li><hr></li>
           <li><a href="">2018</a></li>
           <li><a href="">2017</a></li>
         </ul>
@@ -35,7 +34,6 @@
         <p class="nav-item-title" >Ready Views</p>
         <ul class="dropdown">
           <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
-          <li><RouterLink class="nav-link" to="/about">About</RouterLink></li>
           <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
           <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
         </ul>
@@ -69,7 +67,7 @@ export default {
   display: flex;
   height: 4rem;
   width: 100%;
-  background: var(--color-navbar);
+  background: var(--color-background-alternate);
 }
 
 .nav-logo-container {
@@ -87,7 +85,6 @@ export default {
   padding: 1rem 2rem;
   height: 100%;
   font-weight: 600;
-  color: var(--color-text);
 }
 
 #nav-bar .nav-item:hover {
@@ -100,11 +97,15 @@ export default {
   text-decoration: none;
 }
 
+.nav-item:hover p {
+  color: #000000;
+}
+
 .dropdown {
   visibility: hidden;
   opacity: 0;
   transition: visibility var(--transition-duration), opacity var(--transition-duration);
-  background: var(--color-navbar);
+  background: var(--color-background-alternate);
   max-width: 100%;
   list-style-type: none;
   margin: 0;
@@ -134,7 +135,7 @@ export default {
 }
 
 .dropdown li:hover {
-  background: var(--color-navbar-dropdown-highlight);
+  background: var(--color-background-alternate-2);
 }
 
 .dropdown hr {

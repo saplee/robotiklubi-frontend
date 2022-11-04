@@ -1,4 +1,7 @@
-@import './base.css';
+
+
+/* IMPORTANT SETTINGS */
+
 
 *,
 *::before,
@@ -31,10 +34,13 @@ body {
 }
 
 main {
-    /*margin: 0 auto;*/
     min-width: 100%;
     max-width: 100%;
 }
+
+
+/* HTML ELEMENT FORMATTING */
+
 
 a {
     color: var(--color-accent-soft);
@@ -48,3 +54,50 @@ a:hover, a:focus {
 a:active {
     color: var(--color-accent-mute);
 }
+
+blockquote {
+    background: var(--color-background-alternate-2);
+    padding: 0.2em;
+    border-radius: 0.2em;
+    margin-left: 0.5em;
+}
+
+button {
+    padding: 1em 2em;
+    margin: 1em 0;
+    border-radius: 0.8em;
+    border: 0;
+    font-weight: bold;
+    background-color: var(--color-accent);
+    color: #424242;
+    cursor: pointer;
+}
+
+button:hover, button:focus {
+    background-color: var(--color-accent-soft);
+}
+
+button:active {
+    background-color: var(--color-accent-mute);
+}
+
+code {
+    background: rgb(62, 68, 66);
+    color: #e0e0e0;
+    font-family: "Courier New", "Lucida Console", monospace;
+    padding: 0.2em;
+    border-radius: 0.2em;
+}
+
+hr {
+    border: 0.05rem solid var(--color-accent);
+    margin: 1rem 0;
+}
+
+/* CUSTOM ATTRIBUTES */
+
+
+.highlight {
+    color: var(--color-accent);
+}
+

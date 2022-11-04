@@ -2,9 +2,13 @@
 :root {
   /* set light and dark color palette */
 
-  /* page background */
-  --col-light-page-background: #dbdbdb;
-  --col-dark-page-background: #282828;
+  /* background */
+  --col-light-background: #eeeeee;
+  --col-light-background-alternate: #ffffff;
+  --col-light-background-alternate-2: #dddddd;
+  --col-dark-background: #282828;
+  --col-dark-background-alternate: #313131;
+  --col-dark-background-alternate-2: #424242;
 
   /* text colors */
   --col-light-text-1: #181818;
@@ -13,24 +17,23 @@
   --col-dark-text-2: rgba(235, 235, 235, 0.64);
 
   /* navbar */
-  --col-light-navbar: #ffffff;
   --col-light-navbar-dropdown-highlight: #f1f1f1;
-  --col-dark-navbar: #313131;
   --col-dark-navbar-dropdown-highlight: #262626;
 }
 
 :root {
   /* set light colors */
-  --color-background: var(--col-light-page-background);
+  --color-background: var(--col-light-background);
+  --color-background-alternate: var(--col-light-background-alternate);
+  --color-background-alternate-2: var(--col-light-background-alternate-2);
   --color-heading: var(--col-light-text-1);
   --color-text: var(--col-light-text-1);
-  --color-navbar: var(--col-light-navbar);
   --color-navbar-dropdown-highlight: var(--col-light-navbar-dropdown-highlight);
 
   /* set theme independent variables */
   --color-accent: #00b9f2;
-  --color-accent-soft: #00a2d5;
-  --color-accent-mute: #006681;
+  --color-accent-soft: #00c0d5;
+  --color-accent-mute: #00b5c5;
 
   --transition-duration: 0.5s;
 }
@@ -39,10 +42,11 @@
 @media (prefers-color-scheme: dark) {
   :root {
     /* set dark colors */
-    --color-background: var(--col-dark-page-background);
+    --color-background: var(--col-dark-background);
+    --color-background-alternate: var(--col-dark-background-alternate);
+    --color-background-alternate-2: var(--col-dark-background-alternate-2);
     --color-heading: var(--col-dark-text-1);
     --color-text: var(--col-dark-text-2);
-    --color-navbar: var(--col-dark-navbar);
     --color-navbar-dropdown-highlight: var(--col-dark-navbar-dropdown-highlight);
   }
 }

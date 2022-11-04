@@ -2,7 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import './assets/main.css'
+import './assets/constants.css'
+import './assets/elements.css'
 // import {marked} from 'marked';
 // const markedMixin = {
 //     methods: {
