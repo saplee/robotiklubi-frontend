@@ -3,39 +3,18 @@ import { RouterLink, RouterView } from 'vue-router'
 import HelloWorld from './components/HelloWorld.vue'
 </script>
 
-
-
 <template>
-<!--  <div class="menu">
-    <div class="menu-container">
-      <div class="logo">
-        <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">
-          <img src="../assets/robotiklubi_logo.png" alt="Robotiklubi logo" />
-        </a>
-      </div>
-      <div class="menu-items">
-        <a href="https://www.robotiklubi.ee" target="_blank" rel="noopener">Koduleht</a>
-        <a href="https://wiki.robotiklubi.ee" target="_blank" rel="noopener">Wiki</a>
-        <a href="https://www.facebook.com/Robotiklubi" target="_blank" rel="noopener">Facebook</a>
-        <a href="https://www.instagram.com/robotiklubi/" target="_blank" rel="noopener">Instagram</a>
-      </div>
-    </div>
-  </div>-->
-
-
-
   <header>
     <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
 
     <div class="wrapper">
-      <HelloWorld msg="Robotiklubi" />
+      <HelloWorld msg="You did it!" />
 
       <nav>
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/about">About</RouterLink>
         <RouterLink to="/markdown">Markdown</RouterLink>
         <RouterLink to="/wiki">Wiki</RouterLink>
-        <RouterLink to="/signup">Sign Up</RouterLink>
       </nav>
     </div>
   </header>
