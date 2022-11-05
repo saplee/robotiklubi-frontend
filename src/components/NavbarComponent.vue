@@ -64,8 +64,6 @@ import {defineComponent} from "vue";
 function checkNavBarFolding() {
   let navbarContainer = document.getElementById ("nav-bar");
   if (navbarContainer == null) return;
-  // console.log(navbarContainer.scrollWidth)
-  // console.log(navbarContainer.clientWidth)
   if (navbarContainer.scrollWidth > navbarContainer.clientWidth) {
     // navbarContainer.style.background = "red"
     navbarContainer.classList.remove("navbar-desktop")
@@ -84,6 +82,7 @@ export default defineComponent({})
 </script>
 
 <style scoped>
+
 #nav-bar {
   height: 4rem;
   background: var(--color-background-alternate);

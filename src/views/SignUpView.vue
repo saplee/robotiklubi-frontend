@@ -1,18 +1,18 @@
 <template>
   <main>
-    <div id="signup_container">
+    <div id="signup_container" class="primary_container shadowed">
       <h1>Sign Up</h1>
       <form onsubmit="return false">
-        <label for="firstN"><strong>First Name</strong></label>
-        <input type="text" placeholder="Enter your first name" id="firstN" name="firstName" v-model="firstName" required>
-        <label for="lastN"><strong>Last Name</strong></label>
-        <input type="text" placeholder="Enter your last name" id="lastN" name="lastName" v-model="lastName" required>
-        <label for="email"><strong>Email address</strong></label>
-        <input type="email" placeholder="Enter your email" id="email" v-model="email" required>
-        <label for="psw"><strong>Password</strong></label>
-        <input type="password" placeholder="Enter password" id="psw" name="password" v-model="password" required>
-        <label for="phone"><strong>Phone Number (Optional)</strong></label>
-        <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone">
+        <label><strong>First Name:</strong></label>
+        <input type="text" placeholder="Enter your first name" v-model="firstName" required>
+        <label><strong>Last Name:</strong></label>
+        <input type="text" placeholder="Enter your last name" v-model="lastName" required>
+        <label><strong>Email address:</strong></label>
+        <input type="email" placeholder="Enter your email" v-model="email" id="email" required>
+        <label><strong>Password:</strong></label>
+        <input type="password" placeholder="Enter password" v-model="password" required>
+        <label><strong>Phone Number (Optional):</strong></label>
+        <input type="tel" placeholder="Enter phone number" v-model="phone">
         <button v-on:click="post()">Create Account</button>
       </form>
     </div>
@@ -51,6 +51,7 @@ export default defineComponent({
           info.password !== "" &&
           info.email !== "" &&
           !emailElement.validity.typeMismatch) {
+        console.log(info)
         console.log("Sending post request.");
         try {
           const response = await info.instance.post('/signup', info)
@@ -68,20 +69,13 @@ export default defineComponent({
 <style scoped>
 
 #signup_container {
-  max-width: 20em;
-  width: 80%;
-  margin: 2rem auto;
+  max-width: 30em;
 }
 
-input[type=text], input[type=password], input[type=email], input[type=tel] {
+input {
   width: 100%;
   padding: 1em 2em;
   margin: 0.5em 0;
-}
-
-h1 {
-  bottom: 1em;
-  font-weight: bold;
 }
 
 button {

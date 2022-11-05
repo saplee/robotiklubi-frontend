@@ -1,11 +1,11 @@
 <template>
   <main>
-    <div id="markdown_container">
+    <div class="primary_container shadowed">
       <div>
         <h2>Write some <span class="highlight">Markdown</span> and see it <span class="highlight">Formatted</span>:</h2>
-        <textarea v-model="markdown" rows="30" cols="80" class="text_box"></textarea>
+        <textarea v-model="markdown" rows="30" cols="80" id="markdown_text_box" class="round_corners"></textarea>
       </div>
-      <div class="markdown_formatted_section">
+      <div class="secondary_container">
         <div v-html="markdownToHtml"></div>
       </div>
     </div>
@@ -70,6 +70,7 @@ export default defineComponent({
           "You can use `code` inline.\n" +
           "\n" +
           "This is an image:\n" +
+          "\n" +
           "![Example image](http://robotiklubi.hopto.org/static/img/wasd.png)",
     };
   },
@@ -85,36 +86,14 @@ export default defineComponent({
 
 <style scoped>
 
-#markdown_container {
-  width: 80%;
-  margin: 2rem auto;
-  display: grid;
-  grid-template-rows: 50% 50%;
-}
-
-.text_box {
+#markdown_text_box {
   resize: none;
   width: 100%;
-  border-radius: 1em;
   margin: 1em 0;
   padding: 1em;
   border: none;
   background: var(--color-accent);
   color: #3a3a3a;
-}
-
-.markdown_formatted_section {
-  width: 100%;
-  max-height: 100%;
-  border-radius: 1em;
-  padding: 1em;
-  background: var(--color-background-alternate);
-  overflow: auto;
-}
-
-.markdown_formatted_section :deep(img) {
-  max-width: 100%;
-  height: auto;
 }
 
 </style>

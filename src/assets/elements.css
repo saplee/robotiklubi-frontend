@@ -60,7 +60,7 @@ blockquote {
     background: var(--color-background-alternate-2);
     padding: 0.2em;
     border-radius: 0.2em;
-    margin-left: 0.5em;
+    margin: 0.2em 0.2em 0.2em 0.5em;
 }
 
 button {
@@ -95,11 +95,39 @@ hr {
     margin: 1rem 0;
 }
 
-/* CUSTOM ATTRIBUTES */
+img {
+    /* reduces the size of the image to fit in the container */
+    max-width: 100%;
+}
 
+
+/* CUSTOM ATTRIBUTES FOR USE IN PROJECT */
+
+
+.primary_container {
+    width: 80%;
+    background: var(--color-background-alternate);
+    margin: 2rem auto;
+    padding: 1em 2em 2em 2em;
+    border-radius: 1em;
+    overflow: auto;
+}
+
+.secondary_container {
+    width: 100%;
+    max-height: 100%;
+    border-radius: 1em;
+    padding: 1em;
+    background: var(--color-background-alternate-2);
+    overflow: auto;
+}
 
 .highlight {
     color: var(--color-accent);
+}
+
+.round_corners {
+    border-radius: 1em;
 }
 
 .shadowed {
@@ -109,4 +137,3 @@ hr {
 .shadowed-reverse {
     box-shadow: 0 -8px 16px 0 rgba(0,0,0,0.2);
 }
-

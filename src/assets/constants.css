@@ -32,8 +32,8 @@
 
   /* set theme independent variables */
   --color-accent: #00b9f2;
-  --color-accent-soft: #00c0d5;
-  --color-accent-mute: #00b5c5;
+  --color-accent-soft: #00aee3;
+  --color-accent-mute: #00a0d0;
 
   --transition-duration: 0.5s;
 }
