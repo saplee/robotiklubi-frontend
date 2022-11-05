@@ -1,56 +1,48 @@
 <template>
   <nav>
-    <div id="nav-bar" class="navbar-mobile shadowed">
-      <div id="nav-links-left">
-        <div class="nav-logo-container">
-          <a href='#'>
-            <img src="@/assets/rk_logo.svg" alt="club logo">
-          </a>
+    <div id="nav-bar" class="shadowed">
+      <div class="nav-logo-container">
+        <RouterLink to="/">
+          <img src="@/assets/rk_logo.svg" alt="club logo">
+        </RouterLink>
+      </div>
+      <div id="nav-links">
+
+        <div class="nav-links-item">
+          <RouterLink class="dropdown-link" to="/">Home R</RouterLink>
         </div>
 
-        <div class="nav-item">
-          <p class="nav-item-title" v-on:click="GetContainerSize" >Teenused</p>
+        <div class="nav-links-item">
+          <a class="nav-item-title" href="">Home</a>
         </div>
 
-        <div class="nav-item">
+        <div class="nav-links-item">
           <p class="nav-item-title" >L</p>
           <ul class="dropdown">
-            <li><a href="">Stuff</a></li>
-            <li><a href="">More Stuff</a></li>
+            <li class="dropdown-link"><a href="">Stuff</a></li>
+            <li class="dropdown-link"><a href="">More Stuff</a></li>
             <li><hr></li>
-            <li><a href="">Separate Stuff</a></li>
+            <li class="dropdown-link"><a href="">Separate Stuff</a></li>
           </ul>
         </div>
 
-        <div class="nav-item">
+        <div class="nav-links-item">
           <p class="nav-item-title" >Listie_2</p>
           <ul class="dropdown">
-            <li><a href="">2019</a></li>
-            <li><a href="">2018</a></li>
-            <li><a href="">2017</a></li>
+            <li class="dropdown-link"><a href="">2019</a></li>
+            <li class="dropdown-link"><a href="">2018</a></li>
+            <li class="dropdown-link"><a href="">2017</a></li>
           </ul>
         </div>
 
-        <div class="nav-item">
+        <div class="nav-links-item">
           <p class="nav-item-title" >Ready Views</p>
           <ul class="dropdown">
-            <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
-            <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
-            <li><RouterLink class="nav-link" to="/signup">Sign Up</RouterLink></li>
-            <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
+            <li class="dropdown-link"><RouterLink to="/">Home</RouterLink></li>
+            <li class="dropdown-link"><RouterLink to="/markdown">Markdown</RouterLink></li>
+            <li class="dropdown-link"><RouterLink to="/signup">Sign Up</RouterLink></li>
+            <li class="dropdown-link"><RouterLink to="/wiki">Wiki</RouterLink></li>
           </ul>
-        </div>
-
-        <div class="nav-item">
-          <p class="nav-item-title" >Huvilisele</p>
-        </div>
-
-        <div class="nav-item">
-          <p class="nav-item-title" >Wiki</p>
-        </div>
-
-        <div class="nav-item">
-          <p class="nav-item-title" >Klubist</p>
         </div>
       </div>
     </div>
@@ -58,49 +50,24 @@
   <RouterView />
 </template>
 
-<script lang="ts">
-import {defineComponent} from "vue";
-
-function checkNavBarFolding() {
-  let navbarContainer = document.getElementById ("nav-bar");
-  if (navbarContainer == null) return;
-  if (navbarContainer.scrollWidth > navbarContainer.clientWidth) {
-    // navbarContainer.style.background = "red"
-    navbarContainer.classList.remove("navbar-desktop")
-    navbarContainer.classList.add("navbar-mobile")
-  } else {
-    // navbarContainer.style.background = "blue"
-    navbarContainer.classList.remove("navbar-mobile")
-    navbarContainer.classList.add("navbar-desktop")
-  }
-}
-
-document.addEventListener("DOMContentLoaded", function () {checkNavBarFolding()});
-window.addEventListener("resize", function() {checkNavBarFolding()})
-
-export default defineComponent({})
-</script>
-
 <style scoped>
 
 #nav-bar {
-  height: 4rem;
+  height: var(--navbar-height);
   background: var(--color-background-alternate);
   width: 100%;
   overflow: visible;
+  display: grid;
+  grid-template-columns: max-content auto;
 }
 
-#nav-links-left {
-  display: flex;
-  height: 100%;
-  flex-wrap: nowrap;
-  width: max-content;
-}
+/* LOGO */
 
 .nav-logo-container {
   justify-content: center;
   align-items: center;
-  height: 100%;
+  height: var(--navbar-height);
+  width: var(--navbar-height);
 }
 
 .nav-logo-container img {
@@ -108,31 +75,47 @@ export default defineComponent({})
   height: 100%;
 }
 
-#nav-bar p {
+/* NAVIGATION LINKS */
+
+#nav-links {
+  display: flex;
+  height: var(--navbar-height);
+  flex-wrap: nowrap;
+  width: max-content;
+}
+
+.nav-links-item {
+  position: relative;
+  cursor: pointer;
+  text-decoration: none;
+  height: var(--navbar-height);
+}
+
+.nav-links-item:hover {
+  background: var(--color-accent);
+}
+
+.nav-links-item > p, .nav-links-item > a {
+  display: block;
   padding: 1rem 2rem;
   height: 100%;
   font-weight: 600;
   inline-size: max-content;
-}
-
-#nav-bar .nav-item:hover {
-  background: var(--color-accent);
-}
-
-.nav-item {
-  position: relative;
-  cursor: pointer;
   text-decoration: none;
+  color: var(--color-text);
+  transition: color var(--transition-duration-quick);
 }
 
-.nav-item:hover p {
+.nav-links-item:hover > p, .nav-links-item:hover > a {
   color: #000000;
 }
+
+/* NAVIGATION DROPDOWNS */
 
 .dropdown {
   visibility: hidden;
   opacity: 0;
-  transition: opacity var(--transition-duration);
+  transition: opacity var(--transition-duration-quick);
   background: var(--color-background-alternate);
   max-width: 100%;
   list-style-type: none;
@@ -140,28 +123,22 @@ export default defineComponent({})
   padding: 0;
   text-align: center;
   cursor: auto;
-  border: 0.15rem solid var(--color-accent);
+  /*border: 0.15rem solid var(--color-accent);*/
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-.nav-item:hover .dropdown {
+.nav-links-item:hover .dropdown {
   visibility: visible;
   opacity: 1;
 }
 
-.nav-item li {
-  padding: 0.5rem 1rem;
-}
-
-.nav-link {
+.dropdown-link p, .dropdown-link a {
   display: block;
   text-decoration: none;
   height: 100%;
+  padding: 1rem 2rem;
+  font-weight: 600;
   color: var(--color-accent);
-}
-
-.dropdown a {
-  text-decoration: none;
 }
 
 .dropdown li:hover {
@@ -173,4 +150,16 @@ export default defineComponent({})
   width: 100%;
   margin: 0 auto;
 }
+
+/* MOBILE FORMATTING */
+
+@media (max-width: 50rem) {
+
+  #nav-links {
+    display: none;
+    visibility: hidden;
+  }
+
+}
+
 </style>

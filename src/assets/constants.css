@@ -36,6 +36,9 @@
   --color-accent-mute: #00a0d0;
 
   --transition-duration: 0.5s;
+  --transition-duration-quick: 0.2s;
+
+  --navbar-height: 4rem;
 }
 
 
