@@ -1,77 +1,99 @@
 <template>
   <nav>
-    <div id="nav-bar">
-      <div class="nav-logo-container">
-        <a href='#'>
-          <img src="@/assets/rk_logo.svg" alt="club logo">
-        </a>
-      </div>
+    <div id="nav-bar" class="navbar-mobile">
+      <div id="nav-links-left">
+        <div class="nav-logo-container">
+          <a href='#'>
+            <img src="@/assets/rk_logo.svg" alt="club logo">
+          </a>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Teenused</p>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" v-on:click="GetContainerSize" >Teenused</p>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >L</p>
-        <ul class="dropdown">
-          <li><a href="">Stuff</a></li>
-          <li><a href="">More Stuff</a></li>
-          <li><hr></li>
-          <li><a href="">Separate Stuff</a></li>
-        </ul>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" >L</p>
+          <ul class="dropdown">
+            <li><a href="">Stuff</a></li>
+            <li><a href="">More Stuff</a></li>
+            <li><hr></li>
+            <li><a href="">Separate Stuff</a></li>
+          </ul>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Listie_2</p>
-        <ul class="dropdown">
-          <li><a href="">2019</a></li>
-          <li><a href="">2018</a></li>
-          <li><a href="">2017</a></li>
-        </ul>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" >Listie_2</p>
+          <ul class="dropdown">
+            <li><a href="">2019</a></li>
+            <li><a href="">2018</a></li>
+            <li><a href="">2017</a></li>
+          </ul>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Ready Views</p>
-        <ul class="dropdown">
-          <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
-          <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
-          <li><RouterLink class="nav-link" to="/signup">Sign Up</RouterLink></li>
-          <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
-        </ul>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" >Ready Views</p>
+          <ul class="dropdown">
+            <li><RouterLink class="nav-link" to="/">Home</RouterLink></li>
+            <li><RouterLink class="nav-link" to="/markdown">Markdown</RouterLink></li>
+            <li><RouterLink class="nav-link" to="/signup">Sign Up</RouterLink></li>
+            <li><RouterLink class="nav-link" to="/wiki">Wiki</RouterLink></li>
+          </ul>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Huvilisele</p>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" >Huvilisele</p>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Wiki</p>
-      </div>
+        <div class="nav-item">
+          <p class="nav-item-title" >Wiki</p>
+        </div>
 
-      <div class="nav-item">
-        <p class="nav-item-title" >Klubist</p>
+        <div class="nav-item">
+          <p class="nav-item-title" >Klubist</p>
+        </div>
       </div>
-
     </div>
   </nav>
   <RouterView />
 </template>
 
-<script>
-export default {
-  name: "NavbarComponent"
+<script lang="ts">
+import {defineComponent} from "vue";
+
+function checkNavBarFolding() {
+  let navbarContainer = document.getElementById ("nav-bar");
+  if (navbarContainer == null) return;
+  // console.log(navbarContainer.scrollWidth)
+  // console.log(navbarContainer.clientWidth)
+  if (navbarContainer.scrollWidth > navbarContainer.clientWidth) {
+    // navbarContainer.style.background = "red"
+    navbarContainer.className = "navbar-mobile"
+  } else {
+    // navbarContainer.style.background = "blue"
+    navbarContainer.className = "navbar-desktop"
+  }
 }
+
+document.addEventListener("DOMContentLoaded", function () {checkNavBarFolding()});
+window.addEventListener("resize", function() {checkNavBarFolding()})
+
+export default defineComponent({})
 </script>
 
 <style scoped>
 #nav-bar {
-  display: flex;
-  flex-wrap: nowrap;
   height: 4rem;
-  width: 100%;
   background: var(--color-background-alternate);
-  overflow-x: clip;
-  overflow-y: visible;
+  width: 100%;
+  overflow: visible;
+}
+
+#nav-links-left {
+  display: flex;
+  height: 100%;
+  flex-wrap: nowrap;
+  width: max-content;
 }
 
 .nav-logo-container {
