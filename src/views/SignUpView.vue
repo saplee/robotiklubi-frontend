@@ -11,8 +11,8 @@
         <input type="email" placeholder="Enter your email" id="email" v-model="email" required>
         <label for="psw"><strong>Password</strong></label>
         <input type="password" placeholder="Enter password" id="psw" name="password" v-model="password" required>
-        <label for="phone"><strong>Phone number</strong></label>
-        <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone" required>
+        <label for="phone"><strong>Phone Number (Optional)</strong></label>
+        <input type="tel" placeholder="Enter phone number" id="telNr" name="phone" v-model="phone">
         <button v-on:click="post()">Create Account</button>
       </form>
     </div>
@@ -50,7 +50,6 @@ export default defineComponent({
           info.lastName !== "" &&
           info.password !== "" &&
           info.email !== "" &&
-          info.phone !== "" &&
           !emailElement.validity.typeMismatch) {
         console.log("Sending post request.");
         try {

@@ -1,6 +1,6 @@
 <template>
   <nav>
-    <div id="nav-bar" class="navbar-mobile">
+    <div id="nav-bar" class="navbar-mobile shadowed">
       <div id="nav-links-left">
         <div class="nav-logo-container">
           <a href='#'>
@@ -68,10 +68,12 @@ function checkNavBarFolding() {
   // console.log(navbarContainer.clientWidth)
   if (navbarContainer.scrollWidth > navbarContainer.clientWidth) {
     // navbarContainer.style.background = "red"
-    navbarContainer.className = "navbar-mobile"
+    navbarContainer.classList.remove("navbar-desktop")
+    navbarContainer.classList.add("navbar-mobile")
   } else {
     // navbarContainer.style.background = "blue"
-    navbarContainer.className = "navbar-desktop"
+    navbarContainer.classList.remove("navbar-mobile")
+    navbarContainer.classList.add("navbar-desktop")
   }
 }
 
@@ -140,6 +142,7 @@ export default defineComponent({})
   text-align: center;
   cursor: auto;
   border: 0.15rem solid var(--color-accent);
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 .nav-item:hover .dropdown {

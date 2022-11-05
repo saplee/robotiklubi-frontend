@@ -75,7 +75,9 @@ export default defineComponent({
   },
   computed: {
     markdownToHtml(): string {
-      return marked.parse(this.markdown);
+      let text = marked.parse(this.markdown);
+      console.log(text)
+      return text;
     },
   }
 })

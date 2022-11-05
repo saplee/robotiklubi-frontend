@@ -1,5 +1,5 @@
 <template>
-  <footer>
+  <footer class="shadowed-reverse">
     <div class="footer_container">
       <div class="footer_info_vertical">
         <div class="footer_info_horizontal">
@@ -12,6 +12,7 @@
           <p>
             Reg. kood: 80234864<br>
             SEB Pank EE841010220057542019<br>
+            <br>
             robotiklubi@robotiklubi.ee
           </p>
         </div>
@@ -21,10 +22,10 @@
       </div>
       <div class="social_link_container">
         <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
-          <img src="../assets/facebook_logo.png" alt="facebook" style="width:50px;height:50px;">
+          <img src="../assets/facebook_logo.png" alt="facebook" class="shadowed">
         </a>
         <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
-          <img src="../assets/instagram_logo.png" alt="instagram" style="width:50px;height:50px; left: 40px">
+          <img src="../assets/instagram_logo.png" alt="instagram" class="shadowed">
         </a>
       </div>
     </div>
@@ -64,7 +65,6 @@ footer {
 
 .footer_info_horizontal {
   display: flex;
-  /*grid-template-columns: max-content max-content;*/
 }
 
 .social_link_container {
@@ -75,6 +75,17 @@ footer {
 .social_link {
   margin: auto auto;
   padding: 1rem;
+}
+
+.social_link img {
+  width:50px;
+  height:50px;
+  transition: margin var(--transition-duration);
+}
+
+.social_link:hover img {
+  margin-bottom: 5px;
+  margin-top: -5px;
 }
 
 </style>

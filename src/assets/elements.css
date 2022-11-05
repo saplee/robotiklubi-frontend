@@ -102,3 +102,11 @@ hr {
     color: var(--color-accent);
 }
 
+.shadowed {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.shadowed-reverse {
+    box-shadow: 0 -8px 16px 0 rgba(0,0,0,0.2);
+}
+
