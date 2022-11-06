@@ -20,13 +20,17 @@
           Füüsiliselt paikneme TTÜ kuuenda korpuse keldris, ruumis number U06-019.
         </p>
       </div>
-      <div class="social_link_container">
-        <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
-          <img src="../assets/facebook_logo.png" alt="facebook" class="shadowed">
-        </a>
-        <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
-          <img src="../assets/instagram_logo.png" alt="instagram" class="shadowed">
-        </a>
+      <div class="social_links_container">
+        <div class="social_link_container">
+          <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
+            <img src="../assets/facebook_logo.png" alt="facebook" class="shadowed">
+          </a>
+        </div>
+        <div class="social_link_container">
+          <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
+            <img src="../assets/instagram_logo.png" alt="instagram" class="shadowed">
+          </a>
+        </div>
       </div>
     </div>
   </footer>
@@ -67,23 +71,28 @@ footer {
   display: flex;
 }
 
-.social_link_container {
+.social_links_container {
   margin: auto 0;
   padding: 1rem;
 }
 
-.social_link {
-  margin: auto auto;
+.social_link_container {
+  display: inline-block;
   padding: 1rem;
+}
+
+.social_link {
+  display: inline-block;
 }
 
 .social_link img {
   width:50px;
   height:50px;
   transition: margin var(--transition-duration);
+  display: block;
 }
 
-.social_link:hover img {
+.social_link:hover img, .social_link:focus-within img {
   margin-bottom: 5px;
   margin-top: -5px;
 }

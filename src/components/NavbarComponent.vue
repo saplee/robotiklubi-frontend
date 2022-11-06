@@ -2,51 +2,47 @@
   <nav>
     <div id="nav-bar" class="shadowed">
       <div class="nav-logo-container">
-        <RouterLink to="/" tabindex="9">
+        <RouterLink to="/" tabindex="10" v-on:click="hideAllDropdowns(); removeFocus();">
           <img src="@/assets/rk_logo.svg" alt="club logo">
         </RouterLink>
       </div>
 
-      <div id="nav-links">
+      <div id="nav-links" v-on:click="clearNavLinksInlineStyle();">
 
-        <div class="nav-links-item" tabindex="10">
-          <RouterLink class="dropdown-link" to="/" v-on:click="toggleNavLinks">Home R</RouterLink>
+        <div class="nav-links-item">
+          <RouterLink class="dropdown-link" tabindex="20" to="/" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Home R</RouterLink>
         </div>
 
-        <div class="nav-links-item" tabindex="20">
-          <a class="nav-item-title" href="">Home</a>
-        </div>
-
-        <div class="nav-links-item" tabindex="30" v-on:click="toggleDropdown('dropdown1')">
-          <p class="nav-item-title" >List</p>
+        <div class="nav-links-item">
+          <p class="nav-links-item-title" tabindex="30" v-on:click="toggleDropdown('dropdown1')">List</p>
           <ul class="dropdown" id="dropdown1">
-            <li class="dropdown-link" tabindex="30"><a href="">Stuff</a></li>
-            <li class="dropdown-link" tabindex="30"><a href="">More Stuff</a></li>
+            <li class="dropdown-link"><a href="" tabindex="30">Stuff</a></li>
+            <li class="dropdown-link"><a href="" tabindex="30">More Stuff</a></li>
             <li><hr></li>
-            <li class="dropdown-link" tabindex="30"><a href="">Separate Stuff</a></li>
+            <li class="dropdown-link"><a href="" tabindex="30">Separate Stuff</a></li>
           </ul>
         </div>
 
-        <div class="nav-links-item" tabindex="40" v-on:click="toggleDropdown('dropdown2')">
-          <p class="nav-item-title" >Listie_2</p>
+        <div class="nav-links-item">
+          <p class="nav-links-item-title" tabindex="40" v-on:click="toggleDropdown('dropdown2')">Listie_2</p>
           <ul class="dropdown" id="dropdown2">
-            <li class="dropdown-link"><a href="">2019</a></li>
-            <li class="dropdown-link"><a href="">2018</a></li>
+            <li class="dropdown-link" tabindex="40"><a href="">2019</a></li>
+            <li class="dropdown-link" tabindex="40"><a href="">2018</a></li>
           </ul>
         </div>
 
-        <div class="nav-links-item" tabindex="50" v-on:click="toggleDropdown('dropdown3')">
-          <p class="nav-item-title" >Ready Views</p>
+        <div class="nav-links-item">
+          <p class="nav-links-item-title" tabindex="50" v-on:click="toggleDropdown('dropdown3')">Ready Views</p>
           <ul class="dropdown" id="dropdown3">
-            <li class="dropdown-link"><RouterLink v-on:click="toggleNavLinks" to="/">Home</RouterLink></li>
-            <li class="dropdown-link"><RouterLink v-on:click="toggleNavLinks" to="/markdown">Markdown</RouterLink></li>
-            <li class="dropdown-link"><RouterLink v-on:click="toggleNavLinks" to="/signup">Sign Up</RouterLink></li>
-            <li class="dropdown-link"><RouterLink v-on:click="toggleNavLinks" to="/wiki">Wiki</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/">Home</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
           </ul>
         </div>
       </div>
 
-      <div id="hamburger-menu"  tabindex="9" v-on:click="toggleNavLinks">
+      <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">
         <hr>
         <hr>
         <hr>
@@ -75,6 +71,17 @@ window.addEventListener("resize", checkNavLinksVisibility);
 export default {
   name: "NavbarComponent",
   methods: {
+    removeFocus() {
+      const element = document.activeElement;
+      if (element != null) (element as HTMLElement).blur()
+    },
+    clearNavLinksInlineStyle() {
+      if (window.matchMedia("(min-width: 50rem)").matches) {
+        document.querySelectorAll(".dropdown").forEach(menu => {
+          menu.removeAttribute("style")
+        })
+      }
+    },
     toggleNavLinks () {
       if (window.matchMedia("(min-width: 50rem)").matches) return;
       console.log("toggleNavLinks")
@@ -83,7 +90,8 @@ export default {
         if (navLinks.style.visibility !== "visible") {
           navLinks.style.visibility = "visible"
         } else {
-          navLinks.style.visibility = "hidden"
+          navLinks.style.visibility = "hidden";
+          this.hideAllDropdowns()
         }
       }
     },
@@ -115,7 +123,12 @@ export default {
 
 <style scoped>
 
+nav {
+  height: var(--navbar-height);
+}
+
 #nav-bar {
+  position: fixed;
   height: var(--navbar-height);
   background: var(--color-background-alternate);
   width: 100%;
@@ -127,10 +140,13 @@ export default {
 /* LOGO */
 
 .nav-logo-container {
-  justify-content: center;
-  align-items: center;
   height: var(--navbar-height);
   width: var(--navbar-height);
+}
+
+.nav-logo-container a {
+  height: 100%;
+  display: inline-block;
 }
 
 .nav-logo-container img {
@@ -149,31 +165,41 @@ export default {
 
 .nav-links-item {
   position: relative;
-  cursor: pointer;
   text-decoration: none;
   height: var(--navbar-height);
 }
 
-.nav-links-item:hover {
-  background: var(--color-accent);
-}
-
 .nav-links-item > p, .nav-links-item > a {
   display: block;
+  cursor: pointer;
   padding: 1rem 2rem;
   height: 100%;
+  width: 100%;
   font-weight: 600;
-  inline-size: max-content;
   text-decoration: none;
   color: var(--color-text);
   transition: color var(--transition-duration-quick);
 }
 
-.nav-links-item:hover > p, .nav-links-item:hover > a {
+.nav-links-item:hover, .nav-links-item:focus-within {
+  background: var(--color-accent);
+}
+
+.nav-links-item:hover > p,
+.nav-links-item:focus-within > p,
+.nav-links-item:hover > a,
+.nav-links-item:focus-within > a {
   color: #000000;
 }
 
 /* NAVIGATION DROPDOWNS */
+
+@media (min-width: 50rem) {
+  .nav-links-item:hover .dropdown, .nav-links-item:focus .dropdown, .nav-links-item:focus-within .dropdown {
+    visibility: visible;
+    opacity: 1;
+  }
+}
 
 .dropdown {
   visibility: hidden;
@@ -191,13 +217,6 @@ export default {
   z-index: 2;
 }
 
-@media (min-width: 50rem) {
-  .nav-links-item:hover .dropdown {
-    visibility: visible;
-    opacity: 1;
-  }
-}
-
 .dropdown-link p, .dropdown-link a {
   display: block;
   text-decoration: none;
@@ -207,7 +226,7 @@ export default {
   color: var(--color-accent);
 }
 
-.dropdown li:hover {
+.dropdown li:hover, .dropdown li:focus {
   background: var(--color-background-alternate-2);
 }
 
@@ -252,17 +271,15 @@ export default {
   #nav-links {
     margin-top: var(--navbar-height);
     visibility: hidden;
-    position: absolute;
+    position: fixed;
     display: block;
     height: auto;
-    width: 100%;
+    width: 80%;
+    max-width: 500px;
+    right: 0;
     background-color: var(--color-background-alternate-2);
     z-index: 1;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  }
-
-  .nav-links-item > p, .nav-links-item > a {
-    width: 100%;
   }
 
   .nav-links-item {
@@ -270,16 +287,9 @@ export default {
   }
 
   .dropdown {
-    display: block;
     transition: color 0s;
     height: 0;
   }
-
-  .dropdown-link:active .dropdown {
-    visibility: hidden;
-    opacity: 0;
-  }
-
 }
 
 </style>
