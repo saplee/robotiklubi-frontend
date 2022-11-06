@@ -15,6 +15,7 @@
 <script lang="ts">
 import {marked} from 'marked';
 import {defineComponent} from "vue";
+
 export default defineComponent({
   name: "Markdown",
   data() {
@@ -76,9 +77,7 @@ export default defineComponent({
   },
   computed: {
     markdownToHtml(): string {
-      let text = marked.parse(this.markdown);
-      console.log(text)
-      return text;
+      return marked.parse(this.markdown);
     },
   }
 })
