@@ -11,9 +11,9 @@
 
   --col-dark-background: #282828;
   --col-dark-background-alternate: #313131;
-  --col-dark-transp-background-alternate: rgba(49, 49, 49, 0.9);
+  --col-dark-transp-background-alternate: rgba(49, 49, 49, 0.8);
   --col-dark-background-alternate-2: #424242;
-  --col-dark-transp-background-alternate-2: rgba(66, 66, 66, 0.9);
+  --col-dark-transp-background-alternate-2: rgba(66, 66, 66, 0.8);
 
   /* text colors */
   --col-light-text-1: #181818;
@@ -48,6 +48,7 @@
   --blur-magnitude: 1rem;
 
   --navbar-height: 4rem;
+  --navbar-mode-switch-width: 50rem;
 }
 
 

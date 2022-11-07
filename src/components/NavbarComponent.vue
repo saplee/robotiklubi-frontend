@@ -10,34 +10,16 @@
       <div id="nav-links" v-on:click="clearNavLinksInlineStyle();">
 
         <div class="nav-links-item">
-          <RouterLink class="dropdown-link" tabindex="20" to="/" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Home R</RouterLink>
+          <RouterLink class="big-link" tabindex="20" to="/" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Home</RouterLink>
         </div>
 
         <div class="nav-links-item">
-          <p class="nav-links-item-title" tabindex="30" v-on:click="toggleDropdown('dropdown1')">List</p>
+          <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown1')">Pages</p>
           <ul class="dropdown" id="dropdown1">
-            <li class="dropdown-link"><a href="" tabindex="30">Stuff</a></li>
-            <li class="dropdown-link"><a href="" tabindex="30">More Stuff</a></li>
-            <li><hr></li>
-            <li class="dropdown-link"><a href="" tabindex="30">Separate Stuff</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-links-item">
-          <p class="nav-links-item-title" tabindex="40" v-on:click="toggleDropdown('dropdown2')">Listie_2</p>
-          <ul class="dropdown" id="dropdown2">
-            <li class="dropdown-link" tabindex="40"><a href="">2019</a></li>
-            <li class="dropdown-link" tabindex="40"><a href="">2018</a></li>
-          </ul>
-        </div>
-
-        <div class="nav-links-item">
-          <p class="nav-links-item-title" tabindex="50" v-on:click="toggleDropdown('dropdown3')">Ready Views</p>
-          <ul class="dropdown" id="dropdown3">
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/">Home</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
+            <li><hr></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
           </ul>
         </div>
       </div>
@@ -58,7 +40,8 @@ function checkNavLinksVisibility() {
   console.log("resize")
   let navLinks = document.getElementById("nav-links")
   if (navLinks != null) {
-    if (window.matchMedia("(min-width: 50rem)").matches) {
+    let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+    if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) {
       navLinks.style.visibility = "visible"
     } else {
       navLinks.style.visibility = "hidden"
@@ -76,14 +59,16 @@ export default {
       if (element != null) (element as HTMLElement).blur()
     },
     clearNavLinksInlineStyle() {
-      if (window.matchMedia("(min-width: 50rem)").matches) {
+      let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+      if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) {
         document.querySelectorAll(".dropdown").forEach(menu => {
           menu.removeAttribute("style")
         })
       }
     },
     toggleNavLinks () {
-      if (window.matchMedia("(min-width: 50rem)").matches) return;
+      let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+      if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
       console.log("toggleNavLinks")
       let navLinks = document.getElementById("nav-links")
       if (navLinks != null) {
@@ -96,7 +81,8 @@ export default {
       }
     },
     hideAllDropdowns() {
-      if (window.matchMedia("(min-width: 50rem)").matches) return;
+      let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+      if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
       console.log("hideAllDropdowns")
       document.querySelectorAll(".dropdown").forEach(menu => {
         (menu as HTMLElement).style.visibility = "hidden";
@@ -105,7 +91,8 @@ export default {
       })
     },
     toggleDropdown(dropdownElementId: string) {
-      if (window.matchMedia("(min-width: 50rem)").matches) return;
+      let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+      if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
       console.log("toggleDropdown")
       let element = document.getElementById(dropdownElementId)
       if (element != null) {
@@ -125,6 +112,7 @@ export default {
 
 nav {
   height: var(--navbar-height);
+  z-index: 9000;
 }
 
 #nav-bar {
@@ -161,18 +149,11 @@ nav {
 .nav-logo-container img {
   padding: 7px;
   height: 100%;
+  transition: transform 2s;
 }
 
 .nav-logo-container img:hover {
-  animation-name: wobble;
-  animation-duration: 3s;
-}
-
-@keyframes wobble {
-  0%   {transform: rotate(0) translateY(0) translateX(0);}
-  25%  {transform: rotate(-7deg) translateY(0px) translateX(-3px);}
-  50%  {transform: rotate(7deg) translateY(0px) translateX(3px);}
-  100% {transform: rotate(0) translateY(0) translateX(0);}
+  transform: rotate(7deg) translateY(0px) translateX(3px);
 }
 
 
@@ -184,18 +165,14 @@ nav {
   height: var(--navbar-height);
   flex-wrap: nowrap;
   width: max-content;
+  z-index: 9010;
 }
 
-.nav-links-item {
-  position: relative;
-  text-decoration: none;
-  height: var(--navbar-height);
-}
-
-.nav-links-item > p, .nav-links-item > a {
+.big-link {
   display: block;
   cursor: pointer;
-  padding: 1rem 2rem;
+  padding: 0 2rem;
+  line-height: var(--navbar-height);
   height: 100%;
   width: 100%;
   font-weight: 600;
@@ -239,13 +216,11 @@ nav {
   background: var(--color-background-alternate);
   max-width: 100%;
   list-style-type: none;
-  margin: 0;
   padding: 0;
   text-align: center;
-  cursor: auto;
   /*border: 0.15rem solid var(--color-accent);*/
   box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 2;
+  z-index: 9020;
 }
 
 .dropdown-link p, .dropdown-link a {
@@ -322,7 +297,6 @@ nav {
     max-width: 500px;
     right: 0;
     background-color: var(--color-background-alternate-2);
-    z-index: 1;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 
