@@ -5,10 +5,15 @@
   /* background */
   --col-light-background: #eeeeee;
   --col-light-background-alternate: #ffffff;
+  --col-light-transp-background-alternate: rgba(255, 255, 255, 0.8);
   --col-light-background-alternate-2: #dddddd;
+  --col-light-transp-background-alternate-2: rgba(221, 221, 221, 0.8);
+
   --col-dark-background: #282828;
   --col-dark-background-alternate: #313131;
+  --col-dark-transp-background-alternate: rgba(49, 49, 49, 0.9);
   --col-dark-background-alternate-2: #424242;
+  --col-dark-transp-background-alternate-2: rgba(66, 66, 66, 0.9);
 
   /* text colors */
   --col-light-text-1: #181818;
@@ -25,18 +30,22 @@
   /* set light colors */
   --color-background: var(--col-light-background);
   --color-background-alternate: var(--col-light-background-alternate);
+  --color-transp-background-alternate: var(--col-light-transp-background-alternate);
   --color-background-alternate-2: var(--col-light-background-alternate-2);
+  --color-transp-background-alternate-2: var(--col-light-transp-background-alternate-2);
   --color-heading: var(--col-light-text-1);
   --color-text: var(--col-light-text-1);
   --color-navbar-dropdown-highlight: var(--col-light-navbar-dropdown-highlight);
 
   /* set theme independent variables */
   --color-accent: #00b9f2;
+  --color-transp-accent: rgba(0, 185, 242, 0.3);
   --color-accent-soft: #00aee3;
   --color-accent-mute: #00a0d0;
 
   --transition-duration: 0.5s;
   --transition-duration-quick: 0.2s;
+  --blur-magnitude: 1rem;
 
   --navbar-height: 4rem;
 }
@@ -47,7 +56,9 @@
     /* set dark colors */
     --color-background: var(--col-dark-background);
     --color-background-alternate: var(--col-dark-background-alternate);
+    --color-transp-background-alternate: var(--col-dark-transp-background-alternate);
     --color-background-alternate-2: var(--col-dark-background-alternate-2);
+    --color-transp-background-alternate-2: var(--col-dark-transp-background-alternate-2);
     --color-heading: var(--col-dark-text-1);
     --color-text: var(--col-dark-text-2);
     --color-navbar-dropdown-highlight: var(--col-dark-navbar-dropdown-highlight);

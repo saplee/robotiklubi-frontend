@@ -137,7 +137,16 @@ nav {
   grid-template-columns: max-content auto max-content;
 }
 
+@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+  #nav-bar {
+    background: var(--color-transp-background-alternate);
+    backdrop-filter: blur(var(--blur-magnitude));
+  }
+}
+
+
 /* LOGO */
+
 
 .nav-logo-container {
   height: var(--navbar-height);
@@ -154,7 +163,21 @@ nav {
   height: 100%;
 }
 
+.nav-logo-container img:hover {
+  animation-name: wobble;
+  animation-duration: 3s;
+}
+
+@keyframes wobble {
+  0%   {transform: rotate(0) translateY(0) translateX(0);}
+  25%  {transform: rotate(-7deg) translateY(0px) translateX(-3px);}
+  50%  {transform: rotate(7deg) translateY(0px) translateX(3px);}
+  100% {transform: rotate(0) translateY(0) translateX(0);}
+}
+
+
 /* NAVIGATION LINKS */
+
 
 #nav-links {
   display: flex;
@@ -181,18 +204,26 @@ nav {
   transition: color var(--transition-duration-quick);
 }
 
-.nav-links-item:hover, .nav-links-item:focus-within {
-  background: var(--color-accent);
-}
-
 .nav-links-item:hover > p,
 .nav-links-item:focus-within > p,
 .nav-links-item:hover > a,
 .nav-links-item:focus-within > a {
   color: #000000;
+  background: var(--color-accent);
 }
 
+@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+  @media (min-width: 50rem) {
+    .nav-links-item:hover, .nav-links-item:focus-within {
+      background: var(--color-transp-accent);
+      backdrop-filter: blur(var(--blur-magnitude));
+    }
+  }
+}
+
+
 /* NAVIGATION DROPDOWNS */
+
 
 @media (min-width: 50rem) {
   .nav-links-item:hover .dropdown, .nav-links-item:focus .dropdown, .nav-links-item:focus-within .dropdown {
@@ -236,7 +267,20 @@ nav {
   margin: 0 auto;
 }
 
+@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+  .dropdown {
+    background: var(--color-transp-background-alternate);
+    backdrop-filter: blur(var(--blur-magnitude));
+  }
+
+  .dropdown li:hover, .dropdown li:focus {
+    background: rgba(0,0,0,0.1);
+  }
+}
+
+
 /* MOBILE FORMATTING */
+
 
 #hamburger-menu {
   visibility: hidden;
@@ -289,6 +333,19 @@ nav {
   .dropdown {
     transition: color 0s;
     height: 0;
+    box-shadow: none;
+  }
+
+  @supports (backdrop-filter: blur(var(--blur-magnitude))) {
+    #nav-links {
+      background-color: var(--color-transp-background-alternate);
+      backdrop-filter: blur(var(--blur-magnitude));
+    }
+
+    .dropdown {
+      background: rgba(0,0,0,0.1);
+      backdrop-filter: blur(var(--blur-magnitude));
+    }
   }
 }
 
