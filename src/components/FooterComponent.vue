@@ -13,7 +13,7 @@
             Reg. kood: 80234864<br>
             SEB Pank EE841010220057542019<br>
             <br>
-            robotiklubi@robotiklubi.ee
+              <a href="mailto:robotiklubi@robotiklubi.ee" target="_blank">robotiklubi@robotiklubi.ee</a>
           </p>
         </div>
         <p>
@@ -43,6 +43,10 @@ export default {
 </script>
 
 <style scoped>
+
+a {
+  text-decoration: none;
+}
 
 footer {
   background-color: var(--color-background-alternate);
