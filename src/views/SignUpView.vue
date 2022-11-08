@@ -54,7 +54,7 @@ export default defineComponent({
         console.log(info)
         console.log("Sending post request.");
         try {
-          const response = await instance.post('/signup', info)
+          const response = await instance.post('/api/signup', info)
           if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
           else document.getElementById("email").style.outline = ""
         } catch (Exception) {
