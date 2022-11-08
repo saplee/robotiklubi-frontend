@@ -23,7 +23,7 @@
 import axios from "axios";
 import {defineComponent} from "vue";
 const instance = axios.create({
-  baseURL: "http://robotiklubi.hopto.org",
+  baseURL: "http://localhost:8082",
   timeout: 1000,
 });
 export default defineComponent({
