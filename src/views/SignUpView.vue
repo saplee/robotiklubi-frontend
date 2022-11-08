@@ -22,10 +22,6 @@
 <script>
 import axios from "axios";
 import {defineComponent} from "vue";
-const instance = axios.create({
-  baseURL: "http://localhost:8082",
-  timeout: 1000,
-});
 export default defineComponent({
   data: function () {
     return {
@@ -33,7 +29,11 @@ export default defineComponent({
       lastName: "",
       password: "",
       email: "",
-      phone: ""
+      phone: "",
+      instance: axios.create({
+        baseURL: "http://robotiklubi.hopto.org/",
+        timeout: 1000,
+      }),
     }
   },
   methods: {
@@ -54,10 +54,12 @@ export default defineComponent({
         console.log(info)
         console.log("Sending post request.");
         try {
-          const response = await instance.post('/api/signup', info)
+          const response = await this.instance.post('/api/signup', info)
+          console.log(response)
           if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
           else document.getElementById("email").style.outline = ""
         } catch (Exception) {
+          console.log(Exception.response.data)
           console.log("Could not send data.")
         }
       }
