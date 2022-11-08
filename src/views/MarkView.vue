@@ -1,18 +1,21 @@
 <template>
-  <div class="markdown_example">
-    <div class="markdown_input">
-      <h2>Write some <span style="color: #00bd7e">Markdown</span> and see it <span style="color: #00bd7e">Formatted</span>:</h2>
-      <textarea v-model="markdown" rows="15" cols="80" class="text_box"></textarea>
+  <main>
+    <div class="primary_container shadowed">
+      <div>
+        <h2>Write some <span class="highlight">Markdown</span> and see it <span class="highlight">Formatted</span>:</h2>
+        <textarea v-model="markdown" rows="30" cols="80" id="markdown_text_box" class="round_corners"></textarea>
+      </div>
+      <div class="secondary_container">
+        <div v-html="markdownToHtml"></div>
+      </div>
     </div>
-    <div class="formatted_section">
-      <div v-html="markdownToHtml"></div>
-    </div>
-  </div>
+  </main>
 </template>
 
 <script lang="ts">
 import {marked} from 'marked';
 import {defineComponent} from "vue";
+
 export default defineComponent({
   name: "Markdown",
   data() {
@@ -68,11 +71,12 @@ export default defineComponent({
           "You can use `code` inline.\n" +
           "\n" +
           "This is an image:\n" +
+          "\n" +
           "![Example image](http://robotiklubi.hopto.org/static/img/wasd.png)",
     };
   },
   computed: {
-    markdownToHtml(): String {
+    markdownToHtml(): string {
       return marked.parse(this.markdown);
     },
   }
@@ -80,57 +84,15 @@ export default defineComponent({
 </script>
 
 <style scoped>
-.formatted_section :deep(img) {
-  max-width: 100%;
-  height: auto;
+
+#markdown_text_box {
+  resize: none;
+  width: 100%;
+  margin: 1em 0;
+  padding: 1em;
+  border: none;
+  background: var(--color-accent);
+  color: #3a3a3a;
 }
-:deep(strong) {
-  font-weight: bold;
-}
-:deep(blockquote) {
-  background: rgb(65, 75, 71);
-  padding: 5px;
-  border-radius: 5px;
-  margin-left: 5px;
-}
-:deep(code) {
-  background: rgb(62, 68, 66);
-  color: #e0e0e0;
-  font-family: "Courier New", "Lucida Console", monospace;
-  padding: 5px;
-  border-radius: 5px;
-}
-:deep(hr) {
-  border: 1px solid #1f946e;
-  margin: 10px 0;
-}
-@media {
-  .markdown_example {
-    max-height: 80vh;
-    min-width: 500px;
-    display: grid;
-    grid-template-rows: 50% 50%;
-  }
-  .markdown_input {
-    align-self: end;
-    padding-bottom: 10px;
-  }
-  .text_box {
-    resize: none;
-    width: 100%;
-    border-radius: 10px;
-    margin-top: 10px;
-    border: 2px solid rgb(84, 112, 102);
-    background: rgb(84, 112, 102);
-    color: #e0e0e0;
-  }
-  .formatted_section {
-    width: 100%;
-    max-height: 100%;
-    border-radius: 10px;
-    padding: 10px;
-    background: rgb(84, 98, 93);
-    overflow: auto;
-  }
-}
+
 </style>

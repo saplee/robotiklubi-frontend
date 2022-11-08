@@ -8,7 +8,8 @@ export default defineConfig({
   server: {
     proxy: {
       '/api/': {
-        target: 'http://localhost:8081/',
+        // This proxy is only used when developing, proxying in the server is handled by NginX.
+        target: 'http://localhost:8082/',
         changeOrigin: true,
         rewrite: (path) => path.substring(4)
       },
