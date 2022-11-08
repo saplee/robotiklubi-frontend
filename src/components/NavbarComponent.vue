@@ -125,10 +125,11 @@ nav {
   grid-template-columns: max-content auto max-content;
 }
 
-@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+@supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
   #nav-bar {
     background: var(--color-transp-background-alternate);
     backdrop-filter: blur(var(--blur-magnitude));
+    -webkit-backdrop-filter: blur(var(--blur-magnitude))
   }
 }
 
@@ -189,11 +190,12 @@ nav {
   background: var(--color-accent);
 }
 
-@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+@supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
   @media (min-width: 50rem) {
     .nav-links-item:hover, .nav-links-item:focus-within {
       background: var(--color-transp-accent);
       backdrop-filter: blur(var(--blur-magnitude));
+      -webkit-backdrop-filter: blur(var(--blur-magnitude))
     }
   }
 }
@@ -242,10 +244,11 @@ nav {
   margin: 0 auto;
 }
 
-@supports (backdrop-filter: blur(var(--blur-magnitude))) {
+@supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
   .dropdown {
     background: var(--color-transp-background-alternate);
     backdrop-filter: blur(var(--blur-magnitude));
+    -webkit-backdrop-filter: blur(var(--blur-magnitude))
   }
 
   .dropdown li:hover, .dropdown li:focus {
@@ -310,15 +313,17 @@ nav {
     box-shadow: none;
   }
 
-  @supports (backdrop-filter: blur(var(--blur-magnitude))) {
+  @supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
     #nav-links {
       background-color: var(--color-transp-background-alternate);
       backdrop-filter: blur(var(--blur-magnitude));
+      -webkit-backdrop-filter: blur(var(--blur-magnitude))
     }
 
     .dropdown {
       background: rgba(0,0,0,0.1);
       backdrop-filter: blur(var(--blur-magnitude));
+      -webkit-backdrop-filter: blur(var(--blur-magnitude))
     }
   }
 }
