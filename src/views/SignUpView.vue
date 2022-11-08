@@ -33,7 +33,7 @@ export default defineComponent({
     }
   },
   instance: axios.create({
-    baseURL: "http://localhost:8080/",
+    baseURL: "http://robotiklubi.hopto.org",
     timeout: 1000,
   }),
   methods: {
