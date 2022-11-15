@@ -14,7 +14,7 @@ body {
     color: var(--color-text);
     position: relative;
     min-height: 100vh;
-    min-width: 100vw;
+    /*min-width: 100%;*/
     background: var(--color-background);
     transition: color var(--transition-duration), background-color var(--transition-duration);
     line-height: 1.6;
@@ -28,7 +28,6 @@ body {
 
 #app {
     min-height: 100vh;
-    min-width: 100vw;
     display: flex;
     flex-direction: column;
 }
@@ -36,6 +35,25 @@ body {
 main {
     min-width: 100%;
     overflow: auto;
+}
+
+
+/* Scrollbar in Chrome */
+
+
+::-webkit-scrollbar {
+    width: 0.5rem;
+    height: 0.5rem;
+    background: var(--color-background-alternate);
+}
+
+::-webkit-scrollbar-corner {
+    background: var(--color-background-alternate);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--color-background-alternate-2);
+    border-radius: 6px;
 }
 
 
