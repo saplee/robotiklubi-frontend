@@ -20,9 +20,8 @@ Running the frontend locally:
 
 Running the frontend on a server:
 1. Follow server setup instructions detailed [here](https://gitlab.cs.ttu.ee/alvaht/iti0302-robotiklubi-backend/-/wikis/Setting-Up-the-Server).
-2. Tell GitLab Runner to re-run the last job or manually navigate to the folder that contains the docker-compose.yml
-file corresponding to the frontend and use the command `docker-compose up -d` to start the frontend container in the
-background.
+2. Tell GitLab Runner to run the project or manually navigate to the folder on the server that contains the docker-compose.yml
+file corresponding to the frontend and use the command `docker-compose up -d` to start the frontend container.
 
 ## Authors
 Mikk Loomets, Sander Pleesi, Alex Vahter, Rainer Viirlaid
