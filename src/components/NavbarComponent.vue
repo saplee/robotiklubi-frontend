@@ -22,6 +22,7 @@
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
           </ul>
         </div>
+
       </div>
 
       <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">
@@ -126,10 +127,16 @@ nav {
 }
 
 @supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
-  #nav-bar {
-    background: var(--color-transp-background-alternate);
+  #nav-bar::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
     backdrop-filter: blur(var(--blur-magnitude));
     -webkit-backdrop-filter: blur(var(--blur-magnitude))
+  }
+  #nav-bar {
+    background: var(--color-transp-background-alternate);
   }
 }
 
@@ -140,6 +147,7 @@ nav {
 .nav-logo-container {
   height: var(--navbar-height);
   width: var(--navbar-height);
+  z-index: 9001;
 }
 
 .nav-logo-container a {
@@ -190,16 +198,6 @@ nav {
   background: var(--color-accent);
 }
 
-@supports (-webkit-backdrop-filter: blur(var(--blur-magnitude))) or (backdrop-filter: blur(var(--blur-magnitude))) {
-  @media (min-width: 50rem) {
-    .nav-links-item:hover, .nav-links-item:focus-within {
-      background: var(--color-transp-accent);
-      backdrop-filter: blur(var(--blur-magnitude));
-      -webkit-backdrop-filter: blur(var(--blur-magnitude))
-    }
-  }
-}
-
 
 /* NAVIGATION DROPDOWNS */
 
@@ -248,7 +246,7 @@ nav {
   .dropdown {
     background: var(--color-transp-background-alternate);
     backdrop-filter: blur(var(--blur-magnitude));
-    -webkit-backdrop-filter: blur(var(--blur-magnitude))
+    -webkit-backdrop-filter: blur(var(--blur-magnitude));
   }
 
   .dropdown li:hover, .dropdown li:focus {
@@ -271,10 +269,12 @@ nav {
   padding: 0.4rem;
   cursor: pointer;
   justify-self: end;
+  z-index: 9002;
 }
 
 #hamburger-menu hr {
   width: calc(var(--navbar-height) * 0.7);
+  background-color: var(--color-accent);
   border: 2px solid var(--color-accent);
   border-radius: 2px;
   margin: 0 auto;
@@ -322,8 +322,6 @@ nav {
 
     .dropdown {
       background: rgba(0,0,0,0.1);
-      backdrop-filter: blur(var(--blur-magnitude));
-      -webkit-backdrop-filter: blur(var(--blur-magnitude))
     }
   }
 }
