@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div id="signup_container" class="primary_container shadowed">
+    <div id="signup-container" class="primary-container shadowed">
       <h1>Sign Up</h1>
       <form onsubmit="return false">
         <label><strong>First Name:</strong></label>
@@ -70,7 +70,7 @@ export default defineComponent({
 
 <style scoped>
 
-#signup_container {
+#signup-container {
   max-width: 30em;
 }
 

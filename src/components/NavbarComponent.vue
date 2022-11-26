@@ -23,6 +23,10 @@
           </ul>
         </div>
 
+        <div class="nav-links-item">
+          <RouterLink class="big-link" tabindex="60" to="/search" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki Search</RouterLink>
+        </div>
+
       </div>
 
       <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">
@@ -38,7 +42,6 @@
 <script lang="ts">
 
 function checkNavLinksVisibility() {
-  console.log("resize")
   let navLinks = document.getElementById("nav-links")
   if (navLinks != null) {
     let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
@@ -70,7 +73,6 @@ export default {
     toggleNavLinks () {
       let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
       if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
-      console.log("toggleNavLinks")
       let navLinks = document.getElementById("nav-links")
       if (navLinks != null) {
         if (navLinks.style.visibility !== "visible") {
@@ -84,7 +86,6 @@ export default {
     hideAllDropdowns() {
       let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
       if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
-      console.log("hideAllDropdowns")
       document.querySelectorAll(".dropdown").forEach(menu => {
         (menu as HTMLElement).style.visibility = "hidden";
         (menu as HTMLElement).style.opacity = "0";
@@ -94,7 +95,6 @@ export default {
     toggleDropdown(dropdownElementId: string) {
       let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
       if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
-      console.log("toggleDropdown")
       let element = document.getElementById(dropdownElementId)
       if (element != null) {
         const visibility = element.style.visibility
