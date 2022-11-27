@@ -44,6 +44,12 @@
       </div>
     </div>
 
+    <label for="pagination-counter">Results per Page:</label>
+    <div id="wiki-search-pagination-container">
+      <input type="range" min="1" max="50" class="slider" id="pagination-slider" v-model="paginationAmount">
+      <input class="counter" id="pagination-counter" v-model="paginationAmount" @input="checkCounter">
+    </div>
+
     <button v-on:click="saveCriteria">Search</button>
   </form>
 </template>
@@ -59,6 +65,7 @@ export default defineComponent({
       contentSearch: "",
       sortAscending: false,
       sortType: "title",
+      paginationAmount: "5",
       searchCriteria: {}
     }
   },
@@ -71,10 +78,21 @@ export default defineComponent({
         sortAscending: this.sortAscending,
         sortByTitle: this.sortType === "title",
         sortByCreationDate: this.sortType === "created",
-        sortByEditDate: this.sortType === "edited"
+        sortByEditDate: this.sortType === "edited",
+        resultsPerPage: parseInt(this.paginationAmount),
+        firstResult: 0
       }
       this.$emit('search', this.searchCriteria)
     },
+    checkCounter: function () {
+      let value = parseInt(this.paginationAmount)
+      this.paginationAmount = value.toString();
+      let max = 50
+      let min = 1
+      if (value > max) this.paginationAmount = "50"
+      if (value < min) this.paginationAmount = "1"
+      if (isNaN(value)) this.paginationAmount = "5"
+    }
   }
 })
 </script>
@@ -91,6 +109,7 @@ export default defineComponent({
 }
 
 #wiki-search-settings input[type="search"] {
+  width: 100%;
   margin: 0.2rem 0 0.2rem 0;
   border-radius: 1rem;
   outline: none;
@@ -129,6 +148,10 @@ input[type="radio"]:checked ~ label {
   font-weight: bold;
 }
 
+.sorting-selector:hover label {
+  background-color: rgba(0, 0, 0, 30%);
+}
+
 #sort-asc-label {
   border-radius: 0.7rem 0 0 0.7rem;
 }
@@ -143,6 +166,20 @@ input[type="radio"]:checked ~ label {
 
 #sort-edited-label {
   border-radius: 0 0 0.7rem 0.7rem;
+}
+
+#wiki-search-pagination-container {
+  display: grid;
+  grid-template-columns: 80% 20%;
+  align-items: center;
+}
+
+.counter {
+  margin-left: 0.5rem;
+}
+
+.slider {
+  width: 100%;
 }
 
 button {

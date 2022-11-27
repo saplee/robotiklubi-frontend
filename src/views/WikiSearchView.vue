@@ -1,16 +1,29 @@
 <template>
   <main>
     <div id="wiki-search-container">
-      <div class="primary-container shadowed">
+      <div class="primary-container shadowed" id="wiki-search-result-pane">
         <div id="wiki-search-results-container">
-          <div id="wiki-search-no-matches">
+          <div v-show="doShowNoResults" id="wiki-search-no-matches">
             <p>No matching pages found.</p>
           </div>
           <SearchResultComponent v-for="Result in searchResults" :resultData="Result"></SearchResultComponent>
         </div>
+        <div v-show="doShowResults" id="wiki-search-results-page-selector">
+          <SearchPageSelectorComponent
+              :paginator="currentPage"
+              :res-per-page="resultsPerPage"
+              @firstPage="goToFirstPage"
+              @prevPage="goToPrevPage"
+              @nextPage="goToNextPage"
+              @lastPage="goToLastPage"
+          ></SearchPageSelectorComponent>
+        </div>
       </div>
-      <div class="secondary-container shadowed">
+      <div class="secondary-container shadowed" id="wiki-search-settings-pane">
         <SearchSettingsComponent @search="updateCriteriaAndSearch($event)"></SearchSettingsComponent>
+      </div>
+      <div v-show="doShowResults" class="secondary-container shadowed" id="wiki-search-stats-pane">
+        <p>{{searchStats}}</p>
       </div>
     </div>
   </main>
@@ -18,34 +31,44 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import SearchSettingsComponent from "@/components/SearchSettingsComponent.vue";
-import SearchResultComponent from "@/components/SearchResultComponent.vue";
+import SearchSettingsComponent from "@/components/wiki/SearchSettingsComponent.vue";
+import SearchResultComponent from "@/components/wiki/SearchResultComponent.vue";
+import SearchPageSelectorComponent from "@/components/wiki/SearchPageSelectorComponent.vue";
 import axios from "axios";
 
 export default defineComponent({
-  components: {SearchSettingsComponent, SearchResultComponent},
+  components: {SearchPageSelectorComponent, SearchSettingsComponent, SearchResultComponent},
   data: function () {
     return {
-      titleSearch: "",
-      contentSearch: "",
-      sortAscending: false,
-      sortByTitle: false,
-      sortByCreation: false,
-      sortByEdited: false,
+      doShowResults: false,
+      doShowNoResults: false,
       totalResults: 0,
-      searchCriteria: {},
+      resultsPerPage: 1,
+      prevPage: -1,
+      currentPage: -1,
+      nextPage: -1,
+      searchCriteria: {} as any,
       searchResults: [] as Array<any>,
+      searchStats: "No results."
     }
   },
   methods : {
     updateCriteriaAndSearch: function (searchCriteria: any) {
       this.searchCriteria = searchCriteria
+      this.resultsPerPage = searchCriteria.resultsPerPage
+      this.prevPage = 0
+      this.currentPage = 0
+      this.nextPage = 0
       this.search()
     },
     search: function () {
+      this.currentPage = this.searchCriteria.firstResult
       axios.post("/api/wiki/search/", this.searchCriteria)
           .then(r => {
-            this.totalResults = r.data.numberOfResults
+            this.totalResults = r.data.totalResults
+            this.prevPage = r.data.prevPage
+            this.nextPage = r.data.nextPage
+            this.searchStats = "Found " + r.data.totalResults + " results in " + r.data.timeTaken + "ms."
             this.showResults(r.data.results)
           })
           .catch(e => this.handleSearchError(e))
@@ -56,15 +79,13 @@ export default defineComponent({
     },
     noResultsFound: function () {
       this.searchResults = []
-      let noResults = document.getElementById("wiki-search-no-matches")
-      if (noResults === null) return;
-      noResults.style.display = "grid"
+      this.doShowResults = false
+      this.doShowNoResults = true
     },
     showResults: function (res: any) {
       this.searchResults = []
-      let noResults = document.getElementById("wiki-search-no-matches")
-      if (noResults === null) return;
-      noResults.style.display = "none"
+      this.doShowResults = true
+      this.doShowNoResults = false
       for (const r in res) {
         if (res[r].author == null) res[r].author = "Unknown"
         if (res[r].createdAt == null) res[r].createdAt = "Unknown"
@@ -74,6 +95,28 @@ export default defineComponent({
         }
         this.searchResults.push(res[r])
       }
+    },
+    goToFirstPage: function () {
+      if (this.currentPage === 0) return
+      this.searchCriteria.firstResult = 0
+      this.search()
+    },
+    goToPrevPage: function () {
+      if (this.prevPage < 0) return
+      this.searchCriteria.firstResult = this.prevPage
+      this.search()
+    },
+    goToNextPage: function () {
+      if (this.nextPage < 0) return
+      this.searchCriteria.firstResult = this.nextPage
+      this.search()
+    },
+    goToLastPage: function () {
+      const old = this.searchCriteria.firstResult
+      if (this.totalResults % this.searchCriteria.resultsPerPage == 0) this.searchCriteria.firstResult = this.totalResults - this.searchCriteria.resultsPerPage
+      else this.searchCriteria.firstResult = Math.floor(this.totalResults / this.searchCriteria.resultsPerPage) * this.searchCriteria.resultsPerPage
+      if (old === this.searchCriteria.firstResult) return;
+      this.search()
     }
   }
 })
@@ -83,38 +126,66 @@ export default defineComponent({
 
 #wiki-search-container {
   width: 95%;
-  display: flex;
-  margin: auto;
+  display: grid;
+  grid-gap: 2rem;
+  grid-template-areas:
+            "content settings"
+            "content stats";
+  grid-template-columns: auto 20rem;
+  grid-template-rows: auto 1fr;
+  margin: 2rem auto;
   max-width: 100em;
 }
 
-.primary-container {
-  width: 95%;
-  padding: 2rem 1rem 1rem 1rem;
+#wiki-search-result-pane {
+  grid-template-rows: min-content min-content;
+  grid-area: content;
+  height: fit-content;
 }
 
-.secondary-container {
-  width: 25%;
-  margin: 2rem 0 2rem 2rem;
+#wiki-search-settings-pane {
+  grid-area: settings;
+}
+
+#wiki-search-stats-pane {
+  grid-area: stats;
+  width: 100%;
   height: max-content;
 }
 
+#wiki-search-results-container {
+  height: fit-content;
+}
+
+.primary-container {
+  width: 100%;
+  display: grid;
+  justify-items: center;
+  padding: 2rem 1rem 1rem 1rem;
+  margin: 0;
+}
+
 #wiki-search-no-matches {
-  display: none;
+  display: grid;
   font-size: 2rem;
   font-weight: bold;
   justify-content: center;
+  margin-bottom: 1rem;
+}
+
+#wiki-search-results-page-selector {
+  height: fit-content;
+  align-self: end;
 }
 
 @media (max-width: 60rem) {
   #wiki-search-container {
-    flex-direction: column-reverse;
-  }
-
-  .secondary-container {
-    margin: 2rem auto 0 auto;
-    width: 95%;
-    max-width: 95%;
+    grid-template-areas:
+            "settings"
+            "content"
+            "stats";
+    grid-template-columns: 100%;
+    grid-template-rows: auto auto auto;
   }
 }
 
