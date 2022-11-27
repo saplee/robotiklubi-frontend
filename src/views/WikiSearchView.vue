@@ -6,7 +6,7 @@
           <div id="wiki-search-no-matches">
             <p>No matching pages found.</p>
           </div>
-          <div v-html="htmlSearchResults" class="search-result-container"></div>
+          <SearchResultComponent v-for="Result in searchResults" :resultData="Result"></SearchResultComponent>
         </div>
       </div>
       <div class="secondary-container shadowed">
@@ -19,10 +19,11 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import SearchSettingsComponent from "@/components/SearchSettingsComponent.vue";
+import SearchResultComponent from "@/components/SearchResultComponent.vue";
 import axios from "axios";
 
 export default defineComponent({
-  components: {SearchSettingsComponent},
+  components: {SearchSettingsComponent, SearchResultComponent},
   data: function () {
     return {
       titleSearch: "",
@@ -32,8 +33,8 @@ export default defineComponent({
       sortByCreation: false,
       sortByEdited: false,
       totalResults: 0,
-      htmlSearchResults: "",
-      searchCriteria: {}
+      searchCriteria: {},
+      searchResults: [] as Array<any>,
     }
   },
   methods : {
@@ -54,42 +55,25 @@ export default defineComponent({
       this.noResultsFound()
     },
     noResultsFound: function () {
-      this.htmlSearchResults = ""
+      this.searchResults = []
       let noResults = document.getElementById("wiki-search-no-matches")
       if (noResults === null) return;
       noResults.style.display = "grid"
     },
     showResults: function (res: any) {
+      this.searchResults = []
       let noResults = document.getElementById("wiki-search-no-matches")
       if (noResults === null) return;
       noResults.style.display = "none"
-      let results = ""
       for (const r in res) {
-        let id = res[r].id
-        let author = res[r].author
-        let createdAt = res[r].createdAt
-        if (author == null) author = "Unknown"
-        if (createdAt == null) createdAt = "Unknown"
+        if (res[r].author == null) res[r].author = "Unknown"
+        if (res[r].createdAt == null) res[r].createdAt = "Unknown"
         else {
-          const d = new Date(Date.parse(createdAt))
-          createdAt = d.toLocaleString()
+          const d = new Date(Date.parse(res[r].createdAt))
+          res[r].createdAt = d.toLocaleString()
         }
-        results += "<a href='#/wiki?id=" + id + "'>" +
-            "         <div class=\"search-result-item round_corners\">\n" +
-            "           <div class=\"search-result-title\">\n" +
-            "             <h3>" + res[r].title + "</h3>\n" +
-            "           </div>\n" +
-            "           <div class=\"search-result-summary\">\n" +
-            "             <p>" + res[r].summary + "</p>\n" +
-            "           </div>\n" +
-            "           <div class=\"search-result-details\">\n" +
-            "             <p>Author: " + author + "</p>\n" +
-            "             <p>Created At: " + createdAt + "</p>\n" +
-            "           </div>\n" +
-            "         </div>\n" +
-            "       <\a>\n"
+        this.searchResults.push(res[r])
       }
-      this.htmlSearchResults = results
     }
   }
 })
@@ -120,37 +104,6 @@ export default defineComponent({
   font-size: 2rem;
   font-weight: bold;
   justify-content: center;
-}
-
-.search-result-container :deep(a) {
-  text-decoration: none;
-  color: var(--color-text);
-}
-
-:deep(.search-result-item) {
-  background: rgba(0, 0, 0, 5%);
-  padding: 0.5rem 1rem 0.5rem 1rem;
-  margin-bottom: 1rem;
-}
-
-:deep(.search-result-item:hover),
-:deep(.search-result-item:focus-within) {
-  background: rgba(0, 0, 0, 10%);
-}
-
-:deep(.search-result-summary) {
-  font-size: 0.8em;
-}
-
-:deep(.search-result-details) {
-  display: flex;
-  font-size: 0.7em;
-  justify-content: end;
-}
-
-:deep(.search-result-details p) {
-  opacity: 70%;
-  margin: 0 1rem 0 0;
 }
 
 @media (max-width: 60rem) {

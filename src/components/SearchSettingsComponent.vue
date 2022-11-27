@@ -109,14 +109,6 @@ export default defineComponent({
   grid-template-columns: 50% 50%;
 }
 
-#search-sorting-direction:focus-within,
-#search-sorting-direction:active,
-#search-sorting-type:focus-within,
-#search-sorting-type:active {
-  border-radius: 0.7rem;
-  outline: solid rgba(0, 0, 0, 40%) 4px;
-}
-
 input[type="radio"] {
   -webkit-appearance: none;
   appearance: none;

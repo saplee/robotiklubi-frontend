@@ -173,7 +173,17 @@ hr {
 }
 
 @media (max-width: 50rem) {
+
+    body {
+        font-size: 1em;
+    }
+
     .primary-container {
         width: 95%;
+        padding: 1rem;
+    }
+
+    .secondary-container {
+        padding: 1rem;
     }
 }
