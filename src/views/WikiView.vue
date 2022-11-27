@@ -48,7 +48,6 @@ export default defineComponent({
       this.setPageNotFound()
     },
     setPageData: function (r: any) {
-      console.log(r)
       this.wikiPageTitle = r.data.title
       this.wikiPageContent = r.data.content
       this.wikiPageAuthor = r.data.author
@@ -73,7 +72,6 @@ export default defineComponent({
     },
     setPageTags: function (tags: any) {
       tags = tags.data
-      console.log(tags)
       this.wikiPageTags = ""
       for (const tag in tags) {
         this.wikiPageTags += "<p class=\"wiki-tag\">" + tags[tag].tag.trim() + "</p>\n"
@@ -137,7 +135,7 @@ export default defineComponent({
   height: max-content;
 }
 
-.wiki-tag-container >>> .wiki-tag {
+.wiki-tag-container :deep(.wiki-tag) {
   display: inline-flex;
   border-radius: 1rem;
   margin: 0 0.2rem 0 0.2rem;
@@ -155,8 +153,7 @@ export default defineComponent({
 
   .secondary-container {
     margin: 0 auto 2rem auto;
-    width: auto;
-    max-width: 95%;
+    width: 95%;
   }
 }
 
