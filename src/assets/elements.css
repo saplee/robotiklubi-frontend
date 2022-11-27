@@ -77,6 +77,7 @@ button {
     padding: 1em 2em;
     margin: 1em 0;
     border-radius: 0.8em;
+    outline: none;
     border: 0;
     font-weight: bold;
     background-color: var(--color-accent);
@@ -84,8 +85,9 @@ button {
     cursor: pointer;
 }
 
-button:hover, button:focus {
+button:hover, button:focus-within {
     background-color: var(--color-accent-soft);
+    outline: solid var(--color-accent-soft) 3px;
 }
 
 button:active {

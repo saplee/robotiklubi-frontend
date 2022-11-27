@@ -10,54 +10,7 @@
         </div>
       </div>
       <div class="secondary-container shadowed">
-        <form id="wiki-search-settings">
-          <label for="search-title">Search in title:</label>
-          <input type="search" v-model="titleSearch" placeholder=". . ." id="search-title">
-          <label for="search-content">Search in content:</label>
-          <input type="search" v-model="contentSearch" placeholder=". . ." id="search-content">
-          <label>Sorting Direction:</label>
-
-          <div id="search-sorting-direction">
-            <div class="sorting-selector">
-              <input type="radio" name="direction" id="sort-asc" checked="checked">
-              <label for="sort-asc" id="sort-asc-label">
-                <span>ASC</span>
-              </label>
-            </div>
-            <div class="sorting-selector">
-              <input type="radio" name="direction" id="sort-desc">
-              <label for="sort-desc" id="sort-desc-label">
-                <span>DESC</span>
-              </label>
-            </div>
-          </div>
-
-          <label>Sorting By:</label>
-
-          <div id="search-sorting-type">
-            <div class="sorting-selector">
-              <input type="radio" name="sort-type" id="sort-title" checked="checked">
-              <label for="sort-title" id="sort-title-label">
-                <span>Title</span>
-              </label>
-            </div>
-            <div class="sorting-selector">
-              <input type="radio" name="sort-type" id="sort-created">
-              <label for="sort-created" id="sort-created-label">
-                <span>Creation Date</span>
-              </label>
-            </div>
-            <div class="sorting-selector">
-              <input type="radio" name="sort-type" id="sort-edited">
-              <label for="sort-edited" id="sort-edited-label">
-                <span>Editing Date</span>
-              </label>
-            </div>
-          </div>
-
-          <input type="submit" v-on:click="updateCriteriaAndSearch()" style="display: none">
-          <button v-on:click="updateCriteriaAndSearch()">Search</button>
-        </form>
+        <SearchSettingsComponent @search="updateCriteriaAndSearch($event)"></SearchSettingsComponent>
       </div>
     </div>
   </main>
@@ -65,9 +18,11 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
+import SearchSettingsComponent from "@/components/SearchSettingsComponent.vue";
 import axios from "axios";
 
 export default defineComponent({
+  components: {SearchSettingsComponent},
   data: function () {
     return {
       titleSearch: "",
@@ -82,23 +37,8 @@ export default defineComponent({
     }
   },
   methods : {
-    updateCriteriaAndSearch: function () {
-      const sortAsc = document.getElementById("sort-asc") as HTMLInputElement
-      const sortTitle = document.getElementById("sort-title") as HTMLInputElement
-      const sortCreatedAt = document.getElementById("sort-created") as HTMLInputElement
-      const sortEditedAt = document.getElementById("sort-edited") as HTMLInputElement
-      this.sortAscending = sortAsc.checked;
-      this.sortByTitle = sortTitle.checked;
-      this.sortByCreation = sortCreatedAt.checked;
-      this.sortByEdited = sortEditedAt.checked;
-      this.searchCriteria = {
-        titleSearch: this.titleSearch,
-        contentSearch: this.contentSearch,
-        sortAscending: this.sortAscending,
-        sortByTitle: this.sortByTitle,
-        sortByCreationDate: this.sortByCreation,
-        sortByEditDate: this.sortByEdited
-      }
+    updateCriteriaAndSearch: function (searchCriteria: any) {
+      this.searchCriteria = searchCriteria
       this.search()
     },
     search: function () {
@@ -173,72 +113,6 @@ export default defineComponent({
   width: 25%;
   margin: 2rem 0 2rem 2rem;
   height: max-content;
-}
-
-#wiki-search-settings {
-  display: grid;
-  font-weight: bold;
-}
-
-#wiki-search-settings > label {
-  margin: 0.2rem 0 0.2rem 0;
-}
-
-#wiki-search-settings input[type="search"] {
-  margin: 0.2rem 0 0.2rem 0;
-  border-radius: 1rem;
-  outline: none;
-  font-size: 0.8em;
-  padding: 0.4rem 0.8rem 0.4rem 0.8rem;
-  background: var(--color-accent);
-  border: none;
-}
-
-#search-sorting-direction {
-  display: grid;
-  grid-template-columns: 50% 50%;
-}
-
-input[type="radio"] {
-  -webkit-appearance: none;
-  appearance: none;
-  outline: none;
-}
-
-input[type="radio"]:checked ~ label {
-  background-color: rgba(0, 0, 0, 50%);
-}
-
-.sorting-selector label {
-  display: inline-grid;
-  background-color: rgba(0, 0, 0, 25%);
-  /*height: 100%;*/
-  width: 100%;
-  cursor: pointer;
-  justify-content: center;
-  padding: 0.5rem;
-  font-weight: bold;
-}
-
-#sort-asc-label {
-  border-radius: 0.7rem 0 0 0.7rem;
-}
-
-#sort-desc-label {
-  border-radius: 0 0.7rem 0.7rem 0;
-}
-
-#sort-title-label {
-  border-radius: 0.7rem 0.7rem 0 0;
-}
-
-#sort-edited-label {
-  border-radius: 0 0 0.7rem 0.7rem;
-}
-
-button {
-  margin-bottom: 0;
-  font-size: 1em;
 }
 
 #wiki-search-no-matches {
