@@ -1,12 +1,12 @@
 <template>
   <main>
-    <div class="primary_container shadowed">
+    <div class="primary-container shadowed">
       <div>
         <h2>Write some <span class="highlight">Markdown</span> and see it <span class="highlight">Formatted</span>:</h2>
         <textarea v-model="markdown" rows="30" cols="80" id="markdown_text_box" class="round_corners"></textarea>
       </div>
-      <div class="secondary_container">
-        <div v-html="markdownToHtml"></div>
+      <div class="secondary-container">
+        <div v-html="markdownToHtml" class="markdown"></div>
       </div>
     </div>
   </main>
