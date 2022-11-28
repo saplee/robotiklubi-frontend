@@ -155,6 +155,7 @@ export default defineComponent({
 }
 
 #wiki-search-results-container {
+  width: 100%;
   height: fit-content;
 }
 
