@@ -46,12 +46,12 @@
 
     <label for="search-tags">Included Tags:</label>
     <div id="search-tags">
-      <WikiTagComponent v-for="Tag in this.includedTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
+      <WikiTagComponent v-for="Tag in includedTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
     </div>
 
     <label for="all-tags">Available Tags:</label>
     <div id="all-tags">
-      <WikiTagComponent v-for="Tag in this.allTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
+      <WikiTagComponent v-for="Tag in allTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
     </div>
 
     <label for="pagination-counter">Results per Page:</label>
