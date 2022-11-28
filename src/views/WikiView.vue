@@ -17,7 +17,7 @@
         <p v-text="wikiPageEditDate"></p>
         <p><strong>Tags:</strong></p>
         <div class="wiki-tag-container">
-          <WikiTagComponent v-for="Tag in this.tags" :tag="Tag.tag"></WikiTagComponent>
+          <WikiTagComponent v-for="Tag in tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
       </div>
     </div>
@@ -95,7 +95,7 @@ export default defineComponent({
       wikiPageCreationDate: "",
       wikiPageEditedBy: "",
       wikiPageEditDate: "",
-      tags: []
+      tags: [] as Array<any>
     }
   },
   computed: {

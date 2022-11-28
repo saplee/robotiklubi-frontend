@@ -1,5 +1,5 @@
 <template>
-<p class="wiki-tag" @click="$emit('tag', this.id)">{{tag}}</p>
+<p class="wiki-tag" @click="$emit('tag', id)">{{tag}}</p>
 </template>
 
 <script lang="ts">
