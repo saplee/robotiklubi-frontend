@@ -44,6 +44,16 @@
       </div>
     </div>
 
+    <label for="search-tags">Included Tags:</label>
+    <div id="search-tags">
+      <WikiTagComponent v-for="Tag in this.includedTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
+    </div>
+
+    <label for="all-tags">Available Tags:</label>
+    <div id="all-tags">
+      <WikiTagComponent v-for="Tag in this.allTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
+    </div>
+
     <label for="pagination-counter">Results per Page:</label>
     <div id="wiki-search-pagination-container">
       <input type="range" min="1" max="50" class="slider" id="pagination-slider" v-model="paginationAmount">
@@ -56,9 +66,12 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
+import WikiTagComponent from "@/components/wiki/WikiTagComponent.vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "SearchSettingsComponent",
+  components: {WikiTagComponent},
   data: function () {
     return {
       titleSearch: "",
@@ -66,7 +79,9 @@ export default defineComponent({
       sortAscending: false,
       sortType: "title",
       paginationAmount: "5",
-      searchCriteria: {}
+      searchCriteria: {},
+      includedTags: [] as Array<any>,
+      allTags: [] as Array<any>
     }
   },
   methods : {
@@ -80,7 +95,8 @@ export default defineComponent({
         sortByCreationDate: this.sortType === "created",
         sortByEditDate: this.sortType === "edited",
         resultsPerPage: parseInt(this.paginationAmount),
-        firstResult: 0
+        firstResult: 0,
+        tags: this.includedTags.map(t => t.id)
       }
       this.$emit('search', this.searchCriteria)
     },
@@ -92,7 +108,31 @@ export default defineComponent({
       if (value > max) this.paginationAmount = "50"
       if (value < min) this.paginationAmount = "1"
       if (isNaN(value)) this.paginationAmount = "5"
+    },
+    switchTag: function (id: number) {
+      for (let i = 0; i < this.allTags.length; i++) {
+        if (this.allTags[i].id == id) {
+          this.includedTags.push(this.allTags.splice(i, 1)[0])
+          return
+        }
+      }
+      for (let i = 0; i < this.includedTags.length; i++) {
+        if (this.includedTags[i].id == id) {
+          this.allTags.push(this.includedTags.splice(i, 1)[0])
+          return
+        }
+      }
     }
+  },
+  created() {
+    axios.get("/api/wiki/tags")
+        .then(r => {
+          this.allTags = r.data
+        })
+        .catch(e => {
+          this.allTags = []
+          console.log(e)
+        })
   }
 })
 </script>
@@ -185,6 +225,14 @@ input[type="radio"]:checked ~ label {
 button {
   margin-bottom: 0;
   font-size: 1em;
+}
+
+.wiki-tag {
+  cursor: pointer;
+}
+
+.wiki-tag:hover {
+  background: var(--color-accent);
 }
 
 </style>

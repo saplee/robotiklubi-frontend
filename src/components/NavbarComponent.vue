@@ -24,7 +24,7 @@
         </div>
 
         <div class="nav-links-item">
-          <RouterLink class="big-link" tabindex="60" to="/search" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki Search</RouterLink>
+          <RouterLink class="big-link" tabindex="60" to="/search" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Search the Wiki</RouterLink>
         </div>
 
       </div>

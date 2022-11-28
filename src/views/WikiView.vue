@@ -16,7 +16,8 @@
         <p><strong>Last Edited At:</strong></p>
         <p v-text="wikiPageEditDate"></p>
         <p><strong>Tags:</strong></p>
-        <div v-html="wikiPageTags" class="wiki-tag-container">
+        <div class="wiki-tag-container">
+          <WikiTagComponent v-for="Tag in this.tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
       </div>
     </div>
@@ -24,12 +25,14 @@
 </template>
 
 <script lang="ts">
-import {marked} from 'marked';
-import axios from "axios";
 import {defineComponent} from "vue";
+import {marked} from 'marked';
+import WikiTagComponent from "@/components/wiki/WikiTagComponent.vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "Wiki",
+  components: {WikiTagComponent},
   methods: {
     loadPage() {
       if (!this.$router.currentRoute.value.query.hasOwnProperty("id")) return this.setPageNotFound()
@@ -56,11 +59,11 @@ export default defineComponent({
       this.wikiPageEditDate = r.data.lastEdited
       if (this.wikiPageAuthor == null) this.wikiPageAuthor = "Unknown"
       if (this.wikiPageEditedBy == null) this.wikiPageEditedBy = "Unknown"
-      if (!(this.wikiPageCreationDate == null)) {
+      if (this.wikiPageCreationDate != null) {
         const d = new Date(Date.parse(this.wikiPageCreationDate))
         this.wikiPageCreationDate = d.toLocaleString()
       } else this.wikiPageCreationDate = "Unknown"
-      if (!(this.wikiPageEditDate == null)) {
+      if (this.wikiPageEditDate != null) {
         const d = new Date(Date.parse(this.wikiPageEditDate))
         this.wikiPageEditDate = d.toLocaleString()
       } else this.wikiPageEditDate = "Unknown"
@@ -68,16 +71,9 @@ export default defineComponent({
     },
     getPageTags: function () {
       axios.get("/api/wiki/tags/" + String(this.wikiPageId))
-          .then(this.setPageTags)
-    },
-    setPageTags: function (tags: any) {
-      tags = tags.data
-      this.wikiPageTags = ""
-      for (const tag in tags) {
-        this.wikiPageTags += "<p class=\"wiki-tag\">" + tags[tag].tag.trim() + "</p>\n"
-        console.log(tags[tag].tag)
-      }
-      if (!tags) this.wikiPageTags = "None"
+          .then(t => {
+            this.tags = t.data
+          })
     },
     setPageNotFound: function () {
       this.wikiPageId = ""
@@ -87,7 +83,7 @@ export default defineComponent({
       this.wikiPageCreationDate = ""
       this.wikiPageEditedBy = ""
       this.wikiPageEditDate = ""
-      this.wikiPageTags = ""
+      this.tags = []
     },
   },
   data: function () {
@@ -99,7 +95,7 @@ export default defineComponent({
       wikiPageCreationDate: "",
       wikiPageEditedBy: "",
       wikiPageEditDate: "",
-      wikiPageTags: "",
+      tags: []
     }
   },
   computed: {
@@ -107,12 +103,14 @@ export default defineComponent({
       return marked.parse(this.wikiPageContent);
     }
   },
-  beforeMount: function () {
+  watch: {
+    $route () {
+      this.loadPage()
+    }
+  },
+  created() {
     this.loadPage()
   },
-  beforeUpdate() {
-    this.loadPage()
-  }
 })
 </script>
 

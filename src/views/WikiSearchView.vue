@@ -12,6 +12,7 @@
           <SearchPageSelectorComponent
               :paginator="currentPage"
               :res-per-page="resultsPerPage"
+              :total-results="totalResults"
               @firstPage="goToFirstPage"
               @prevPage="goToPrevPage"
               @nextPage="goToNextPage"
@@ -178,7 +179,7 @@ export default defineComponent({
   align-self: end;
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 50rem) {
   #wiki-search-container {
     grid-template-areas:
             "settings"

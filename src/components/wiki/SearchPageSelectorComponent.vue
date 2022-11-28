@@ -6,7 +6,7 @@
     <a class="search-page-button disable-select" @click="$emit('prevPage')">
       <p>&lt</p>
     </a>
-    <a class="search-page-button disable-select">
+    <a class="search-page-button disable-select" id="search-page-number">
       <p>{{pageNumber}}</p>
     </a>
     <a class="search-page-button disable-select" @click="$emit('nextPage')">
@@ -25,12 +25,15 @@ export default defineComponent({
   name: "SearchPageSelectorComponent",
   props: {
     paginator: Number,
-    resPerPage: Number
+    resPerPage: Number,
+    totalResults: Number
   },
   computed: {
     pageNumber: function () {
-      if (this.paginator == undefined || this.resPerPage == undefined) return -1
-      return Math.floor(this.paginator / this.resPerPage) + 1
+      if (this.paginator == undefined || this.resPerPage == undefined || this.totalResults == undefined) return -1
+      const current = Math.floor(this.paginator / this.resPerPage) + 1
+      const total = Math.ceil(this.totalResults / this.resPerPage)
+      return current + "/" + total
     }
   }
 })
@@ -58,11 +61,23 @@ a {
   border-radius: 1rem;
   padding: 0.8rem 1rem 1rem 1rem;
   margin: 0.1rem;
-  width: max-content;
+  min-width: 4rem;
   text-align: center;
-  /*display: inline-grid;*/
-  /*align-content: center;*/
   cursor: pointer;
+}
+
+#search-page-number {
+  cursor: default;
+}
+
+#search-page-number:hover {
+  background: rgba(0, 0, 0, 15%);
+}
+
+@media (max-width: 50rem) {
+  p {
+    font-size: 1.5em;
+  }
 }
 
 </style>
