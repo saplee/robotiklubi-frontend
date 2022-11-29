@@ -9,7 +9,7 @@ export default {
   props: ['refId'],
   created() {
     (function (d, s, id) {
-      var js;
+      let js;
       if (d.getElementById(id)) {
         return;
       }

@@ -1,4 +1,15 @@
+
 <template>
+
+  <meta
+      name="theme-color"
+      content="#fcfcfc"
+      media="(prefers-color-scheme: light)">
+
+  <meta
+      name="theme-color"
+      content="#2f2f2f"
+      media="(prefers-color-scheme: dark)">
   <nav>
     <div id="nav-bar" class="shadowed">
       <div class="nav-logo-container">
