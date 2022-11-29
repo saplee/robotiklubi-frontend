@@ -101,6 +101,10 @@ hr {
 
 /* MARKDOWN FORMATTING */
 
+.markdown {
+    word-break: break-all;
+}
+
 .markdown code {
     display: block;
     background: rgb(26, 26, 26);

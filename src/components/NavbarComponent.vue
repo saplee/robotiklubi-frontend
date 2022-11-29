@@ -27,6 +27,10 @@
           <RouterLink class="big-link" tabindex="60" to="/search" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Search the Wiki</RouterLink>
         </div>
 
+        <div class="nav-links-item">
+          <RouterLink class="big-link" tabindex="60" to="/wiki/new" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">New Wiki Page</RouterLink>
+        </div>
+
       </div>
 
       <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">

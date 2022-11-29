@@ -7,9 +7,11 @@ import {defineComponent} from "vue";
 import {marked} from 'marked';
 import highlight from 'highlight.js'
 import 'highlight.js/styles/nord.css'
+import Markdown from "@/views/MarkView.vue";
 
 export default defineComponent({
   name: "MarkdownComponent",
+  components: {Markdown},
   computed: {
     processMarkdown() {
       return marked(
