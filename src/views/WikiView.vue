@@ -4,7 +4,7 @@
       <div class="primary-container shadowed">
         <h1 v-html="wikiPageTitle"></h1>
         <hr>
-        <div v-html="markdownToHtml" class="markdown"></div>
+        <MarkdownComponent :content="wikiPageContent"></MarkdownComponent>
       </div>
       <div class="secondary-container shadowed">
         <p><strong>Author:</strong></p>
@@ -26,13 +26,13 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {marked} from 'marked';
 import WikiTagComponent from "@/components/wiki/WikiTagComponent.vue";
+import MarkdownComponent from "@/components/wiki/MarkdownComponent.vue";
 import axios from "axios";
 
 export default defineComponent({
   name: "Wiki",
-  components: {WikiTagComponent},
+  components: {WikiTagComponent, MarkdownComponent},
   methods: {
     loadPage() {
       if (!this.$router.currentRoute.value.query.hasOwnProperty("id")) return this.setPageNotFound()
@@ -95,16 +95,11 @@ export default defineComponent({
       wikiPageCreationDate: "",
       wikiPageEditedBy: "",
       wikiPageEditDate: "",
-      tags: [] as Array<any>
-    }
-  },
-  computed: {
-    markdownToHtml() {
-      return marked.parse(this.wikiPageContent);
+      tags: [] as Array<any>,
     }
   },
   watch: {
-    $route () {
+    $route() {
       this.loadPage()
     }
   },

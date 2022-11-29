@@ -125,7 +125,7 @@ export default defineComponent({
     }
   },
   created() {
-    axios.get("/api/wiki/tags")
+    axios.get("/api/tags/all")
         .then(r => {
           this.allTags = r.data
         })
