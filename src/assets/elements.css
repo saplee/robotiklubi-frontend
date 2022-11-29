@@ -87,7 +87,7 @@ button {
 
 button:hover, button:focus-within {
     background-color: var(--color-accent-soft);
-    outline: solid var(--color-accent-soft) 3px;
+    /*outline: solid var(--color-accent-soft) 3px;*/
 }
 
 button:active {
