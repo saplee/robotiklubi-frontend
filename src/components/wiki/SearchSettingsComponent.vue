@@ -46,7 +46,8 @@
 
     <label for="search-tags">Included Tags:</label>
     <div id="search-tags">
-      <WikiTagComponent v-for="Tag in includedTags" :tag="Tag.tag" :id="Tag.id" @tag="switchTag($event)"></WikiTagComponent>
+      <WikiTagComponent v-for="Tag in includedTags" :tag="Tag.tag" :id="Tag.id"
+                        @tag="switchTag($event)"></WikiTagComponent>
     </div>
 
     <label for="all-tags">Available Tags:</label>
@@ -84,8 +85,8 @@ export default defineComponent({
       allTags: [] as Array<any>
     }
   },
-  methods : {
-    saveCriteria: function (e :any) {
+  methods: {
+    saveCriteria: function (e: any) {
       e.preventDefault()
       this.searchCriteria = {
         titleSearch: this.titleSearch,
