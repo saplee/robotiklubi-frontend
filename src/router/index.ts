@@ -25,6 +25,12 @@ const router = createRouter({
       component: () => import('../views/WikiCreateView.vue')
     },
     {
+      path: '/wiki/edit',
+      name: 'wikiEdit',
+      props: true,
+      component: () => import('../views/WikiEditView.vue')
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: () => import('../views/SignUpView.vue')

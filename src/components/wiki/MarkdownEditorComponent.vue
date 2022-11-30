@@ -15,15 +15,30 @@
 <script lang="ts">
 import {defineComponent} from "vue";
 import MarkdownComponent from "@/components/wiki/MarkdownComponent.vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "WikiCreateView",
   components: {MarkdownComponent},
+  props: {
+    pageId: {
+      type: Number,
+      default: -1
+    }
+  },
   data() {
     return {
       title: "",
       content: ""
     }
+  },
+  created() {
+    if (this.pageId < 0) return;
+    axios.get("/api/wiki/" + this.pageId)
+        .then(r => {
+          this.title = r.data.title
+          this.content = r.data.content
+        })
   }
 })
 </script>

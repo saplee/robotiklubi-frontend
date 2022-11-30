@@ -19,6 +19,9 @@
         <div class="wiki-tag-container">
           <WikiTagComponent v-for="Tag in tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
+        <a :href="`#/wiki/edit?pageId=${this.wikiPageId}`">
+          <button>Edit</button>
+        </a>
       </div>
     </div>
   </main>
@@ -137,6 +140,11 @@ export default defineComponent({
   color: var(--col-light-text-1);
   font-size: 0.8em;
   font-weight: bold;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 @media (max-width: 60rem) {

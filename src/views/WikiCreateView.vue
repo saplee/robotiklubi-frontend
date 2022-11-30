@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="wiki-create-container">
-      <MarkdownEditorComponent ref="markdownEditor"></MarkdownEditorComponent>
+      <MarkdownEditorComponent ref="markdownEditor" :page-id="-1"></MarkdownEditorComponent>
       <div class="secondary-container shadowed">
         <TagSelectorComponent ref="tagSelector" :page-id="-1"></TagSelectorComponent>
         <button v-on:click="createPage">Create</button>

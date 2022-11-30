@@ -61,7 +61,7 @@
       <input class="counter" id="pagination-counter" v-model="paginationAmount" @input="checkCounter">
     </div>
 
-    <button v-on:click="saveCriteria">Search</button>
+    <button v-on:click="submit">Search</button>
   </form>
 </template>
 
@@ -86,8 +86,11 @@ export default defineComponent({
     }
   },
   methods: {
-    saveCriteria: function (e: any) {
+    submit(e: any) {
       e.preventDefault()
+      this.saveCriteria()
+    },
+    saveCriteria: function () {
       this.searchCriteria = {
         titleSearch: this.titleSearch,
         contentSearch: this.contentSearch,
@@ -129,6 +132,7 @@ export default defineComponent({
     axios.get("/api/tags/all")
         .then(r => {
           this.allTags = r.data
+          this.saveCriteria()
         })
         .catch(e => {
           this.allTags = []
