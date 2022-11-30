@@ -44,7 +44,7 @@ export default defineComponent({
         tags: this.tagSelector.getTagsToAdd()
       }
       axios.post("/api/tags/relation/create/many?pageId=" + pageId, requestBody)
-          .then(r => {
+          .then(() => {
             window.location.replace("./#/wiki?id=" + pageId)
           })
     }
