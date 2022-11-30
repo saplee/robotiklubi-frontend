@@ -1,5 +1,5 @@
 <template>
-  <a :href="`#/wiki?id=${resultData.id}`">
+  <a :href="`#/wiki/page?id=${resultData.id}`">
     <div class="search-result-item round_corners">
       <div class="search-result-title">
         <h3>{{resultData.title}}</h3>

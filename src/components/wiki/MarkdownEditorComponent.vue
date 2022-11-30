@@ -1,7 +1,7 @@
 <template>
   <div id="markdown-editor-wrapper">
     <div class="primary-container shadowed">
-      <input v-model="title" placeholder="Title...">
+      <input v-model="title" placeholder="Title..." @input="limitTitleLength">
       <textarea v-model="content" placeholder="There once was a robot..."></textarea>
     </div>
     <div class="primary-container shadowed">
@@ -26,6 +26,11 @@ export default defineComponent({
       default: -1
     }
   },
+  methods: {
+    limitTitleLength: function () {
+      if (this.title.length > 50) this.title = this.title.substring(0, 50)
+    },
+  },
   data() {
     return {
       title: "",
@@ -36,7 +41,7 @@ export default defineComponent({
     if (this.pageId < 0) return;
     axios.get("/api/wiki/" + this.pageId)
         .then(r => {
-          this.title = r.data.title
+          this.title = r.data.title.trim()
           this.content = r.data.content
         })
   }
@@ -82,6 +87,13 @@ textarea {
   width: 100%;
   border-radius: 1rem;
   background: rgba(0, 0, 0, 8%);
+}
+
+@media (max-width: 50rem) {
+  #markdown-editor-wrapper {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+  }
 }
 
 </style>

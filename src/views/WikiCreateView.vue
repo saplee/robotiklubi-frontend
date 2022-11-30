@@ -39,13 +39,13 @@ export default defineComponent({
             this.saveTags(r.data)
           })
     },
-    saveTags: function (pageId: Number) {
+    saveTags: function (pageId: number) {
       const requestBody = {
         tags: this.tagSelector.getTagsToAdd()
       }
       axios.post("/api/tags/relation/create/many?pageId=" + pageId, requestBody)
           .then(() => {
-            window.location.replace("./#/wiki?id=" + pageId)
+            window.location.replace("./#/wiki/page?id=" + pageId)
           })
     }
   }
@@ -60,6 +60,7 @@ export default defineComponent({
   display: grid;
   grid-template-columns: 1fr auto;
   grid-gap: 1rem;
+  max-width: 100em;
 }
 
 .secondary-container {
@@ -70,6 +71,18 @@ export default defineComponent({
 
 button {
   width: 100%;
+  margin-bottom: 0;
+}
+
+@media (max-width: 50rem) {
+  #wiki-create-container {
+    grid-template-columns: none;
+    grid-template-rows: auto auto;
+  }
+
+  .secondary-container {
+    width: 100%;
+  }
 }
 
 </style>

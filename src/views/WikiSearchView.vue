@@ -1,6 +1,11 @@
 <template>
   <main>
     <div id="wiki-search-container">
+      <div id="wiki-search-new-page-pane" class="secondary-container shadowed">
+        <a href="#/wiki/new">
+          <button>New Page</button>
+        </a>
+      </div>
       <div class="primary-container shadowed" id="wiki-search-result-pane">
         <div id="wiki-search-results-container">
           <div v-show="doShowNoResults" id="wiki-search-no-matches">
@@ -130,10 +135,11 @@ export default defineComponent({
   display: grid;
   grid-gap: 2rem;
   grid-template-areas:
+            "content newPage"
             "content settings"
             "content stats";
   grid-template-columns: auto 20rem;
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   margin: 2rem auto;
   max-width: 100em;
 }
@@ -144,8 +150,19 @@ export default defineComponent({
   height: fit-content;
 }
 
+#wiki-search-new-page-pane {
+  grid-area: newPage;
+}
+
+#wiki-search-new-page-pane button {
+  width: 100%;
+  margin: 0;
+  font-size: 1em;
+}
+
 #wiki-search-settings-pane {
   grid-area: settings;
+  height: max-content;
 }
 
 #wiki-search-stats-pane {
@@ -156,7 +173,6 @@ export default defineComponent({
 
 #wiki-search-results-container {
   width: 100%;
-  height: fit-content;
 }
 
 .primary-container {
@@ -183,11 +199,12 @@ export default defineComponent({
 @media (max-width: 50rem) {
   #wiki-search-container {
     grid-template-areas:
+            "newPage"
             "settings"
             "content"
             "stats";
     grid-template-columns: 100%;
-    grid-template-rows: auto auto auto;
+    grid-template-rows: auto auto auto auto;
   }
 }
 
