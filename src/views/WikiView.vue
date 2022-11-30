@@ -56,8 +56,8 @@ export default defineComponent({
     setPageData: function (r: any) {
       this.wikiPageTitle = r.data.title
       this.wikiPageContent = r.data.content
-      this.wikiPageAuthor = r.data.author
-      this.wikiPageEditedBy = r.data.lastEditedBy
+      this.wikiPageAuthor = r.data.authorName
+      this.wikiPageEditedBy = r.data.lastEditorName
       this.wikiPageCreationDate = r.data.createdAt
       this.wikiPageEditDate = r.data.lastEdited
       if (this.wikiPageAuthor == null) this.wikiPageAuthor = "Unknown"

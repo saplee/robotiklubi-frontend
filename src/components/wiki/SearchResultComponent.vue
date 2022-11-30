@@ -8,7 +8,7 @@
         <p>{{resultData.summary}}</p>
       </div>
       <div class="search-result-details">
-        <p>Author: {{resultData.author}}</p>
+        <p>Author: {{resultData.authorName}}</p>
         <p>Created At: {{resultData.createdAt}}</p>
       </div>
     </div>

@@ -93,7 +93,7 @@ export default defineComponent({
       this.doShowResults = true
       this.doShowNoResults = false
       for (const r in res) {
-        if (res[r].author == null) res[r].author = "Unknown"
+        if (res[r].authorName == null) res[r].authorName = "Unknown"
         if (res[r].createdAt == null) res[r].createdAt = "Unknown"
         else {
           const d = new Date(Date.parse(res[r].createdAt))
