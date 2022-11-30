@@ -1,7 +1,7 @@
 <template>
   <main>
     <div id="wiki-create-container">
-      <MarkdownEditorComponent></MarkdownEditorComponent>
+      <MarkdownEditorComponent ref="markdownEditor"></MarkdownEditorComponent>
       <div class="secondary-container shadowed">
         <TagSelectorComponent ref="tagSelector" :page-id="-1"></TagSelectorComponent>
         <button v-on:click="createPage">Create</button>
@@ -11,41 +11,42 @@
 </template>
 
 <script lang="ts">
-import {defineComponent, onMounted, ref} from "vue";
+import {defineComponent, ref} from "vue";
 import MarkdownEditorComponent from "@/components/wiki/MarkdownEditorComponent.vue";
 import TagSelectorComponent from "@/components/wiki/TagSelectorComponent.vue";
+import axios from "axios";
 
 export default defineComponent({
   name: "WikiCreateView",
   components: {MarkdownEditorComponent, TagSelectorComponent},
   setup() {
     const tagSelector = ref()
+    const markdownEditor = ref()
     return {
       tagSelector,
+      markdownEditor
     };
-  },
-  data() {
-    return {
-      title: "",
-      content: ""
-    }
   },
   methods: {
     createPage: function () {
-      console.log()
-      console.log("TO ADD")
-      const tagsToAdd = this.tagSelector.getTagsToAdd()
-      for (let i = 0; i < tagsToAdd.length; i++) {
-        console.log(tagsToAdd[i].tag)
+      if (this.markdownEditor.title === "" || this.markdownEditor.content === "") return
+      const wikiPage = {
+        title: this.markdownEditor.title,
+        content: this.markdownEditor.content
       }
-      console.log()
-      console.log("TO REMOVE")
-      const tagsToRemove = this.tagSelector.getTagsToRemove()
-      for (let i = 0; i < tagsToRemove.length; i++) {
-        console.log(tagsToRemove[i].tag)
+      axios.post("/api/wiki/create/", wikiPage)
+          .then(r => {
+            this.saveTags(r.data)
+          })
+    },
+    saveTags: function (pageId: Number) {
+      const requestBody = {
+        tags: this.tagSelector.getTagsToAdd()
       }
-      console.log(JSON.parse(JSON.stringify(this.tagSelector.getTagsToAdd())))
-      console.log(this.tagSelector.getTagsToAdd())
+      axios.post("/api/tags/relation/create/many?pageId=" + pageId, requestBody)
+          .then(r => {
+            window.location.replace("./#/wiki?id=" + pageId)
+          })
     }
   }
 })
