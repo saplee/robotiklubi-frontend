@@ -19,7 +19,7 @@
         <div class="wiki-tag-container">
           <WikiTagComponent v-for="Tag in tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
-        <a :href="`#/wiki/edit?pageId=${this.wikiPageId}`">
+        <a :href="`#/wiki/edit?pageId=${wikiPageId}`">
           <button>Edit</button>
         </a>
       </div>
