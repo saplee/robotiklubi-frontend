@@ -83,11 +83,13 @@ button {
     background-color: var(--color-accent);
     color: #282828;
     cursor: pointer;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 button:hover, button:focus-within {
     background-color: var(--color-accent-soft);
-    outline: solid var(--color-accent-soft) 3px;
+    /*outline: solid var(--color-accent-soft) 3px;*/
 }
 
 button:active {
@@ -100,6 +102,10 @@ hr {
 }
 
 /* MARKDOWN FORMATTING */
+
+.markdown {
+    word-break: break-all;
+}
 
 .markdown code {
     display: block;

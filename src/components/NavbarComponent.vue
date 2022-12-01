@@ -17,14 +17,13 @@
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown1')">Pages</p>
           <ul class="dropdown" id="dropdown1">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
             <li><hr></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
           </ul>
         </div>
 
         <div class="nav-links-item">
-          <RouterLink class="big-link" tabindex="60" to="/search" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Search the Wiki</RouterLink>
+          <RouterLink class="big-link" tabindex="60" to="/wiki" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki</RouterLink>
         </div>
 
       </div>

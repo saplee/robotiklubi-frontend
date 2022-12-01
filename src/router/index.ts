@@ -17,17 +17,28 @@ const router = createRouter({
     {
       path: '/wiki',
       name: 'wiki',
+      component: () => import('../views/WikiSearchView.vue')
+    },
+    {
+      path: '/wiki/page',
+      name: 'wikiPage',
       component: () => import('../views/WikiView.vue')
+    },
+    {
+      path: '/wiki/new',
+      name: 'wikiNew',
+      component: () => import('../views/WikiCreateView.vue')
+    },
+    {
+      path: '/wiki/edit',
+      name: 'wikiEdit',
+      props: true,
+      component: () => import('../views/WikiEditView.vue')
     },
     {
       path: '/signup',
       name: 'signup',
       component: () => import('../views/SignUpView.vue')
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: () => import('../views/WikiSearchView.vue')
     }
   ]
 })

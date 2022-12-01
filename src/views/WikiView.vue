@@ -4,7 +4,7 @@
       <div class="primary-container shadowed">
         <h1 v-html="wikiPageTitle"></h1>
         <hr>
-        <div v-html="markdownToHtml" class="markdown"></div>
+        <MarkdownComponent :content="wikiPageContent"></MarkdownComponent>
       </div>
       <div class="secondary-container shadowed">
         <p><strong>Author:</strong></p>
@@ -19,6 +19,9 @@
         <div class="wiki-tag-container">
           <WikiTagComponent v-for="Tag in tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
+        <a :href="`#/wiki/edit?pageId=${wikiPageId}`">
+          <button>Edit</button>
+        </a>
       </div>
     </div>
   </main>
@@ -26,13 +29,13 @@
 
 <script lang="ts">
 import {defineComponent} from "vue";
-import {marked} from 'marked';
 import WikiTagComponent from "@/components/wiki/WikiTagComponent.vue";
+import MarkdownComponent from "@/components/wiki/MarkdownComponent.vue";
 import axios from "axios";
 
 export default defineComponent({
   name: "Wiki",
-  components: {WikiTagComponent},
+  components: {WikiTagComponent, MarkdownComponent},
   methods: {
     loadPage() {
       if (!this.$router.currentRoute.value.query.hasOwnProperty("id")) return this.setPageNotFound()
@@ -53,8 +56,8 @@ export default defineComponent({
     setPageData: function (r: any) {
       this.wikiPageTitle = r.data.title
       this.wikiPageContent = r.data.content
-      this.wikiPageAuthor = r.data.author
-      this.wikiPageEditedBy = r.data.lastEditedBy
+      this.wikiPageAuthor = r.data.authorName
+      this.wikiPageEditedBy = r.data.lastEditorName
       this.wikiPageCreationDate = r.data.createdAt
       this.wikiPageEditDate = r.data.lastEdited
       if (this.wikiPageAuthor == null) this.wikiPageAuthor = "Unknown"
@@ -95,16 +98,11 @@ export default defineComponent({
       wikiPageCreationDate: "",
       wikiPageEditedBy: "",
       wikiPageEditDate: "",
-      tags: [] as Array<any>
-    }
-  },
-  computed: {
-    markdownToHtml() {
-      return marked.parse(this.wikiPageContent);
+      tags: [] as Array<any>,
     }
   },
   watch: {
-    $route () {
+    $route() {
       this.loadPage()
     }
   },
@@ -142,6 +140,11 @@ export default defineComponent({
   color: var(--col-light-text-1);
   font-size: 0.8em;
   font-weight: bold;
+}
+
+button {
+  width: 100%;
+  margin-bottom: 0;
 }
 
 @media (max-width: 60rem) {

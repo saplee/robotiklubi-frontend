@@ -42,6 +42,7 @@
   --color-transp-accent: rgba(0, 185, 242, 0.3);
   --color-accent-soft: #00aee3;
   --color-accent-mute: #00a0d0;
+  --color-alert: #dc2a2a;
 
   --transition-duration: 0.5s;
   --transition-duration-quick: 0.2s;
