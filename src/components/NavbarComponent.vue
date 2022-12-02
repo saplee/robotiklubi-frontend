@@ -39,6 +39,10 @@
           <RouterLink class="big-link" tabindex="60" to="/wiki" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki</RouterLink>
         </div>
 
+        <div class="nav-links-item">
+          <RouterLink class="big-link" tabindex="70" to="/login" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Login</RouterLink>
+        </div>
+
       </div>
 
       <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">
