@@ -30,10 +30,6 @@ export default defineComponent({
       password: "",
       email: "",
       phone: "",
-      instance: axios.create({
-        baseURL: "http://robotiklubi.hopto.org/",
-        timeout: 1000,
-      }),
     }
   },
   methods: {
@@ -54,7 +50,7 @@ export default defineComponent({
         console.log(info)
         console.log("Sending post request.");
         try {
-          const response = await this.instance.post('/api/user/signup', info)
+          const response = await axios.post('api/user/signup', info)
           console.log(response)
           if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
           else document.getElementById("email").style.outline = ""
