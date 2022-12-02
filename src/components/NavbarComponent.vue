@@ -1,4 +1,15 @@
 <template>
+
+  <meta
+      name="theme-color"
+      content="#fcfcfc"
+      media="(prefers-color-scheme: light)">
+
+  <meta
+      name="theme-color"
+      content="#2f2f2f"
+      media="(prefers-color-scheme: dark)">
+
   <nav>
     <div id="nav-bar" class="shadowed">
       <div class="nav-logo-container">
@@ -17,6 +28,8 @@
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown1')">Pages</p>
           <ul class="dropdown" id="dropdown1">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/about">About</RouterLink></li>
             <li><hr></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
           </ul>
