@@ -28,10 +28,6 @@ export default defineComponent({
     return {
       email: "",
       password: "",
-      instance: axios.create({
-        baseURL: "http://robotiklubi.hopto.org/",
-        timeout: 1000,
-      }),
     }
   },
   methods: {
