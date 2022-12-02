@@ -73,38 +73,27 @@ a:active {
     color: var(--color-accent-mute);
 }
 
-blockquote {
-    background: var(--color-background-alternate-2);
-    padding: 0.2em;
-    border-radius: 0.2em;
-    margin: 0.2em 0.2em 0.2em 0.5em;
-}
-
 button {
     padding: 1em 2em;
     margin: 1em 0;
     border-radius: 0.8em;
+    outline: none;
     border: 0;
     font-weight: bold;
     background-color: var(--color-accent);
     color: #282828;
     cursor: pointer;
+    font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
-button:hover, button:focus {
+button:hover, button:focus-within {
     background-color: var(--color-accent-soft);
+    /*outline: solid var(--color-accent-soft) 3px;*/
 }
 
 button:active {
     background-color: var(--color-accent-mute);
-}
-
-code {
-    background: rgb(62, 68, 66);
-    color: #e0e0e0;
-    font-family: "Courier New", "Lucida Console", monospace;
-    padding: 0.2em;
-    border-radius: 0.2em;
 }
 
 hr {
@@ -112,25 +101,59 @@ hr {
     margin: 1rem 0;
 }
 
-img {
+/* MARKDOWN FORMATTING */
+
+.markdown {
+    word-break: break-all;
+}
+
+.markdown code {
+    display: block;
+    background: rgb(26, 26, 26);
+    color: #e0e0e0;
+    font-family: "Courier New", "Lucida Console", monospace;
+    font-size: 0.9em;
+    padding: 0.5rem;
+    margin: 0.5rem 0.5rem 0.5rem 1rem;
+    border-radius: 0.2em;
+    overflow-x: scroll;
+}
+
+.markdown blockquote {
+    background: rgba(0, 0, 0, 10%);
+    padding: 0.5rem;
+    border-radius: 0.2rem;
+    margin: 0.5rem 0.5rem 0.5rem 1rem;
+    border-left: solid var(--color-accent-mute) 5px;
+}
+
+.markdown img {
     /* reduces the size of the image to fit in the container */
     max-width: 100%;
+}
+
+.markdown ol, .markdown ul {
+    margin: 1rem 1rem 1rem 0;
+}
+
+.markdown li {
+    margin: 0.5rem 0.5rem 0.5rem 0;
 }
 
 
 /* CUSTOM ATTRIBUTES FOR USE IN PROJECT */
 
 
-.primary_container {
+.primary-container {
     width: 80%;
     background: var(--color-background-alternate);
     margin: 2rem auto;
-    padding: 1em 2em 2em 2em;
+    padding: 1.5em 2em 2em 2em;
     border-radius: 1em;
     overflow: auto;
 }
 
-.secondary_container {
+.secondary-container {
     width: 100%;
     max-height: 100%;
     border-radius: 1em;
@@ -143,6 +166,31 @@ img {
     color: var(--color-accent);
 }
 
+.counter {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+    outline: none;
+    background: var(--color-accent);
+    border: none;
+    padding: 0.4rem;
+    border-radius: 1rem;
+    font-weight: bold;
+    text-align: center;
+}
+
+.counter::-webkit-inner-spin-button,
+.counter::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+}
+
+.disable-select {
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 .round_corners {
     border-radius: 1em;
 }
@@ -153,4 +201,62 @@ img {
 
 .shadowed-reverse {
     box-shadow: 0 -8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.slider {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 1rem;
+    background: rgba(0, 0, 0, 50%);
+    outline: none;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+    border-radius: 1rem;
+}
+
+.slider::-webkit-slider-thumb:hover {
+    background: var(--color-accent-mute);
+}
+.slider::-moz-range-thumb:active {
+    background: var(--color-accent-mute);
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-accent);
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+.slider::-moz-range-thumb {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 1.5rem;
+    height: 1.5rem;
+    background: var(--color-accent);
+    cursor: pointer;
+    border-radius: 1rem;
+}
+
+@media (max-width: 50rem) {
+
+    body {
+        font-size: 1em;
+    }
+
+    .primary-container {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .secondary-container {
+        padding: 1rem;
+    }
 }

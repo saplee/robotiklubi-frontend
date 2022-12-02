@@ -1,8 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -17,7 +17,23 @@ const router = createRouter({
     {
       path: '/wiki',
       name: 'wiki',
+      component: () => import('../views/WikiSearchView.vue')
+    },
+    {
+      path: '/wiki/page',
+      name: 'wikiPage',
       component: () => import('../views/WikiView.vue')
+    },
+    {
+      path: '/wiki/new',
+      name: 'wikiNew',
+      component: () => import('../views/WikiCreateView.vue')
+    },
+    {
+      path: '/wiki/edit',
+      name: 'wikiEdit',
+      props: true,
+      component: () => import('../views/WikiEditView.vue')
     },
     {
       path: '/signup',
