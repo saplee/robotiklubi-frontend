@@ -160,12 +160,12 @@ export default defineComponent({
   outline: none;
   font-size: 0.8em;
   padding: 0.4rem 0.8rem 0.4rem 0.8rem;
-  background: var(--color-accent);
+  background: var(--color-accent-soft);
   border: none;
 }
 
-#wiki-search-settings input[type="search"]:focus-within {
-  outline: solid var(--color-accent-soft) 3px;
+#wiki-search-settings input[type="search"]:hover {
+  background: var(--color-accent);
 }
 
 #search-sorting-direction {
