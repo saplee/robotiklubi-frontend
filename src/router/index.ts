@@ -1,6 +1,7 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
+// @ts-ignore
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -41,9 +42,24 @@ const router = createRouter({
       component: () => import('../views/SignUpView.vue')
     },
     {
-      path: '/about',
-      name: 'about',
+      path: '/meist',
+      name: 'meist',
       component: () => import('../views/AboutView.vue')
+    },
+    {
+      path: '/print',
+      name: 'print',
+      component: () => import('../views/teenused/3DPrintView.vue')
+    },
+    {
+      path: '/inseneeria',
+      name: 'inseneeria',
+      component: () => import('../views/teenused/InseneeriaView.vue')
+    },
+    {
+      path: '/demo',
+      name: 'demo',
+      component: () => import('../views/teenused/DemoView.vue')
     }
   ]
 })
