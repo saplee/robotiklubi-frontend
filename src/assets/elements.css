@@ -104,7 +104,7 @@ hr {
 /* MARKDOWN FORMATTING */
 
 .markdown {
-    word-break: break-all;
+    word-break: break-word;
 }
 
 .markdown code {
