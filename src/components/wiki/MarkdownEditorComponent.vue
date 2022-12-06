@@ -89,6 +89,10 @@ textarea {
   background: rgba(0, 0, 0, 8%);
 }
 
+h1 {
+  word-break: break-word;
+}
+
 @media (max-width: 50rem) {
   #markdown-editor-wrapper {
     grid-template-columns: none;
