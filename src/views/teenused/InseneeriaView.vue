@@ -17,7 +17,7 @@
       Kindlasti leiame inimese, kes oskab Teid aidata.
       Siiani oleme saanud abiks olla 3D modelleerimisega, trükkplaatide disainimese- ja komplekteerimisega, freesimisega, 3D printimisega, erinevate muuseumi- ja teatrieksponaatide automatiseerimise ja valmistamisega.
       <br>
-      Oma tellimus või mure saada aadressile <a href="mailto:printimine@robotiklubi.ee" target="_blank">printimine@robotiklubi.ee</a>
+      <strong>Oma tellimus või mure saada aadressile <a href="mailto:printimine@robotiklubi.ee" target="_blank">printimine@robotiklubi.ee</a></strong>
     </div>
   </main>
 </template>

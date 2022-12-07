@@ -33,20 +33,17 @@
         <div class="nav-links-item">
         <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Liikmele</p>
           <ul class="dropdown" id="dropdown1">
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
-            <li><hr></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/meeskond">Meeskond</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kalender">Kalender</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/dokumendid">Dokumendid</RouterLink></li>
           </ul>
         </div>
         <div class="nav-links-item">
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Huvilisele</p>
           <ul class="dropdown" id="dropdown1">
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/markdown">Markdown</RouterLink></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/wiki">Wiki</RouterLink></li>
-            <li><hr></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/signup">Sign Up</RouterLink></li>
-          </ul>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kursus">Kursus</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/workshop">Töötoad</RouterLink></li>
+            </ul>
         </div>
         <div class="nav-links-item">
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Teenused</p>
