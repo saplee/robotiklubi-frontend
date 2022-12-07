@@ -1,7 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 
-// @ts-ignore
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
   routes: [
@@ -85,6 +84,11 @@ const router = createRouter({
       path: '/dokumendid',
       name: 'dokumendid',
       component: () => import('../views/liikmele/DokumendidView.vue')
+    },
+    {
+      path: '/login',
+      name: 'login',
+      component: () => import('../views/Login.vue')
     }
   ]
 })
