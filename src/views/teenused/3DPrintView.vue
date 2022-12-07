@@ -30,17 +30,7 @@
       Alustustasu 3€ <br>
       Materjalikulu 0.10€/g <br>
       Tunnihind 1.5€ <br>
-      <h2>
-        Näiteid tehtud töödest
 
-      </h2>
-      <div class="gallery">
-        <img src="@/assets/teenused/print/print1.png" alt="3D printimine">
-        <img src="@/assets/teenused/print/print2.png" alt="3D printimine">
-        <img src="@/assets/teenused/print/print3.png" alt="3D printimine">
-        <img src="@/assets/teenused/print/print4.png" alt="3D printimine">
-        <img src="@/assets/teenused/print/print5.png" alt="3D printimine">
-      </div>
     </div>
 
   </main>
