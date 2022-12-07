@@ -9,6 +9,9 @@
     box-sizing: border-box;
     margin: 0;
 }
+p {
+    text-align: center;
+}
 
 body {
     color: var(--color-text);

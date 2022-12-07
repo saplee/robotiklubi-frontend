@@ -4,10 +4,12 @@
       <div class="footer_info_vertical">
         <div class="footer_info_horizontal">
           <p>
-            MTÜ TTÜ Robotiklubi<br>
-            Tallinna Tehnikaülikool<br>
-            Ehitajate tee 5<br>
-            19086 Tallinn
+
+            <a href="https://goo.gl/maps/XYvpjLMHbrYRevdQ9" target="_blank">
+              MTÜ TTÜ Robotiklubi<br>
+              Tallinna Tehnikaülikool<br>
+              Ehitajate tee 5<br>
+              19086 Tallinn</a>
           </p>
           <p>
             Reg. kood: 80234864<br>
@@ -23,12 +25,17 @@
       <div class="social_links_container">
         <div class="social_link_container">
           <a class="social_link" href="https://et-ee.facebook.com/Robotiklubi/" target="_blank">
-            <img src="../assets/facebook_logo.png" alt="facebook" class="shadowed">
+            <img src="../assets/facebook_circle.png" alt="facebook" >
           </a>
         </div>
         <div class="social_link_container">
           <a class="social_link" href="https://www.instagram.com/robotiklubi/" target="_blank">
-            <img src="../assets/instagram_logo.png" alt="instagram" class="shadowed">
+            <img src="../assets/transparent_insta.png" alt="instagram" >
+          </a>
+        </div>
+        <div class="social_link_container">
+          <a class="social_link" href="https://www.linkedin.com/company/npo-tut-robotics-club/" target="_blank">
+            <img src="../assets/LI-In-Bug.png" alt="linkedin" >
           </a>
         </div>
       </div>
