@@ -4,6 +4,8 @@
       <h1>
         Inseneeria
       </h1>
+      </div>
+      <div class="primary-container shadowed">
       <h2>
         Insenertehnilised lahendused
       </h2>

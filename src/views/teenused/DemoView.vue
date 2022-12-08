@@ -4,6 +4,8 @@
       <h1>
         Demoesinemine
       </h1>
+    </div>
+      <div class="primary-container shadowed">
       Kui tahate mõnda üritust robotitega põnevamaks teha, siis olete õiges kohas. Nimelt pakub TTÜ Robotiklubi demoesinemisi, kus tutvustame erinevaid roboteid, räägime uudistajatega ning promome teadust ja tehnikat. <br>
       <strong>Üritusele kutset ootame aadressil <a href="mailto:printimine@robotiklubi.ee" target="_blank">printimine@robotiklubi.ee</a></strong>
 
