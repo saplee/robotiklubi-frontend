@@ -21,37 +21,32 @@
       <div id="nav-links" v-on:click="clearNavLinksInlineStyle();">
 
         <div class="nav-links-item">
-          <RouterLink class="big-link" tabindex="20" to="/" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Home</RouterLink>
-        </div>
-
-        <div class="nav-links-item">
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown1')">Klubist</p>
           <ul class="dropdown" id="dropdown1">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/meist">Meist</RouterLink></li>
-            </ul>
-        </div>
-        <div class="nav-links-item">
-        <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Liikmele</p>
-          <ul class="dropdown" id="dropdown2">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/meeskond">Meeskond</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kalender">Kalender</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/dokumendid">Dokumendid</RouterLink></li>
-          </ul>
+            </ul>
         </div>
         <div class="nav-links-item">
-          <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown3')">Huvilisele</p>
-          <ul class="dropdown" id="dropdown3">
+          <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Huvilisele</p>
+          <ul class="dropdown" id="dropdown2">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kursus">Kursus</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/workshop">Töötoad</RouterLink></li>
             </ul>
         </div>
         <div class="nav-links-item">
-          <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown4')">Teenused</p>
-          <ul class="dropdown" id="dropdown4">
+          <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown3')">Teenused</p>
+          <ul class="dropdown" id="dropdown3">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/print">3D Printimine</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/inseneeria">Inseneeria</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/demo">Demoesinemine</RouterLink></li>
           </ul>
+        </div>
+
+        <div class="nav-links-item">
+          <RouterLink class="big-link" tabindex="70" to="/wiki" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki</RouterLink>
         </div>
 
         <div class="nav-links-item">
@@ -169,6 +164,10 @@ nav {
   #nav-bar {
     background: var(--color-transp-background-alternate);
   }
+}
+
+p, a {
+  text-align: center;
 }
 
 

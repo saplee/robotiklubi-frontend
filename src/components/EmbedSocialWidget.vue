@@ -3,6 +3,7 @@
       class="embedsocial-hashtag" :data-ref="refId">
   </div>
 </template>
+
 <script>
 export default {
   name: 'EmbedSocialWidget',
@@ -10,9 +11,7 @@ export default {
   created() {
     (function (d, s, id) {
       let js;
-      if (d.getElementById(id)) {
-        return;
-      }
+      console.log(d.getElementById(id))
       js = d.createElement(s);
       js.id = id;
       js.src = "https://embedsocial.com/cdn/ht.js";

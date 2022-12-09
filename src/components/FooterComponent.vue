@@ -9,7 +9,8 @@
               MTÜ TTÜ Robotiklubi<br>
               Tallinna Tehnikaülikool<br>
               Ehitajate tee 5<br>
-              19086 Tallinn</a>
+              19086 Tallinn
+            </a>
           </p>
           <p>
             Reg. kood: 80234864<br>
@@ -53,6 +54,7 @@ export default {
 
 a {
   text-decoration: none;
+  color: var(--color-text);
 }
 
 footer {

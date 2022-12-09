@@ -46,7 +46,7 @@ export default defineComponent({
           console.log("Can't login")
         }
       } catch (Exception) {
-        console.log(Exception.response.data)
+        console.log(Exception)
         console.log("Could not send data.")
       }
     }
