@@ -46,7 +46,8 @@
       <div id="fileButtons">
         <label class="custom-file-upload">
           <input type="file" id="file" ref="file" @change="uploadFile" accept=".stl"/>
-          Select File
+          Select File:
+          {{fileName}}
         </label>
         <button @click="submitFile" class="submit" :class="{'success': uploadSuccess, 'error': errorResponse}">Upload</button>
       </div>
@@ -66,6 +67,7 @@ export default defineComponent( {
       uploadSuccess: false,
       errorResponse: false,
       done: false,
+      fileName: '',
       polling: 0,
       firstName: '',
       lastName: '',
@@ -76,6 +78,7 @@ export default defineComponent( {
   methods: {
     uploadFile(event: { target: { files: null[]; }; }) {
       this.file = event.target.files[0];
+      this.fileName = event.target.files[0] !== null ? event.target.files[0].name : ''; // If IDE warns about .name then ignore it
     },
     async submitFile() {
       let info = {
@@ -162,7 +165,7 @@ export default defineComponent( {
 
 label.custom-file-upload {
   width: 19rem;
-  height: 3rem;
+  min-height: 3rem;
   border: none;
   display: flex;
   justify-content: center;
@@ -181,7 +184,7 @@ label.custom-file-upload {
 
 button.submit {
   width: 19rem;
-  height: 3rem;
+  min-height: 3rem;
   display: flex;
   justify-content: center;
   align-items: center;
