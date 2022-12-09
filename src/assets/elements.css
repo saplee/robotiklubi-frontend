@@ -245,7 +245,7 @@ hr {
     border-radius: 1rem;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
 
     body {
         font-size: 1em;

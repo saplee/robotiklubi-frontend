@@ -42,6 +42,7 @@ export default defineComponent({
         const response = await axios.post("api/user/login", info)
         if (response.data.succeeded) {
           userData.logIn(response.data.accessToken, response.data.refreshToken)
+          this.$router.replace("/")
         } else {
           console.log("Can't login")
         }

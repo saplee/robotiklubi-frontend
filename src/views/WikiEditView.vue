@@ -124,7 +124,7 @@ export default defineComponent({
   background: var(--color-alert);
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   #wiki-edit-container {
     grid-template-columns: none;
     grid-template-rows: auto auto;

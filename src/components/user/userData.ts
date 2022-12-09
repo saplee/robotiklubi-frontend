@@ -1,23 +1,33 @@
-import { reactive } from 'vue'
+import {reactive} from 'vue'
 import axios from "axios";
 
 export const userData = reactive({
-    loggedIn: false,
+    isLoggedIn: false,
     accessToken: "",
     refreshToken: "",
     issuedAt: 0,
     expiresAt: 0,
     id: 0,
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    role: 0,
+    isAdmin: false,
     logIn: function (accessToken: string, refreshToken: string) {
         console.log()
         console.log("Login")
-        this.loggedIn = true
+        this.isLoggedIn = true
         this.setNewTokens(accessToken, refreshToken)
         console.log("Access Token:")
         console.log(accessToken)
         console.log()
-        this.processToken()
-        this.ensureValidity()
+        try {
+            this.processToken()
+            this.ensureValidity()
+        } catch (e) {
+            this.logOut()
+        }
     },
     setNewTokens(accessToken: string, refreshToken: string) {
         this.accessToken = accessToken
@@ -55,7 +65,7 @@ export const userData = reactive({
         this.expiresAt = tokenData.exp
     },
     logOut: function () {
-        this.loggedIn = false
+        this.isLoggedIn = false
         this.accessToken = ""
         this.refreshToken = ""
         localStorage.accessToken = this.accessToken
@@ -63,8 +73,30 @@ export const userData = reactive({
         this.issuedAt = 0
         this.expiresAt = 0
         this.id = 0
+        this.firstName = ""
+        this.lastName = ""
+        this.email = ""
+        this.phone = ""
+        this.role = 0
+        this.isAdmin = false
     },
     fetchUserInfo: function () {
+        axios.get("/api/users/data", {
+            headers: {
+                Authorization: `Bearer ${this.accessToken}`
+            }
+        }).then(r => {
+                console.log(r)
+                this.firstName = r.data.firstName.trim()
+                this.lastName = r.data.lastName.trim()
+                this.email = r.data.email.trim()
+                this.phone = r.data.phone.trim()
+                this.role = r.data.role
+                this.isAdmin = r.data.isAdmin
+            }
+        ).catch(() => {
+            this.logOut()
+        })
     },
     getAuthHeader: function () {
         this.ensureValidity()
@@ -73,5 +105,14 @@ export const userData = reactive({
                 Authorization: `Bearer ${this.accessToken}`
             }
         }
+    },
+    getFullName: function () {
+        return this.firstName + " " + this.lastName
+    },
+    getCanAddToWiki: function () {
+        return this.isAdmin || this.role === 2 || this.role === 4
+    },
+    getCanEditOrDeleteWiki: function (authorId: number) {
+        return this.isAdmin || this.id === authorId
     }
 })

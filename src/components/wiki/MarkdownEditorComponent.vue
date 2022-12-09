@@ -93,7 +93,7 @@ h1 {
   word-break: break-word;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   #markdown-editor-wrapper {
     grid-template-columns: none;
     grid-template-rows: auto auto;

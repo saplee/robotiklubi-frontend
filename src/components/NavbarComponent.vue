@@ -49,13 +49,26 @@
           <RouterLink class="big-link" tabindex="70" to="/wiki" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Wiki</RouterLink>
         </div>
 
-        <div class="nav-links-item">
-          <RouterLink class="big-link" tabindex="70" to="/login" v-on:click="toggleNavLinks(); hideAllDropdowns(); removeFocus();">Login</RouterLink>
-        </div>
-
       </div>
 
-      <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks">
+      <div id="account-menu" tabindex="10">
+        <div class="nav-links-item" v-show="userData.isLoggedIn" v-on:click="hideNavLinks(); toggleDropdown('dropdown99')">
+          <div id="account-menu-icon-and-name">
+            <p class="big-link" tabindex="50" v-html="userData.getFullName()" id="account-menu-user-name"></p>
+            <img src="@/assets/user-profile.svg" alt="club logo">
+          </div>
+          <ul class="dropdown shadowed" id="dropdown99">
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="">Profile</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus(); userData.logOut()" to="">Logout</RouterLink></li>
+          </ul>
+        </div>
+
+        <div class="nav-links-item" v-show="!userData.isLoggedIn">
+          <RouterLink class="big-link" tabindex="70" to="/login" v-on:click="hideAllDropdowns(); removeFocus();">Login</RouterLink>
+        </div>
+      </div>
+
+      <div id="hamburger-menu" tabindex="11" v-on:click="toggleNavLinks(); hideAllDropdowns();">
         <hr>
         <hr>
         <hr>
@@ -66,6 +79,8 @@
 </template>
 
 <script lang="ts">
+
+import {userData} from "@/components/user/userData";
 
 function checkNavLinksVisibility() {
   let navLinks = document.getElementById("nav-links")
@@ -83,6 +98,11 @@ window.addEventListener("resize", checkNavLinksVisibility);
 
 export default {
   name: "NavbarComponent",
+  computed: {
+    userData() {
+      return userData
+    }
+  },
   methods: {
     removeFocus() {
       const element = document.activeElement;
@@ -107,6 +127,14 @@ export default {
           navLinks.style.visibility = "hidden";
           this.hideAllDropdowns()
         }
+      }
+    },
+    hideNavLinks () {
+      let navbarMaxWidth = getComputedStyle(document.body).getPropertyValue("--navbar-mode-switch-width")
+      if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
+      let navLinks = document.getElementById("nav-links")
+      if (navLinks != null) {
+          navLinks.style.visibility = "hidden";
       }
     },
     hideAllDropdowns() {
@@ -207,6 +235,10 @@ p, a {
   z-index: 9010;
 }
 
+.nav-links-item {
+  cursor: pointer;
+}
+
 .big-link {
   display: block;
   cursor: pointer;
@@ -232,7 +264,7 @@ p, a {
 /* NAVIGATION DROPDOWNS */
 
 
-@media (min-width: 50rem) {
+@media (min-width: 70rem) {
   .nav-links-item:hover .dropdown, .nav-links-item:focus .dropdown, .nav-links-item:focus-within .dropdown {
     visibility: visible;
     opacity: 1;
@@ -285,6 +317,33 @@ p, a {
 }
 
 
+/* USER ACCOUNT MENU */
+
+
+#account-menu {
+  display: flex;
+  height: var(--navbar-height);
+  flex-wrap: nowrap;
+  width: max-content;
+  z-index: 9030;
+}
+
+#account-menu-icon-and-name {
+  display: flex;
+}
+
+#account-menu-icon-and-name img {
+  padding: 0.8rem;
+  height: var(--navbar-height);
+}
+
+#account-menu-user-name {
+  color: var(--color-accent-mute);
+  font-weight: bold;
+  padding-right: 0.5rem;
+}
+
+
 /* MOBILE FORMATTING */
 
 
@@ -310,7 +369,7 @@ p, a {
   margin: 0 auto;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
 
   #hamburger-menu {
     visibility: visible;
@@ -318,6 +377,12 @@ p, a {
 
   #nav-bar {
     width: 100%;
+    grid-template-columns: auto max-content max-content;
+  }
+
+  #account-menu .dropdown {
+    background: var(--color-transp-background-alternate);
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
   }
 
   #nav-links {

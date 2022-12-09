@@ -47,13 +47,11 @@ export default defineComponent({
           info.password !== "" &&
           info.email !== "" &&
           !emailElement.validity.typeMismatch) {
-        console.log(info)
-        console.log("Sending post request.");
         try {
           const response = await axios.post('api/user/signup', info)
-          console.log(response)
-          if (!response.data.succeeded) document.getElementById("email").style.outline = "2px solid red"
+          if (response.data.emailError) document.getElementById("email").style.outline = "2px solid red"
           else document.getElementById("email").style.outline = ""
+          if (response.data.succeeded) this.$router.replace("/login")
         } catch (Exception) {
           console.log(Exception.response.data)
           console.log("Could not send data.")

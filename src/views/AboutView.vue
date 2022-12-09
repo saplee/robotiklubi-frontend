@@ -11,8 +11,7 @@
       Sellega parandades oma karjääriväljavaateid, saades lisakogemusi ja suheldes teiste sama mõtteviisiga inimestega.
 
     </div>
-    <div class="primary-container shadowed">
-
+    <div id="instagram-container" class="primary-container shadowed">
       <EmbedSocialWidget v-bind:ref-id="'34f1d98936ea773c28948cca33461d7e0f2e870c'"/>
     </div>
     <div class="primary-container shadowed map-container">
@@ -31,6 +30,10 @@ export default {
 </script>
 
 <style scoped>
+
+#instagram-container {
+  background: var(--col-light-background-alternate);
+}
 
 .map-container {
   padding: 2rem;

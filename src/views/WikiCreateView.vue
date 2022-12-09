@@ -74,7 +74,7 @@ button {
   margin-bottom: 0;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   #wiki-create-container {
     grid-template-columns: none;
     grid-template-rows: auto auto;
