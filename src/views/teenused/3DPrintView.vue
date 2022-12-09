@@ -118,22 +118,30 @@ export default defineComponent( {
         if (this.file == null) {
           return;
         }
-        formData.append('file', this.file);
+        formData.append('fileName', this.fileName);
         formData.append('email', this.email);
         formData.append('phone', this.phone);
         formData.append('firstName', this.firstName);
         formData.append('lastName', this.lastName);
-        await axios.post('api/process/status', formData).then(response => {
-          console.log(response);
-          if (response.data.status == 'done') {
-            this.done = true;
-            clearInterval(this.polling);
-            alert('Your file has been processed');
-          }
-        }).catch(error => {
-          this.errorResponse = true;
-          console.log(error);
-        });
+        try {
+          await axios.post('api/process/status', formData, {
+            headers: {
+              'Content-Type':'application/json'
+            }
+          }).then(response => {
+            console.log(response);
+            if (response.data.status == 'done') {
+              this.done = true;
+              clearInterval(this.polling);
+              alert('Your file has been processed');
+            }
+          }).catch(error => {
+            this.errorResponse = true;
+            console.log(error);
+          });
+        } catch (e) {
+          console.log(e);
+        }
 
       }, 3000)
     }
