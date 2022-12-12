@@ -8,3 +8,18 @@ import FooterComponent from './components/FooterComponent.vue'
 
   <FooterComponent></FooterComponent>
 </template>
+
+<script lang="ts">
+import {defineComponent} from "vue";
+import {userData} from "@/components/user/userData";
+
+export default defineComponent({
+  created() {
+    let accessToken = localStorage.accessToken
+    let refreshToken = localStorage.refreshToken
+    if (accessToken !== undefined && accessToken !== "" && refreshToken !== undefined && refreshToken !== "") {
+      userData.logIn(accessToken, refreshToken)
+    }
+  }
+})
+</script>

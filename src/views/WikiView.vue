@@ -19,7 +19,7 @@
         <div class="wiki-tag-container">
           <WikiTagComponent v-for="Tag in tags" :tag="Tag.tag"></WikiTagComponent>
         </div>
-        <a :href="`#/wiki/edit?pageId=${wikiPageId}`">
+        <a :href="`#/wiki/edit?pageId=${wikiPageId}`" v-show="userData.getCanEditOrDeleteWiki(this.wikiPageAuthorId)">
           <button>Edit</button>
         </a>
       </div>
@@ -32,9 +32,15 @@ import {defineComponent} from "vue";
 import WikiTagComponent from "@/components/wiki/WikiTagComponent.vue";
 import MarkdownComponent from "@/components/wiki/MarkdownComponent.vue";
 import axios from "axios";
+import {userData} from "@/components/user/userData";
 
 export default defineComponent({
   name: "Wiki",
+  computed: {
+    userData() {
+      return userData
+    }
+  },
   components: {WikiTagComponent, MarkdownComponent},
   methods: {
     loadPage() {
@@ -57,6 +63,7 @@ export default defineComponent({
       this.wikiPageTitle = r.data.title
       this.wikiPageContent = r.data.content
       this.wikiPageAuthor = r.data.authorName
+      this.wikiPageAuthorId = r.data.authorId
       this.wikiPageEditedBy = r.data.lastEditorName
       this.wikiPageCreationDate = r.data.createdAt
       this.wikiPageEditDate = r.data.lastEdited
@@ -83,6 +90,7 @@ export default defineComponent({
       this.wikiPageTitle = "Wiki Page Not Found."
       this.wikiPageContent = ""
       this.wikiPageAuthor = ""
+      this.wikiPageAuthorId = -1
       this.wikiPageCreationDate = ""
       this.wikiPageEditedBy = ""
       this.wikiPageEditDate = ""
@@ -95,6 +103,7 @@ export default defineComponent({
       wikiPageTitle: "Wiki Page Not Found.",
       wikiPageContent: "",
       wikiPageAuthor: "",
+      wikiPageAuthorId: -1,
       wikiPageCreationDate: "",
       wikiPageEditedBy: "",
       wikiPageEditDate: "",
@@ -147,7 +156,7 @@ button {
   margin-bottom: 0;
 }
 
-@media (max-width: 60rem) {
+@media (max-width: 70rem) {
   #wiki-content-container {
     flex-direction: column;
   }

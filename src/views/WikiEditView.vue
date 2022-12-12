@@ -20,6 +20,7 @@ import MarkdownEditorComponent from "@/components/wiki/MarkdownEditorComponent.v
 import TagSelectorComponent from "@/components/wiki/TagSelectorComponent.vue";
 import {defineComponent, ref} from "vue";
 import axios from "axios";
+import {userData} from "@/components/user/userData";
 
 export default defineComponent({
   name: "WikiEditView",
@@ -44,8 +45,7 @@ export default defineComponent({
         title: this.markdownEditor.title,
         content: this.markdownEditor.content
       }
-      // axios.put("/api/wiki/update?id=" + this.pageId, wikiPage)
-      axios.post("/api/wiki/update?id=" + this.pageId, wikiPage)
+      axios.put("/api/wiki/update?id=" + this.pageId, wikiPage, userData.getAuthHeader())
           .then(() => {
             this.addTags()
           })
@@ -54,31 +54,28 @@ export default defineComponent({
       const tagsToAdd = {
         tags: this.tagSelector.getTagsToAdd()
       }
-      axios.post("/api/tags/relation/create/many?pageId=" + this.pageId, tagsToAdd)
+      axios.post("/api/tags/relation/create/many?pageId=" + this.pageId, tagsToAdd, userData.getAuthHeader())
           .then(() => {
             this.removeTags()
           })
     },
     removeTags: function () {
-      const tagsToRemove = {
-        tags: this.tagSelector.getTagsToRemove()
+      userData.ensureValidity()
+      const axiosRemoveTags = {
+        data: {
+          tags: this.tagSelector.getTagsToRemove()
+        },
+        headers: {
+          Authorization: `Bearer ${userData.accessToken}`
+        }
       }
-      // const axiosRemoveTags = {
-      //   data: {
-      //     tags: this.tagSelector.getTagsToRemove()
-      //   }
-      // }
-      // axios.delete("/api/tags/relation/delete/many?pageId=" + this.pageId, axiosRemoveTags)
-
-      axios.post("/api/tags/relation/delete/many?pageId=" + this.pageId, tagsToRemove)
+      axios.delete("/api/tags/relation/delete/many?pageId=" + this.pageId, axiosRemoveTags)
           .then(() => {
             window.location.replace("./#/wiki/page?id=" + this.pageId)
           })
     },
     deletePage: function () {
-      // axios.delete("/api/tags/relation/delete/many?pageId=" + this.pageId, axiosRemoveTags)
-
-      axios.post("/api/wiki/delete?id=" + this.pageId)
+      axios.delete("/api/wiki/delete?id=" + this.pageId, userData.getAuthHeader())
           .then(() => {
             // window.location.replace("./#/wiki/" + this.pageId)
             this.$router.replace("/wiki")
@@ -127,7 +124,7 @@ export default defineComponent({
   background: var(--color-alert);
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   #wiki-edit-container {
     grid-template-columns: none;
     grid-template-rows: auto auto;

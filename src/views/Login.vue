@@ -22,6 +22,7 @@
 <script>
 import axios from "axios";
 import {defineComponent} from "vue";
+import {userData} from "@/components/user/userData";
 
 export default defineComponent({
   data: function () {
@@ -32,29 +33,22 @@ export default defineComponent({
   },
   methods: {
     async post() {
-      const emailElement = document.getElementById("email");
       let info = {
         password: this.password,
         email: this.email
       }
-      if (info.password !== "" &&
-          info.email !== "" &&
-          !emailElement.validity.typeMismatch) {
-        console.log(info)
-        console.log("Sending post request.");
-        try {
-          const response = await axios.post("api/user/login", info)
-          console.log(response)
-          if (response.data.succeeded) {
-            localStorage.accssesToken = response.data.accssesToken
-            localStorage.refreshToken = response.data.refreshToken
-          } else {
-            console.log("Can't login")
-          }
-        } catch (Exception) {
-          console.log(Exception.response.data)
-          console.log("Could not send data.")
+      if (info.password === "" || info.email === "") return
+      try {
+        const response = await axios.post("api/user/login", info)
+        if (response.data.succeeded) {
+          userData.logIn(response.data.accessToken, response.data.refreshToken)
+          this.$router.replace("/")
+        } else {
+          console.log("Can't login")
         }
+      } catch (Exception) {
+        console.log(Exception)
+        console.log("Could not send data.")
       }
     }
   },

@@ -74,7 +74,7 @@ a {
   background: rgba(0, 0, 0, 15%);
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   p {
     font-size: 1.5em;
   }

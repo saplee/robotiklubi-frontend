@@ -1,11 +1,6 @@
 <template>
   <main>
     <div id="wiki-search-container">
-      <div id="wiki-search-new-page-pane" class="secondary-container shadowed">
-        <a href="#/wiki/new">
-          <button>New Page</button>
-        </a>
-      </div>
       <div class="primary-container shadowed" id="wiki-search-result-pane">
         <div id="wiki-search-results-container">
           <div v-show="doShowNoResults" id="wiki-search-no-matches">
@@ -28,6 +23,11 @@
       <div class="secondary-container shadowed" id="wiki-search-settings-pane">
         <SearchSettingsComponent @search="updateCriteriaAndSearch($event)"></SearchSettingsComponent>
       </div>
+            <div id="wiki-search-new-page-pane" class="secondary-container shadowed" v-show="userData.getCanAddToWiki()">
+        <a href="#/wiki/new">
+          <button>New Page</button>
+        </a>
+      </div>
       <div v-show="doShowResults" class="secondary-container shadowed" id="wiki-search-stats-pane">
         <p>{{searchStats}}</p>
       </div>
@@ -41,8 +41,14 @@ import SearchSettingsComponent from "@/components/wiki/SearchSettingsComponent.v
 import SearchResultComponent from "@/components/wiki/SearchResultComponent.vue";
 import SearchPageSelectorComponent from "@/components/wiki/SearchPageSelectorComponent.vue";
 import axios from "axios";
+import {userData} from "@/components/user/userData";
 
 export default defineComponent({
+  computed: {
+    userData() {
+      return userData
+    }
+  },
   components: {SearchPageSelectorComponent, SearchSettingsComponent, SearchResultComponent},
   data: function () {
     return {
@@ -135,8 +141,8 @@ export default defineComponent({
   display: grid;
   grid-gap: 2rem;
   grid-template-areas:
-            "content newPage"
             "content settings"
+            "content newPage"
             "content stats";
   grid-template-columns: auto 20rem;
   grid-template-rows: auto auto 1fr;
@@ -196,13 +202,13 @@ export default defineComponent({
   align-self: end;
 }
 
-@media (max-width: 50rem) {
+@media (max-width: 70rem) {
   #wiki-search-container {
     grid-template-areas:
-            "newPage"
             "settings"
             "content"
-            "stats";
+            "stats"
+            "newPage";
     grid-template-columns: 100%;
     grid-template-rows: auto auto auto auto;
   }
