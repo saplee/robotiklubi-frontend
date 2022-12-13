@@ -47,7 +47,13 @@ export const userData = reactive({
                     Authorization: `Bearer ${this.refreshToken}`
                 }
             }
-            const response = await axios.post("/api/user/refresh", data, config)
+            let response;
+            try {
+                response = await axios.post("/api/user/refresh", data, config)
+            } catch (e) {
+                this.logOut()
+                return
+            }
             console.log(response)
             if (response.data.accessToken === undefined) {
                 this.logOut()
