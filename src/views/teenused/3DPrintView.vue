@@ -44,11 +44,13 @@
       <input type="email" id="email" name="email" placeholder="E-mail" v-model="email" required>
       <input type="tel" id="phone" name="phone" placeholder="Phone number" v-model="phone" required>
       <div id="fileButtons">
-        <label class="custom-file-upload">
-          <input type="file" id="file" ref="file" @change="uploadFile" accept=".stl"/>
-          Select File:
-          {{fileName}}
-        </label>
+        <div class="dropzone">
+          <label class="custom-file-upload">
+            <input type="file" id="file" ref="file" @change="uploadFile" accept=".stl"/>
+            Select File:
+            {{fileName}}
+          </label>
+        </div>
         <button @click="submitFile" class="submit" :class="{'success': uploadSuccess, 'error': errorResponse}">Upload</button>
       </div>
     </div>
@@ -63,7 +65,7 @@ import {defineComponent} from "vue";
 export default defineComponent( {
   data() {
     return {
-      file: null,
+      file: <File> {},
       uploadSuccess: false,
       errorResponse: false,
       done: false,
@@ -76,9 +78,13 @@ export default defineComponent( {
     }
   },
   methods: {
-    uploadFile(event: { target: { files: null[]; }; }) {
-      this.file = event.target.files[0];
-      this.fileName = event.target.files[0] !== null ? event.target.files[0].name : ''; // If IDE warns about .name then ignore it
+    uploadFile(event: Event): void {
+      console.log(event.target)
+      console.log((<HTMLInputElement>event.target).files)
+      if (event.target && event.target instanceof HTMLInputElement && event.target.files) {
+        this.file = event.target.files[0];
+        this.fileName = event.target.files[0] ? event.target.files[0].name : '';// If IDE warns about .name then ignore it
+      }
     },
     async submitFile() {
       let info = {
@@ -132,10 +138,12 @@ export default defineComponent( {
             console.log(response);
             if (response.data.status == 'done') {
               this.done = true;
+              this.errorResponse = false;
               clearInterval(this.polling);
               alert('Your file has been processed');
             }
           }).catch(error => {
+            this.done = false;
             this.errorResponse = true;
             console.log(error);
           });
