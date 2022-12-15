@@ -92,6 +92,12 @@ export default defineComponent( {
         lastName: this.lastName,
         email: this.email,
         phone: this.phone,
+        DTO: {
+          firstName: this.firstName,
+          lastName: this.lastName,
+          email: this.email,
+          phone: this.phone,
+        }
       }
       if (info.firstName === '' || info.lastName === '' || info.email === '' || info.phone === '') {
         alert('Please fill in all the fields')
@@ -103,6 +109,10 @@ export default defineComponent( {
         return;
       }
       formData.append('file', this.file);
+      formData.append('firstName', this.firstName);
+      formData.append('lastName', this.lastName);
+      formData.append('email', this.email);
+      formData.append('phone', this.phone);
       await axios.post('api/process', formData, {
         headers: {
           'Content-Type': 'multipart/form-data'
@@ -136,11 +146,15 @@ export default defineComponent( {
             }
           }).then(response => {
             console.log(response);
-            if (response.data.status == 'done') {
+            if (response.data.status == "done") {
               this.done = true;
               this.errorResponse = false;
               clearInterval(this.polling);
-              alert('Your file has been processed');
+              alert('Material used: ' + response.data.materialUsed +
+                  '\nPrint time: ' + response.data.printTime +
+                  '\nLayer Count: ' + response.data.layerCount +
+                  "\nLayer Height: " + response.data.layerHeight +
+                  "\nfilename: " + response.data.fileName);
             }
           }).catch(error => {
             this.done = false;
