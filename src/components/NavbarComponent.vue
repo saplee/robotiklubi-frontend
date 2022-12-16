@@ -329,7 +329,8 @@ p, a {
 }
 
 #account-menu-icon-and-name {
-  display: flex;
+  display: grid;
+  grid-template-columns: max-content auto;
 }
 
 #account-menu-icon-and-name img {
