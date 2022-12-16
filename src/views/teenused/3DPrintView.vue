@@ -105,7 +105,8 @@ export default defineComponent( {
       }
 
       const formData = new FormData();
-      if (this.file == null) {
+      if (this.file == null || this.file.name.substring(this.file.name.length - 4) != '.stl') {
+        alert('Please select a .stl file ')
         return;
       }
       formData.append('file', this.file);
@@ -118,10 +119,14 @@ export default defineComponent( {
           'Content-Type': 'multipart/form-data'
         }
       }).then(response => {
+        this.uploadSuccess = response.data.success;
+        if (response.data.success) {
+          console.log("Upload success");
+          this.polData();
+        } else {
+          this.errorResponse = true;
+        }
         console.log(response);
-        this.uploadSuccess = true;
-        console.log("Upload success");
-        this.polData();
       }).catch(error => {
         this.errorResponse = true;
         console.log(error);
