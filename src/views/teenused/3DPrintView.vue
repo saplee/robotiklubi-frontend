@@ -154,7 +154,8 @@ export default defineComponent( {
                   '\nPrint time: ' + response.data.printTime +
                   '\nLayer Count: ' + response.data.layerCount +
                   "\nLayer Height: " + response.data.layerHeight +
-                  "\nfilename: " + response.data.fileName);
+                  "\nfilename: " + response.data.fileName +
+                  "\nPrice: " + response.data.price);
             }
           }).catch(error => {
             this.done = false;
