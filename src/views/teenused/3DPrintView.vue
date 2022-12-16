@@ -150,12 +150,12 @@ export default defineComponent( {
               this.done = true;
               this.errorResponse = false;
               clearInterval(this.polling);
-              alert('Material used: ' + response.data.materialUsed +
-                  '\nPrint time: ' + response.data.printTime +
+              alert('Material used: ' + response.data.materialUsed + "mm3" +
+                  '\nPrint time: ' + response.data.printTime + "s" +
                   '\nLayer Count: ' + response.data.layerCount +
-                  "\nLayer Height: " + response.data.layerHeight +
+                  "\nLayer Height: " + Math.round(response.data.layerHeight * 100) / 100 + "mm" +
                   "\nfilename: " + response.data.fileName +
-                  "\nPrice: " + response.data.price);
+                  "\nPrice: " + Math.round(response.data.price * 100) / 100 + "€");
             }
           }).catch(error => {
             this.done = false;
