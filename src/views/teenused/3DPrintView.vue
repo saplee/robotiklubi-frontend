@@ -169,10 +169,9 @@ export default defineComponent( {
       }, 3000)
     }
   },
-  beforeDestroy() {
-    // clearInterval(this.polling);
+  beforeUnmount() {
+    clearInterval(this.polling);
   }
-
 })
 </script>
 
