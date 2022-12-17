@@ -8,7 +8,7 @@
           <input type="email" placeholder="Enter your email" v-model="email" id="email" required>
           <label><strong>Password:</strong></label>
           <input type="password" placeholder="Enter password" v-model="password" required>
-          <button v-on:click="post()">Login</button>
+          <button v-on:click="post">Login</button>
         </form>
       </div>
       <h6> or </h6>
@@ -32,7 +32,8 @@ export default defineComponent({
     }
   },
   methods: {
-    async post() {
+    async post(e) {
+      e.preventDefault()
       let info = {
         password: this.password,
         email: this.email
