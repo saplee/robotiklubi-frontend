@@ -59,7 +59,7 @@
           </div>
           <ul class="dropdown shadowed" id="dropdown99">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/user/profile">Profile</RouterLink></li>
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus(); userData.logOut()" to="">Logout</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus(); userData.logOut()" to="/">Logout</RouterLink></li>
           </ul>
         </div>
 
