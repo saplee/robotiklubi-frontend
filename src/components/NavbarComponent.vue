@@ -27,14 +27,14 @@
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/meeskond">Meeskond</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kalender">Kalender</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/dokumendid">Dokumendid</RouterLink></li>
-            </ul>
+          </ul>
         </div>
         <div class="nav-links-item">
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown2')">Huvilisele</p>
           <ul class="dropdown" id="dropdown2">
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/kursus">Kursus</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/workshop">Töötoad</RouterLink></li>
-            </ul>
+          </ul>
         </div>
         <div class="nav-links-item">
           <p class="big-link" tabindex="50" v-on:click="toggleDropdown('dropdown3')">Teenused</p>
@@ -58,7 +58,7 @@
             <img src="@/assets/user-profile.svg" alt="club logo">
           </div>
           <ul class="dropdown shadowed" id="dropdown99">
-            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="">Profile</RouterLink></li>
+            <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus();" to="/user/profile">Profile</RouterLink></li>
             <li class="dropdown-link"><RouterLink tabindex="50" v-on:click="toggleNavLinks(); removeFocus(); userData.logOut()" to="">Logout</RouterLink></li>
           </ul>
         </div>
@@ -134,7 +134,7 @@ export default {
       if (window.matchMedia("(min-width: " + navbarMaxWidth + ")").matches) return;
       let navLinks = document.getElementById("nav-links")
       if (navLinks != null) {
-          navLinks.style.visibility = "hidden";
+        navLinks.style.visibility = "hidden";
       }
     },
     hideAllDropdowns() {
