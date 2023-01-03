@@ -45,7 +45,7 @@ export default defineComponent({
         email: this.email,
         phone: this.phone
       }
-      axios.put("/api/user/update", info).
+      axios.put("/api/user/update", info, userData.getAuthHeader()).
       then(r => {document.
       getElementById("email").style.outline = ""})
           .catch(e => {
