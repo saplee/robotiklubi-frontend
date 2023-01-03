@@ -39,12 +39,13 @@ export default defineComponent({
   methods: {
     saveEdit() {
       let info = {
+        id: userData.id,
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
         phone: this.phone
       }
-      axios.put("/api/user/update?id=" + userData.id, info).
+      axios.put("/api/user/update", info).
       then(r => {document.
       getElementById("email").style.outline = ""})
           .catch(e => {
