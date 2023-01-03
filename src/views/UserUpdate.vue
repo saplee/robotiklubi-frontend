@@ -2,7 +2,7 @@
   <main>
     <div id="signup-container" class="primary-container shadowed">
       <h1>Your profile</h1>
-      <form onsubmit="return true">
+      <form onsubmit="return false">
         <label><strong>First Name:</strong></label>
         <input type="text" v-model="firstName" required>
         <label><strong>Last Name:</strong></label>
@@ -46,8 +46,8 @@ export default defineComponent({
         phone: this.phone
       }
       axios.put("/api/user/update", info, userData.getAuthHeader()).
-      then(r => {document.
-      getElementById("email").style.outline = ""})
+      then(r =>
+      {window.location.replace("/")})
           .catch(e => {
         document.getElementById("email").style.outline = "2px solid red"
       })
