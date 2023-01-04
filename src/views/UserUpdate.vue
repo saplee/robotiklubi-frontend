@@ -39,7 +39,6 @@ export default defineComponent({
   methods: {
     saveEdit() {
       let info = {
-        id: userData.id,
         firstName: this.firstName,
         lastName: this.lastName,
         email: this.email,
