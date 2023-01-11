@@ -15,6 +15,7 @@ import {defineComponent, ref} from "vue";
 import MarkdownEditorComponent from "@/components/wiki/MarkdownEditorComponent.vue";
 import TagSelectorComponent from "@/components/wiki/TagSelectorComponent.vue";
 import axios from "axios";
+import {userData} from "@/components/user/userData";
 
 export default defineComponent({
   name: "WikiCreateView",
@@ -34,7 +35,7 @@ export default defineComponent({
         title: this.markdownEditor.title,
         content: this.markdownEditor.content
       }
-      axios.post("/api/wiki/create/", wikiPage)
+      axios.post("/api/wiki/create/", wikiPage, userData.getAuthHeader())
           .then(r => {
             this.saveTags(r.data)
           })
@@ -43,7 +44,7 @@ export default defineComponent({
       const requestBody = {
         tags: this.tagSelector.getTagsToAdd()
       }
-      axios.post("/api/tags/relation/create/many?pageId=" + pageId, requestBody)
+      axios.post("/api/tags/relation/create/many?pageId=" + pageId, requestBody, userData.getAuthHeader())
           .then(() => {
             window.location.replace("./#/wiki/page?id=" + pageId)
           })
