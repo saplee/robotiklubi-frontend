@@ -9,6 +9,7 @@
         <input type="text" placeholder="Enter your last name" v-model="lastName" required>
         <label><strong>Email address:</strong></label>
         <input type="email" placeholder="Enter your email" v-model="email" id="email" required>
+        <p id="alert"></p>
         <label><strong>Password:</strong></label>
         <input type="password" placeholder="Enter password" v-model="password" required>
         <label><strong>Phone Number (Optional):</strong></label>
@@ -49,8 +50,10 @@ export default defineComponent({
           !emailElement.validity.typeMismatch) {
         try {
           const response = await axios.post('api/user/signup', info)
-          if (response.data.emailError) document.getElementById("email").style.outline = "2px solid red"
-          else document.getElementById("email").style.outline = ""
+          if (response.data.emailError){ document.getElementById("email").style.outline = "2px solid red"
+            document.getElementById("alert").innerText="This email address is already in use!"}
+          else{ document.getElementById("email").style.outline = ""
+            document.getElementById("alert").innerText=""}
           if (response.data.succeeded) this.$router.replace("/login")
         } catch (Exception) {
           console.log(Exception.response.data)
@@ -76,6 +79,10 @@ input {
 
 button {
   width: 100%;
+  font-size: 1em;
+}
+#alert{
+  color: red;
   font-size: 1em;
 }
 
