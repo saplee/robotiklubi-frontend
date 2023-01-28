@@ -4,6 +4,7 @@
       <div id="login_form">
         <h1>Login</h1>
         <form>
+          <p id="login_alert"></p>
           <label><strong>Email address:</strong></label>
           <input type="email" placeholder="Enter your email" v-model="email" id="email" required>
           <label><strong>Password:</strong></label>
@@ -44,9 +45,11 @@ export default defineComponent({
         if (response.data.succeeded) {
           userData.logIn(response.data.accessToken, response.data.refreshToken)
           this.$router.replace("/")
+          document.getElementById("login_alert").innerText=""
         } else {
           console.log("Can't login")
-        }
+          document.getElementById("login_alert").innerText="Invalid email or password!"}
+
       } catch (Exception) {
         console.log(Exception)
         console.log("Could not send data.")
@@ -93,6 +96,10 @@ button {
 
 h6 {
   text-align: center;
+}
+#login_alert{
+  color: red;
+  font-size: 1em;
 }
 
 </style>
