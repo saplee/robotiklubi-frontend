@@ -100,6 +100,7 @@ h6 {
 #login_alert{
   color: red;
   font-size: 1em;
+  font-weight: bold;
 }
 
 </style>
